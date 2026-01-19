@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bi8ye0pfoxjgh"]
 
-[ext_resource type="Texture2D" uid="uid://xbyhj2ny73cs" path="res://icon.svg" id="1_idbb2"]
+[ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://scenes/player_character.tscn" id="1_idbb2"]
 
 [node name="GameDemo" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_idbb2")
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_idbb2")]
+position = Vector2(532, 223)
+FRICTION = 2000
