@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2bodhemjpl1m"]
+
+[ext_resource type="Script" uid="uid://b17th77ku07gs" path="res://Plantas/Scripts/plant.gd" id="1_3b515"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36t3e"]
+
+[node name="Plant" type="Node2D"]
+script = ExtResource("1_3b515")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_36t3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

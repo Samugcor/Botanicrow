@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi8ye0pfoxjgh"]
+
+[ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://PlayerCharacter/player_character.tscn" id="1_qtkfn"]
+[ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Plantas/Plant.tscn" id="2_81ndi"]
+[ext_resource type="Resource" uid="uid://ciha8m7v2rvw3" path="res://Plantas/Data/Lavender.tres" id="3_jyrld"]
+[ext_resource type="Resource" uid="uid://dhr3u22k74dg5" path="res://Plantas/Data/Rose.tres" id="4_81ndi"]
+
+[node name="GameDemo" type="Node2D"]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_qtkfn")]
+position = Vector2(532, 223)
+FRICTION = 2000
+
+[node name="Lavander01" parent="." instance=ExtResource("2_81ndi")]
+position = Vector2(346, 310)
+plantData = ExtResource("3_jyrld")
+
+[node name="Rose02" parent="." instance=ExtResource("2_81ndi")]
+position = Vector2(906, 262)
+plantData = ExtResource("4_81ndi")

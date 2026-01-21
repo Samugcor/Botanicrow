@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://elo5vcro5ryk"
-path="res://.godot/imported/kmB0tA6.jpeg-a0ccaeac4b58d87e82c7560265e4e709.ctex"
+uid="uid://c7arlfdm68t7n"
+path="res://.godot/imported/lavender.png-54143617106597ed94e643e86cfcd3b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kmB0tA6.jpeg"
-dest_files=["res://.godot/imported/kmB0tA6.jpeg-a0ccaeac4b58d87e82c7560265e4e709.ctex"]
+source_file="res://Plantas/Icons/lavender.png"
+dest_files=["res://.godot/imported/lavender.png-54143617106597ed94e643e86cfcd3b3.ctex"]
 
 [params]
 
