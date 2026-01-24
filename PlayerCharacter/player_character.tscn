@@ -7,10 +7,13 @@
 size = Vector2(128, 128)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_6r27q")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_6r27q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_56udc")
+offset = Vector2(0, -64.295)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -46)
+shape = SubResource("RectangleShape2D_6r27q")

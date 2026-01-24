@@ -1,15 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2bodhemjpl1m"]
+[gd_scene load_steps=4 format=3 uid="uid://c2bodhemjpl1m"]
 
 [ext_resource type="Script" uid="uid://b17th77ku07gs" path="res://Plantas/Scripts/plant.gd" id="1_3b515"]
+[ext_resource type="Texture2D" uid="uid://clpkkbtay425x" path="res://Plantas/Icons/rose.png" id="2_36t3e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_36t3e"]
+radius = 49.010204
 
 [node name="Plant" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_3b515")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -33)
 shape = SubResource("CircleShape2D_36t3e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.14648438, 0.14648438)
+texture = ExtResource("2_36t3e")
+offset = Vector2(0, -250)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+z_as_relative = false
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.15686275, 0.15686275, 0.15686275, 0.7490196)
