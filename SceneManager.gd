@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var player = $Ysortting/PlayerCharacter
-@onready var hud = $Hud
+@onready var hud = $CanvasLayer/Hud
 
 func _ready() -> void:
 	player.interaction_prompt.connect(hud._on_prompt)

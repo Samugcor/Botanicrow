@@ -10,12 +10,10 @@ func _ready() -> void:
 	interactioHint.visible = false
 	warning.visible = false
 
-func _on_prompt(text,visible, coor):
+func _on_prompt(text,isVisible):
 	interactioHint.text = text
-	interactioHint.visible = visible
-	if interactioHint.visible:
-		interactioHint.position = coor + Vector2(hint_offset.x, hint_offset.y)
+	interactioHint.visible = isVisible
 
-func _on_warning(text, visible):
+func _on_warning(text, isVisible):
 	warning.text = text
-	warning.visible = visible
+	warning.visible = isVisible

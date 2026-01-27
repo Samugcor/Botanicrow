@@ -9,7 +9,7 @@ var current_interactable = null
 
 @export var inventory:InventoryClass
 
-signal interaction_prompt(text, visible, coordinates)
+signal interaction_prompt(text, visible)
 signal warning_prompt(text, visible)
 
 		
@@ -58,14 +58,14 @@ func remove_interactable(obj):
 func set_current_interactable():
 	if  posible_interactables.is_empty():
 		current_interactable = null
-		emit_signal("interaction_prompt", "", false, null)
+		emit_signal("interaction_prompt", "", false)
 		return
 	
 	current_interactable = get_closest_interactable()
 	if current_interactable.is_in_group("Pickable"):
-		emit_signal("interaction_prompt", TextVariables.PICK_UP, true, self.position)
+		emit_signal("interaction_prompt", TextVariables.PICK_UP, true)
 	else:
-		emit_signal("interaction_prompt", TextVariables.PRESS_E, true, self.position)
+		emit_signal("interaction_prompt", TextVariables.PRESS_E, true)
 	
 func get_closest_interactable():
 	var closest = null
