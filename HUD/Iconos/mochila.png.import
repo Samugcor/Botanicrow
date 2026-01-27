@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctvoe8q2ay40x"
-path="res://.godot/imported/elegant-tiled-planks-wall-backdrop-parquet-wood-background-parquetry-wooden-floor-texture-wood-flooring-surface-photo.jpg-14104c345fb44d22ffef909b84e0e5bb.ctex"
+uid="uid://cexu7cbapbccb"
+path="res://.godot/imported/mochila.png-9af20afc6781d5b93dffec734bca4d25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://elegant-tiled-planks-wall-backdrop-parquet-wood-background-parquetry-wooden-floor-texture-wood-flooring-surface-photo.jpg"
-dest_files=["res://.godot/imported/elegant-tiled-planks-wall-backdrop-parquet-wood-background-parquetry-wooden-floor-texture-wood-flooring-surface-photo.jpg-14104c345fb44d22ffef909b84e0e5bb.ctex"]
+source_file="res://HUD/Iconos/mochila.png"
+dest_files=["res://.godot/imported/mochila.png-9af20afc6781d5b93dffec734bca4d25.ctex"]
 
 [params]
 

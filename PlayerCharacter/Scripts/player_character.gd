@@ -4,10 +4,23 @@ extends CharacterBody2D
 @export var ACCELERATION = 1500
 @export var FRICTION = 1200
 
+var posible_interactables = []
+var current_interactable = null
 
+@export var inventory:InventoryClass
+
+signal interaction_prompt(text, visible, coordinates)
+signal warning_prompt(text, visible)
+
+		
 func _physics_process(delta):
 	handle_movement(delta)
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		try_interact()
 
+# MOVIMIENTO
 func handle_movement(delta):
 	var axis = Input.get_vector("move_left","move_right","move_up","move_down")
 	
@@ -17,6 +30,8 @@ func handle_movement(delta):
 		apply_movement(axis * ACCELERATION * delta)
 		
 	move_and_slide()
+	if current_interactable:
+		set_current_interactable()
 		
 func apply_friction(nFriction):
 	velocity = velocity.move_toward(Vector2.ZERO, nFriction)
@@ -24,3 +39,52 @@ func apply_friction(nFriction):
 func apply_movement(nAcceleration):
 	velocity += nAcceleration
 	velocity = velocity.limit_length(MAX_SPEED)
+
+# INTERACIIONES
+func try_interact():
+	if current_interactable:
+		current_interactable.interact(self)
+	
+func add_interactable(obj):
+	if obj not in posible_interactables:
+		posible_interactables.append(obj)
+		set_current_interactable()
+	
+func remove_interactable(obj):
+	if obj in posible_interactables:
+		posible_interactables.erase(obj)
+		set_current_interactable()
+	
+func set_current_interactable():
+	if  posible_interactables.is_empty():
+		current_interactable = null
+		emit_signal("interaction_prompt", "", false, null)
+		return
+	
+	current_interactable = get_closest_interactable()
+	if current_interactable.is_in_group("Pickable"):
+		emit_signal("interaction_prompt", TextVariables.PICK_UP, true, self.position)
+	else:
+		emit_signal("interaction_prompt", TextVariables.PRESS_E, true, self.position)
+	
+func get_closest_interactable():
+	var closest = null
+	var min_dist = INF
+	for obj in posible_interactables:
+		var d = global_position.distance_to(obj.global_position)
+		if d < min_dist:
+			min_dist = d
+			closest = obj
+	return closest
+
+#ACTIONS
+func pick_up(item:PlantClass):
+	var success = inventory.add_item(item)
+	print(success)
+	if success:
+		current_interactable.remove_self()
+		set_current_interactable()
+	else:
+		emit_signal("warning_prompt", TextVariables.INVENTORY_FULL, true)
+		await get_tree().create_timer(1.0).timeout
+		emit_signal("warning_prompt", TextVariables.INVENTORY_FULL, false)

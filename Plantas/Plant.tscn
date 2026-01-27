@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_36t3e"]
 radius = 49.010204
 
-[node name="Plant" type="Node2D"]
+[node name="Plant" type="Node2D" groups=["Items"]]
 y_sort_enabled = true
 script = ExtResource("1_3b515")
 
@@ -29,3 +29,6 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 color = Color(0.15686275, 0.15686275, 0.15686275, 0.7490196)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
