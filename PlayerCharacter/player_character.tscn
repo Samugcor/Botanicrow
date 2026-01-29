@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://dyw3qtj2y7a62"]
 
 [ext_resource type="Script" uid="uid://dqphjapt0g7g4" path="res://PlayerCharacter/Scripts/player_character.gd" id="1_6r27q"]
-[ext_resource type="Texture2D" uid="uid://xbyhj2ny73cs" path="res://icon.svg" id="1_56udc"]
 [ext_resource type="Resource" uid="uid://cjg47ri8sj5ry" path="res://Inventarios/Player/player_inventory.tres" id="2_wo4jc"]
+[ext_resource type="Texture2D" uid="uid://cxvlns1g6a4b2" path="res://PlayerCharacter/Placeholder/Placeholder_corneja.png" id="3_wo4jc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6r27q"]
-size = Vector2(128, 128)
+size = Vector2(31, 21)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
@@ -13,9 +13,11 @@ script = ExtResource("1_6r27q")
 inventory = ExtResource("2_wo4jc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_56udc")
+position = Vector2(1, -13)
+scale = Vector2(0.51545715, 0.51545715)
+texture = ExtResource("3_wo4jc")
 offset = Vector2(0, -64.295)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -64)
+position = Vector2(-4.5, -10.5)
 shape = SubResource("RectangleShape2D_6r27q")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi8ye0pfoxjgh"]
+[gd_scene load_steps=17 format=3 uid="uid://bi8ye0pfoxjgh"]
 
 [ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://PlayerCharacter/player_character.tscn" id="1_qtkfn"]
 [ext_resource type="Script" uid="uid://dmy5g06egtt8p" path="res://SceneManager.gd" id="1_umrci"]
@@ -6,6 +6,16 @@
 [ext_resource type="Resource" uid="uid://ciha8m7v2rvw3" path="res://Plantas/Data/Lavender.tres" id="3_jyrld"]
 [ext_resource type="Resource" uid="uid://dhr3u22k74dg5" path="res://Plantas/Data/Rose.tres" id="4_81ndi"]
 [ext_resource type="PackedScene" uid="uid://cau4xgdqn1bpn" path="res://HUD/HUD.tscn" id="5_jyrld"]
+[ext_resource type="Texture2D" uid="uid://dh55x4e58g0q" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_caldero.png" id="8_58eo4"]
+[ext_resource type="Texture2D" uid="uid://b6aysdafhnae0" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_cama.png" id="10_llajs"]
+[ext_resource type="Texture2D" uid="uid://b8st2x1qa0vwy" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_fondo_con_estanterías.png" id="11_1uwtw"]
+[ext_resource type="Texture2D" uid="uid://dp2cg7jrhk2wo" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_overlap_exterior.png" id="12_0n4qq"]
+[ext_resource type="Texture2D" uid="uid://canystx8cmeo6" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p1.png" id="13_d8h4a"]
+[ext_resource type="Texture2D" uid="uid://lff8gn5l15t6" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p2.png" id="14_35rtf"]
+[ext_resource type="Texture2D" uid="uid://bdl57vr62txhc" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p3.png" id="15_w05l2"]
+[ext_resource type="Texture2D" uid="uid://dadk8gys2we7s" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p4.png" id="16_2ke3d"]
+[ext_resource type="PackedScene" uid="uid://u0jodcluhq2e" path="res://Personajes/bruja.tscn" id="16_wqa7v"]
+[ext_resource type="Texture2D" uid="uid://diut2tk5pwyxt" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p5.png" id="17_vg0nd"]
 
 [node name="GameDemo" type="Node2D"]
 script = ExtResource("1_umrci")
@@ -18,8 +28,8 @@ custom_minimum_size = Vector2(155, 0)
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_right = 1155.0
-offset_bottom = 652.0
+offset_right = 1930.0
+offset_bottom = 1082.0
 grow_horizontal = 1
 grow_vertical = 1
 hint_offset = {
@@ -27,28 +37,93 @@ hint_offset = {
 "y": -170
 }
 
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(967.55554, 544)
+scale = Vector2(0.75277776, 0.75277776)
+texture = ExtResource("11_1uwtw")
+
 [node name="Ysortting" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="PlayerCharacter" parent="Ysortting" instance=ExtResource("1_qtkfn")]
-position = Vector2(578, 383)
+position = Vector2(1011, 778)
 FRICTION = 2000
 
 [node name="Camera2D" type="Camera2D" parent="Ysortting/PlayerCharacter"]
-position = Vector2(0, -58)
+position = Vector2(-9, -49)
 
 [node name="Lavander01" parent="Ysortting" groups=["Pickable"] instance=ExtResource("2_81ndi")]
-position = Vector2(571, 222)
+position = Vector2(847, 887)
 plantData = ExtResource("3_jyrld")
 
 [node name="Lavander02" parent="Ysortting" groups=["Pickable"] instance=ExtResource("2_81ndi")]
-position = Vector2(723, 202)
+position = Vector2(763, 659)
 plantData = ExtResource("3_jyrld")
 
 [node name="Lavander03" parent="Ysortting" groups=["Pickable"] instance=ExtResource("2_81ndi")]
-position = Vector2(875, 284)
+position = Vector2(1250, 760)
 plantData = ExtResource("3_jyrld")
 
 [node name="Rose02" parent="Ysortting" groups=["Pickable"] instance=ExtResource("2_81ndi")]
-position = Vector2(498, 331)
+position = Vector2(1189, 885)
 plantData = ExtResource("4_81ndi")
+
+[node name="Escenario" type="Node2D" parent="Ysortting"]
+y_sort_enabled = true
+
+[node name="Caldero" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(1340, 663)
+scale = Vector2(0.7783019, 0.77830184)
+texture = ExtResource("8_58eo4")
+offset = Vector2(0, -89.175)
+
+[node name="Cama" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(415, 859.00006)
+scale = Vector2(0.71362233, 0.7136223)
+texture = ExtResource("10_llajs")
+offset = Vector2(35.03253, -225.60962)
+
+[node name="OverlapExterior" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(948, 1070)
+scale = Vector2(0.7534722, 0.7534722)
+texture = ExtResource("12_0n4qq")
+offset = Vector2(20.49768, -697.43774)
+
+[node name="Planta1" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(972, 160)
+texture = ExtResource("14_35rtf")
+
+[node name="Planta2" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(1217, 301)
+texture = ExtResource("15_w05l2")
+
+[node name="Planta3" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(959, 360)
+texture = ExtResource("16_2ke3d")
+
+[node name="Planta4" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(1060, 423)
+texture = ExtResource("17_vg0nd")
+
+[node name="Planta5" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(1119, 204)
+texture = ExtResource("13_d8h4a")
+
+[node name="Bruja" parent="Ysortting/Escenario" instance=ExtResource("16_wqa7v")]
+position = Vector2(1484, 878)
+
+[node name="Collaiders" type="Node2D" parent="."]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Collaiders"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collaiders/StaticBody2D"]
+polygon = PackedVector2Array(626, 959, 755, 833, 662, 783, 676, 753, 300, 638, 318, 624, 383, 649, 435, 624, 421, 601, 481, 610, 570, 593, 676, 615, 786, 530, 1069, 605, 1141, 552, 1194, 561, 1178, 633, 1470, 706, 1521, 665, 1800, 750, 1856, 696, 1844, 185, 689, 6, 460, 119, 334, 90, 55, 232, 86, 768)
