@@ -23,24 +23,15 @@ script = ExtResource("1_umrci")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="CanvasLayer" instance=ExtResource("5_jyrld")]
-z_index = 10
-custom_minimum_size = Vector2(155, 0)
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1930.0
-offset_bottom = 1082.0
-grow_horizontal = 1
-grow_vertical = 1
 hint_offset = {
 "x": -60,
 "y": -170
 }
 
 [node name="Fondo" type="Sprite2D" parent="."]
-position = Vector2(967.55554, 544)
 scale = Vector2(0.75277776, 0.75277776)
 texture = ExtResource("11_1uwtw")
+centered = false
 
 [node name="Ysortting" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -51,6 +42,11 @@ FRICTION = 2000
 
 [node name="Camera2D" type="Camera2D" parent="Ysortting/PlayerCharacter"]
 position = Vector2(-9, -49)
+limit_left = 1
+limit_top = 1
+limit_right = 1920
+limit_bottom = 1080
+editor_draw_limits = true
 
 [node name="Lavander01" parent="Ysortting" groups=["Pickable"] instance=ExtResource("2_81ndi")]
 position = Vector2(847, 887)

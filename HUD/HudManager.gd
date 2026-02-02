@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var camera: Camera2D = get_parent().get_node("Camera2D")
 @onready var interactioHint: Control = $Interaction_hint
