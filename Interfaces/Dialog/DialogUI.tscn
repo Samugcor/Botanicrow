@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://di1x8todxh7ay"]
+
+[ext_resource type="Script" uid="uid://bng114ek46yiq" path="res://Interfaces/Dialog/DialogUI.gd" id="1_c35hn"]
+[ext_resource type="Texture2D" uid="uid://bqcrejdrxocba" path="res://working_on_it.jpg" id="1_hgpvi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c35hn"]
+bg_color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[node name="DialogUi" type="CanvasLayer"]
+script = ExtResource("1_c35hn")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -353.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c35hn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1540.0
+offset_top = -143.5
+offset_right = -35.0
+offset_bottom = 143.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 19
+
+[node name="Name" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "Braulio"
+
+[node name="DialogText" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Lorem"
+
+[node name="OptionsContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="CharacterPortrait" type="TextureRect" parent="."]
+offset_left = 27.0
+offset_top = 562.0
+offset_right = 348.00006
+offset_bottom = 1043.2737
+texture = ExtResource("1_hgpvi")
+expand_mode = 3

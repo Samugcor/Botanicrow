@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="NpcClass" load_steps=4 format=3 uid="uid://dhn3qkyqxryvt"]
+
+[ext_resource type="Script" uid="uid://bgr817af8pfub" path="res://Personajes/NpcClass.gd" id="1_fwahh"]
+[ext_resource type="Texture2D" uid="uid://c13q0157h8mxt" path="res://Personajes/Bruja/Interior_casa_bruja_placeholder_zona_sillon_con bruja.png" id="2_yivbr"]
+[ext_resource type="Texture2D" uid="uid://dcxw7tpekaifo" path="res://Personajes/Bruja/Interior_casa_bruja_placeholder_zona_sillon_con bruja-seleccionada.png" id="3_k5t7w"]
+
+[resource]
+script = ExtResource("1_fwahh")
+id = "bruja"
+name = "Bruja"
+sprite = ExtResource("2_yivbr")
+spriteSelected = ExtResource("3_k5t7w")
+dialogFile = "res://Interfaces/Dialog/JSON/bruja_dialog.json"
+metadata/_custom_type_script = "uid://bgr817af8pfub"

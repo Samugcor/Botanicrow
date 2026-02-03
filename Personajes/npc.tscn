@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://u0jodcluhq2e"]
+
+[ext_resource type="Script" uid="uid://bht71d54j4caw" path="res://Personajes/npc.gd" id="1_830ch"]
+[ext_resource type="Texture2D" uid="uid://c13q0157h8mxt" path="res://Personajes/Bruja/Interior_casa_bruja_placeholder_zona_sillon_con bruja.png" id="2_kfrdv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lsdvp"]
+radius = 250.07199
+
+[node name="NPC" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_830ch")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Npc"]]
+position = Vector2(0.43752754, -237.1476)
+scale = Vector2(0.67415965, 0.67415965)
+texture = ExtResource("2_kfrdv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -130)
+shape = SubResource("CircleShape2D_lsdvp")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

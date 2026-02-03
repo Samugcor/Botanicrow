@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cau4xgdqn1bpn"]
+[gd_scene load_steps=7 format=3 uid="uid://cau4xgdqn1bpn"]
 
-[ext_resource type="Script" uid="uid://cuanji2f4cebj" path="res://HUD/HudManager.gd" id="1_b7ubu"]
-[ext_resource type="Texture2D" uid="uid://ji30cynix0xv" path="res://HUD/Placeholders/Placeholder_HUD_mochila_estatua.png" id="2_amwvk"]
-[ext_resource type="PackedScene" uid="uid://br877hemq3s85" path="res://Inventarios/Player/PlayerInventory.tscn" id="3_ja1d4"]
-[ext_resource type="Texture2D" uid="uid://dcg4dmwwl4yqe" path="res://HUD/Placeholders/Placeholder_HUD_interaccion-a.png" id="4_aa5tu"]
+[ext_resource type="Script" uid="uid://cuanji2f4cebj" path="res://Interfaces/HUD/HudManager.gd" id="1_b7ubu"]
+[ext_resource type="Texture2D" uid="uid://ji30cynix0xv" path="res://Interfaces/HUD/Placeholders/Placeholder_HUD_mochila_estatua.png" id="2_amwvk"]
+[ext_resource type="PackedScene" uid="uid://br877hemq3s85" path="res://Interfaces/Inventarios/Player/PlayerInventory.tscn" id="3_ja1d4"]
+[ext_resource type="Texture2D" uid="uid://dcg4dmwwl4yqe" path="res://Interfaces/HUD/Placeholders/Placeholder_HUD_interaccion-a.png" id="4_aa5tu"]
+[ext_resource type="PackedScene" uid="uid://cp5x8xmc781mg" path="res://Interfaces/HUD/QuestTraker/QuestTraker.tscn" id="5_rlgwt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_njmlf"]
 font_size = 22
@@ -77,3 +78,5 @@ layout_mode = 2
 text = "aaaa"
 label_settings = SubResource("LabelSettings_njmlf")
 horizontal_alignment = 1
+
+[node name="QuestTraker" parent="." instance=ExtResource("5_rlgwt")]

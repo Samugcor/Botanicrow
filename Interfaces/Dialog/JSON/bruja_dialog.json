@@ -1,0 +1,63 @@
+{
+	"entries":[
+		{
+			"id":"first_meeting",
+			"priority":100,
+			"conditions": [],
+			"nodes":[
+				{
+					"id":"greeting",
+					"text": "Oh! Finally! I've been triying so long to wake you up.",
+					"choices": [
+						{
+							"text": "Who are you?",
+							"next": "who_bruja"
+						},
+						{
+							"text": "Who am I?",
+							"next": "who_player"
+						},
+						{
+							"text": "...",
+							"next": "presentation"
+						}
+					]
+				},
+				{
+					"id":"who_bruja",
+					"text": "Don't be silly. We have wasted enough time as is.",
+					"next": "presentation"
+				},
+				{
+					"id":"who_player",
+					"text": "Did the petrification make you loose your memory? You are my familiar! A cute, little helper for when i need to make potions.",
+					"next": "presentation"
+				},
+				{
+					"id":"presentation",
+					"text": "Well, lets get to work, come on now! Try moving using the 'wasd' keys!",
+					"end": true
+				}
+				
+			]
+		},
+		{
+			"id":"default",
+			"priority":0,
+			"conditions": [],
+			"nodes":[
+				{
+					"id":"1",
+					"text": "I wonder how the weather will be tomorrow. ",
+					"end":true
+				},
+				{
+					"id":"2",
+					"text": "Do you want potato salad?",
+					"end": true
+				}
+				
+			]
+		}
+	]
+}

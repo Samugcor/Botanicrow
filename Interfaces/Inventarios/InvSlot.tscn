@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bm4rkocy4kh64"]
 
-[ext_resource type="Script" uid="uid://brgki8lngo57g" path="res://Inventarios/InvSlotManager.gd" id="1_70bqb"]
+[ext_resource type="Script" uid="uid://brgki8lngo57g" path="res://Interfaces/Inventarios/InvSlotManager.gd" id="1_70bqb"]
 
 [node name="InvSlot" type="Control"]
 custom_minimum_size = Vector2(60, 60)

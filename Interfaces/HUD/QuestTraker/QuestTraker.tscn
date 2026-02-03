@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp5x8xmc781mg"]
+
+[ext_resource type="Script" uid="uid://btbdyki1uj48g" path="res://Interfaces/HUD/QuestTraker/QuestTrakerManager.gd" id="1_y0yyd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g257n"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0.70980394)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.43904907, 0.43904918, 0.4390489, 1)
+
+[node name="QuestTraker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y0yyd")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 508.0
+offset_bottom = 297.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g257n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.75
+offset_top = -125.25
+offset_right = 230.75
+offset_bottom = 125.25
+grow_horizontal = 2
+grow_vertical = 2

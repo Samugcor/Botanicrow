@@ -1,7 +1,8 @@
 extends Control
 
-@onready var inv: InventoryClass = preload("res://Inventarios/Player/player_inventory.tres")
+@onready var inv: InventoryClass = preload("res://Interfaces/Inventarios/Player/player_inventory.tres")
 @onready var uiSlots: Array = $Panel/GridContainer.get_children()
+
 
 func _ready() -> void:
 	inv.Update.connect(update_slots)

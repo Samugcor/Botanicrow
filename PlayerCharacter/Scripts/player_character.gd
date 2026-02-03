@@ -3,11 +3,12 @@ extends CharacterBody2D
 @export var MAX_SPEED = 400
 @export var ACCELERATION = 1500
 @export var FRICTION = 1200
+@export var inventory:InventoryClass
 
 var posible_interactables = []
 var current_interactable = null
+var can_move = true
 
-@export var inventory:InventoryClass
 
 signal interaction_prompt(text, visible)
 signal warning_prompt(text, visible)
@@ -29,6 +30,7 @@ func handle_movement(delta):
 	else:
 		apply_movement(axis * ACCELERATION * delta)
 		
+	
 	move_and_slide()
 	if current_interactable:
 		set_current_interactable()
@@ -44,6 +46,7 @@ func apply_movement(nAcceleration):
 func try_interact():
 	if current_interactable:
 		current_interactable.interact(self)
+		
 	
 func add_interactable(obj):
 	if obj not in posible_interactables:

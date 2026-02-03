@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv0qv1n4y12g4"]
+
+[ext_resource type="Script" uid="uid://bht71d54j4caw" path="res://Personajes/npc.gd" id="1_830ch"]
+[ext_resource type="Texture2D" uid="uid://c13q0157h8mxt" path="res://Personajes/Bruja/Interior_casa_bruja_placeholder_zona_sillon_con bruja.png" id="3_itkqf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lsdvp"]
+radius = 250.07199
+
+[node name="Bruja" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_830ch")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Npc"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -130)
+shape = SubResource("CircleShape2D_lsdvp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-201, -53, -140, -1, -35, -26, -5, -7, -26, 12, 2, 61, 87, 28, 55, -21, 152, -56, 40, -149, -120, -101, -101, -80)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-2, 1)
+scale = Vector2(0.67415965, 0.67415965)
+texture = ExtResource("3_itkqf")
+offset = Vector2(3.6156535, -353.25104)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

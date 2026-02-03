@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bi8ye0pfoxjgh"]
+[gd_scene load_steps=19 format=3 uid="uid://bi8ye0pfoxjgh"]
 
 [ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://PlayerCharacter/player_character.tscn" id="1_qtkfn"]
 [ext_resource type="Script" uid="uid://dmy5g06egtt8p" path="res://SceneManager.gd" id="1_umrci"]
 [ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Plantas/Plant.tscn" id="2_81ndi"]
 [ext_resource type="Resource" uid="uid://ciha8m7v2rvw3" path="res://Plantas/Data/Lavender.tres" id="3_jyrld"]
 [ext_resource type="Resource" uid="uid://dhr3u22k74dg5" path="res://Plantas/Data/Rose.tres" id="4_81ndi"]
-[ext_resource type="PackedScene" uid="uid://cau4xgdqn1bpn" path="res://HUD/HUD.tscn" id="5_jyrld"]
+[ext_resource type="PackedScene" uid="uid://cau4xgdqn1bpn" path="res://Interfaces/HUD/HUD.tscn" id="5_jyrld"]
 [ext_resource type="Texture2D" uid="uid://dh55x4e58g0q" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_caldero.png" id="8_58eo4"]
 [ext_resource type="Texture2D" uid="uid://b6aysdafhnae0" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_cama.png" id="10_llajs"]
 [ext_resource type="Texture2D" uid="uid://b8st2x1qa0vwy" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_fondo_con_estanterías.png" id="11_1uwtw"]
@@ -14,8 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://lff8gn5l15t6" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p2.png" id="14_35rtf"]
 [ext_resource type="Texture2D" uid="uid://bdl57vr62txhc" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p3.png" id="15_w05l2"]
 [ext_resource type="Texture2D" uid="uid://dadk8gys2we7s" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p4.png" id="16_2ke3d"]
-[ext_resource type="PackedScene" uid="uid://u0jodcluhq2e" path="res://Personajes/bruja.tscn" id="16_wqa7v"]
+[ext_resource type="Texture2D" uid="uid://bux2mb1uqkyht" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_zona_sillon.png" id="16_8py3p"]
+[ext_resource type="PackedScene" uid="uid://bv0qv1n4y12g4" path="res://Personajes/Bruja/bruja.tscn" id="17_knbcn"]
 [ext_resource type="Texture2D" uid="uid://diut2tk5pwyxt" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p5.png" id="17_vg0nd"]
+[ext_resource type="Resource" uid="uid://dhn3qkyqxryvt" path="res://Personajes/Bruja/Bruja.tres" id="18_438rk"]
 
 [node name="GameDemo" type="Node2D"]
 script = ExtResource("1_umrci")
@@ -37,13 +39,13 @@ centered = false
 y_sort_enabled = true
 
 [node name="PlayerCharacter" parent="Ysortting" instance=ExtResource("1_qtkfn")]
-position = Vector2(1011, 778)
+position = Vector2(1106, 797)
 FRICTION = 2000
 
-[node name="Camera2D" type="Camera2D" parent="Ysortting/PlayerCharacter"]
-position = Vector2(-9, -49)
-limit_left = 1
-limit_top = 1
+[node name="Camera2D2" type="Camera2D" parent="Ysortting/PlayerCharacter"]
+position = Vector2(0, -56)
+limit_left = 0
+limit_top = 0
 limit_right = 1920
 limit_bottom = 1080
 editor_draw_limits = true
@@ -113,13 +115,28 @@ y_sort_enabled = true
 position = Vector2(1119, 204)
 texture = ExtResource("13_d8h4a")
 
-[node name="Bruja" parent="Ysortting/Escenario" instance=ExtResource("16_wqa7v")]
-position = Vector2(1484, 878)
+[node name="Sillon" type="Sprite2D" parent="Ysortting/Escenario"]
+visible = false
+position = Vector2(1549.4999, 734.37103)
+scale = Vector2(0.7523447, 0.75234544)
+texture = ExtResource("16_8py3p")
+
+[node name="Bruja" parent="Ysortting/Escenario" instance=ExtResource("17_knbcn")]
+position = Vector2(1525, 893)
+npcData = ExtResource("18_438rk")
 
 [node name="Collaiders" type="Node2D" parent="."]
 visible = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Collaiders"]
+[node name="Interior" type="StaticBody2D" parent="Collaiders"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collaiders/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collaiders/Interior"]
 polygon = PackedVector2Array(626, 959, 755, 833, 662, 783, 676, 753, 300, 638, 318, 624, 383, 649, 435, 624, 421, 601, 481, 610, 570, 593, 676, 615, 786, 530, 1069, 605, 1141, 552, 1194, 561, 1178, 633, 1470, 706, 1521, 665, 1800, 750, 1856, 696, 1844, 185, 689, 6, 460, 119, 334, 90, 55, 232, 86, 768)
+
+[node name="Exterior" type="StaticBody2D" parent="Collaiders"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collaiders/Exterior"]
+polygon = PackedVector2Array(1843, 696, 1591, 1031, 1238, 930, 1053, 1105, 1954, 1118)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collaiders/Exterior"]
+polygon = PackedVector2Array(93, 773, 841, 988, 963, 861, 1018, 874, 703, 1197)

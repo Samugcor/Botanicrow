@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://br877hemq3s85"]
 
-[ext_resource type="Script" uid="uid://cg86kdinkx840" path="res://Inventarios/Player/PlayerInventoryManager.gd" id="1_b2vgl"]
-[ext_resource type="PackedScene" uid="uid://bm4rkocy4kh64" path="res://Inventarios/InvSlot.tscn" id="2_p1x7s"]
+[ext_resource type="Script" uid="uid://cg86kdinkx840" path="res://Interfaces/Inventarios/Player/PlayerInventoryManager.gd" id="1_b2vgl"]
+[ext_resource type="PackedScene" uid="uid://bm4rkocy4kh64" path="res://Interfaces/Inventarios/InvSlot.tscn" id="2_p1x7s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivg42"]
 bg_color = Color(0.36689416, 0.6444069, 0.7432242, 1)
