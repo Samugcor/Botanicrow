@@ -14,6 +14,8 @@ func _ready() -> void:
 	hide_dialogUI()
 
 func _on_start_dialog():
+	#Ponerse como estado
+	GameplayState.push(self)
 	show_dialogUI()
 
 func _on_node_changed_dialog(id,text,choices):
@@ -23,6 +25,8 @@ func _on_node_changed_dialog(id,text,choices):
 	
 func _on_end_dialog():
 	#Borrar todo
+	#Quitar estado
+	GameplayState.pop()
 	hide_dialogUI()
 
 func show_dialogUI():

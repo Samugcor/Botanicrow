@@ -7,30 +7,33 @@ extends CharacterBody2D
 
 var posible_interactables = []
 var current_interactable = null
-var can_move = true
+
+var moevement_axis : Vector2
 
 
 signal interaction_prompt(text, visible)
 signal warning_prompt(text, visible)
 
-		
+func _ready() -> void:
+	GameplayState.push(self)
+	InputManager.intent_interact.connect(_on_interact_intent)
+	InputManager.intent_move.connect(_on_move_intent)
+	
 func _physics_process(delta):
 	handle_movement(delta)
-	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
-		try_interact()
 
-# MOVIMIENTO
-func handle_movement(delta):
-	var axis = Input.get_vector("move_left","move_right","move_up","move_down")
+# MOVIMIENTO =========================================================
+func _on_move_intent(axis:Vector2):
+	if GameplayState.current() != self:
+		return
+	moevement_axis = axis 
 	
-	if axis == Vector2.ZERO:
+func handle_movement(delta):
+	if moevement_axis == Vector2.ZERO:
 		apply_friction(FRICTION * delta)
 	else:
-		apply_movement(axis * ACCELERATION * delta)
+		apply_movement(moevement_axis * ACCELERATION * delta)
 		
-	
 	move_and_slide()
 	if current_interactable:
 		set_current_interactable()
@@ -42,8 +45,11 @@ func apply_movement(nAcceleration):
 	velocity += nAcceleration
 	velocity = velocity.limit_length(MAX_SPEED)
 
-# INTERACIIONES
-func try_interact():
+# INTERACIIONES =====================================================
+func _on_interact_intent():
+	if GameplayState.current() != self:
+		return
+		
 	if current_interactable:
 		current_interactable.interact(self)
 		
@@ -80,7 +86,7 @@ func get_closest_interactable():
 			closest = obj
 	return closest
 
-#ACTIONS
+#ACTIONS ==========================================================
 func pick_up(item:PlantClass):
 	var success = inventory.add_item(item)
 	print(success)
