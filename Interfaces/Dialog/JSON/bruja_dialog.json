@@ -18,19 +18,19 @@
 						},
 						{
 							"text": "...",
-							"next": "presentation"
+							"next": "get_to_work"
 						}
 					]
 				},
 				"who_bruja":{
 					"text": "Don't be silly. We have wasted enough time as is.",
-					"next": "presentation"
+					"next": "get_to_work"
 				},
 				"who_player":{
 					"text": "Did the petrification make you loose your memory? You are my familiar! A cute, little helper for when i need to make potions.",
-					"next": "presentation"
+					"next": "get_to_work"
 				},
-				"presentation":{
+				"get_to_work":{
 					"text": "Well, lets get to work, come on now! Try moving using the 'wasd' keys!",
 					"end": true
 				}

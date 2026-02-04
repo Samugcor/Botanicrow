@@ -12,13 +12,19 @@ var dialog_entry
 var dialog_node
 var dialog_choices
 
-func startNpcDialog(npc_id,file_path):
+#current npc data
+var npc_id
+var file_path
+
+func startNpcDialog(_npc_id,_file_path):
+	npc_id = _npc_id
+	file_path = _file_path
 	#Comprobamos si dialogo está en cache
-	dialog_data = getDialogueFromCache(npc_id)
+	dialog_data = getDialogueFromCache()
 	
 	#Si no está cargamos archivo a caché
 	if !dialog_data:
-		dialog_data = getFileContents(file_path)
+		dialog_data = getFileContents()
 		dialogue_cache[npc_id] = dialog_data
 		print("Lo cogimos del archivo y lo guardamos en caché")
 	
@@ -32,22 +38,15 @@ func startNpcDialog(npc_id,file_path):
 			GameState.applyEffect()
 	
 	#Coger nodo start
-	#Si no tiene nodo start coger uno al azar
-	dialog_node = getDialogNode("start")
-	if not dialog_node:
-		#get random node
-		pass
-	
+	getDialogNode("start")
 	# Signal start to dialog ui
 	emit_signal("start_dialog")
-	
-	dialog_choices = dialog_node.choices if dialog_node.has("choices") else []
 	#signal node change with current values
 	emit_signal("node_changed_dialog", npc_id, dialog_node.text,dialog_choices)
 	
 	
 
-func getFileContents(file_path):
+func getFileContents():
 	
 	var data =  FileAccess.get_file_as_string(file_path)
 	if !data:
@@ -60,7 +59,7 @@ func getFileContents(file_path):
 	
 	return parsed_data
 	
-func getDialogueFromCache(npc_id):
+func getDialogueFromCache():
 	if dialogue_cache.has(npc_id):
 		return dialogue_cache[npc_id]
 	
@@ -79,5 +78,30 @@ func getCorrespondingDialogEntry():
 			if GameState.checkCondition(condition):
 				return entry
 
-func getDialogNode(node_id: String):
-	return dialog_entry.nodes.get(node_id,false)
+func getDialogNode(node_id):
+	dialog_node = dialog_entry.nodes.get(node_id,false)
+	if node_id == "start" and not dialog_node:
+		#get random node
+		pass
+	dialog_choices = dialog_node.choices if dialog_node.has("choices") else []
+
+func advance(next_node_id: String = ""):
+	#Si el nodo actual es el último cerramos dialogo
+	if dialog_node.has("end"):
+		if dialog_node.end:
+			emit_signal("end_dialog")
+			return
+	
+	#Si nos han pasado un id avanzamos hasta ese nodo
+	if next_node_id:
+		getDialogNode(next_node_id)
+		emit_signal("node_changed_dialog", npc_id, dialog_node.text,dialog_choices)
+		return
+	
+	#Si no es final y no nos han indicado siguiente buscamos cual sería el siguiente
+	if dialog_node.has("next"):
+		getDialogNode(dialog_node.next)
+		emit_signal("node_changed_dialog", npc_id, dialog_node.text,dialog_choices)
+		return
+	
+	push_error("The conversation has reached a breaking point")
