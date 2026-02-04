@@ -33,4 +33,4 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		sprite.texture = npcData.sprite
 
 func interact(player):
-	DialogManager.startDialog(npcData.id,npcData.dialogFile)
+	DialogManager.startNpcDialog(npcData.id,npcData.dialogFile)

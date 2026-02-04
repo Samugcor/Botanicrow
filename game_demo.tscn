@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bi8ye0pfoxjgh"]
+[gd_scene load_steps=20 format=3 uid="uid://bi8ye0pfoxjgh"]
 
 [ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://PlayerCharacter/player_character.tscn" id="1_qtkfn"]
 [ext_resource type="Script" uid="uid://dmy5g06egtt8p" path="res://SceneManager.gd" id="1_umrci"]
 [ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Plantas/Plant.tscn" id="2_81ndi"]
+[ext_resource type="PackedScene" uid="uid://di1x8todxh7ay" path="res://Interfaces/Dialog/DialogUI.tscn" id="3_438rk"]
 [ext_resource type="Resource" uid="uid://ciha8m7v2rvw3" path="res://Plantas/Data/Lavender.tres" id="3_jyrld"]
 [ext_resource type="Resource" uid="uid://dhr3u22k74dg5" path="res://Plantas/Data/Rose.tres" id="4_81ndi"]
 [ext_resource type="PackedScene" uid="uid://cau4xgdqn1bpn" path="res://Interfaces/HUD/HUD.tscn" id="5_jyrld"]
@@ -29,6 +30,9 @@ hint_offset = {
 "x": -60,
 "y": -170
 }
+
+[node name="DialogUi" parent="CanvasLayer" instance=ExtResource("3_438rk")]
+visible = false
 
 [node name="Fondo" type="Sprite2D" parent="."]
 scale = Vector2(0.75277776, 0.75277776)

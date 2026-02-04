@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 TextVariables="*res://Autoloads/TextVariables.gd"
 DialogManager="*res://Autoloads/DialogManager.gd"
+GameState="*res://Autoloads/GameState.gd"
 
 [display]
 
