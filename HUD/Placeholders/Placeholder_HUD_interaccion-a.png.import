@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ji30cynix0xv"
-path="res://.godot/imported/Placeholder_HUD_mochila_estatua.png-832307434557e8a1c9af2dad823dcb06.ctex"
+uid="uid://dcg4dmwwl4yqe"
+path="res://.godot/imported/Placeholder_HUD_interaccion-a.png-26edac5557e3d94f0a3908154e89f14e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Interfaces/HUD/Placeholders/Placeholder_HUD_mochila_estatua.png"
-dest_files=["res://.godot/imported/Placeholder_HUD_mochila_estatua.png-832307434557e8a1c9af2dad823dcb06.ctex"]
+source_file="res://HUD/Placeholders/Placeholder_HUD_interaccion-a.png"
+dest_files=["res://.godot/imported/Placeholder_HUD_interaccion-a.png-26edac5557e3d94f0a3908154e89f14e.ctex"]
 
 [params]
 

@@ -34,8 +34,8 @@ func startNpcDialog(_npc_id,_file_path):
 	
 	#if entry has effects apply effects
 	if dialog_entry.has("effects"):
-		for effec in dialog_entry.effects:
-			GameState.applyEffect()
+		for effect in dialog_entry.effects:
+			GameState.applyEffect(effect)
 	
 	#Coger nodo start
 	getDialogNode("start")
@@ -44,17 +44,16 @@ func startNpcDialog(_npc_id,_file_path):
 	#signal node change with current values
 	emit_signal("node_changed_dialog", npc_id, dialog_node.text,dialog_choices)
 	
-	
-
 func getFileContents():
 	
 	var data =  FileAccess.get_file_as_string(file_path)
 	if !data:
 		print(FileAccess.get_open_error())
+		push_error("Error FileAccess")
 		return 
 	var parsed_data = JSON.parse_string(data)
 	if !parsed_data:
-		print("error parsing data")
+		push_error("error parsing data")
 		return
 	
 	return parsed_data
@@ -74,6 +73,9 @@ func getCorrespondingDialogEntry():
 	#Una vez ordenadas comprobamos requisitos
 	#Devolvemos la primera (más alta prioridad) que cumpla los requisitos
 	for entry in sorted_entries:
+		if entry.conditions.is_empty():
+			return entry
+		
 		for condition in entry.conditions:
 			if GameState.checkCondition(condition):
 				return entry
@@ -81,8 +83,9 @@ func getCorrespondingDialogEntry():
 func getDialogNode(node_id):
 	dialog_node = dialog_entry.nodes.get(node_id,false)
 	if node_id == "start" and not dialog_node:
-		#get random node
-		pass
+		var rng = RandomNumberGenerator.new()
+		node_id = str(rng.randi_range(0, dialog_entry.nodes.size()-1))
+		dialog_node = dialog_entry.nodes[node_id]
 	dialog_choices = dialog_node.choices if dialog_node.has("choices") else []
 
 func advance(next_node_id: String = ""):

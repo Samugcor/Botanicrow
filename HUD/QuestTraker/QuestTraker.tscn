@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp5x8xmc781mg"]
 
-[ext_resource type="Script" uid="uid://btbdyki1uj48g" path="res://Interfaces/HUD/QuestTraker/QuestTrakerManager.gd" id="1_y0yyd"]
+[ext_resource type="Script" uid="uid://btbdyki1uj48g" path="res://HUD/QuestTraker/QuestTrakerManager.gd" id="1_y0yyd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g257n"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0.70980394)

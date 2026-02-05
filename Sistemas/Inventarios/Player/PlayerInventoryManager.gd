@@ -1,6 +1,6 @@
 extends Control
 
-@onready var inv: InventoryClass = preload("res://Interfaces/Inventarios/Player/player_inventory.tres")
+@onready var inv: InventoryClass = preload("res://Sistemas/Inventarios/Player/player_inventory.tres")
 @onready var uiSlots: Array = $Panel/GridContainer.get_children()
 
 

@@ -10,5 +10,5 @@ id = "bruja"
 name = "Bruja"
 sprite = ExtResource("2_yivbr")
 spriteSelected = ExtResource("3_k5t7w")
-dialogFile = "res://Interfaces/Dialog/JSON/bruja_dialog.json"
+dialogFile = "res://Sistemas/Dialog/JSON/bruja_dialog.json"
 metadata/_custom_type_script = "uid://bgr817af8pfub"

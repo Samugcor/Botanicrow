@@ -15,5 +15,13 @@ func checkCondition(condition:String) -> bool:
 	push_warning("Unknown condition: %s" % condition)
 	return false
 
-func applyEffect():
-	print("Recuerda aplicar efectos ")
+func applyEffect(effect:String) -> void:
+	var parts = effect.split(":")
+	var type = parts[0]
+	var value = parts[1]
+	
+	match type:
+		"met":
+			met_npcs[value]=true
+			
+	push_warning("Unknown effect: %s" % effect)

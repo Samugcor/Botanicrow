@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcg4dmwwl4yqe"
-path="res://.godot/imported/Placeholder_HUD_interaccion-a.png-92eae5ba408e39648ed0ddedd0c99c1e.ctex"
+uid="uid://elo5vcro5ryk"
+path="res://.godot/imported/kmB0tA6.jpeg-631e8c5888eca478c56062ac0a684832.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Interfaces/HUD/Placeholders/Placeholder_HUD_interaccion-a.png"
-dest_files=["res://.godot/imported/Placeholder_HUD_interaccion-a.png-92eae5ba408e39648ed0ddedd0c99c1e.ctex"]
+source_file="res://MainMenu/kmB0tA6.jpeg"
+dest_files=["res://.godot/imported/kmB0tA6.jpeg-631e8c5888eca478c56062ac0a684832.ctex"]
 
 [params]
 

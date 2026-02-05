@@ -4,6 +4,7 @@
 			"id":"first_meeting",
 			"priority":100,
 			"conditions": ["not_met:bruja"],
+			"effects": ["met:bruja"],
 			"nodes":{
 				"start":{
 					"text": "Oh! Finally! I've been triying so long to wake you up.",
@@ -41,11 +42,11 @@
 			"priority":0,
 			"conditions": [],
 			"nodes":{
-				"1":{
+				"0":{
 					"text": "I wonder how the weather will be tomorrow. ",
 					"end":true
 				},
-				"2":{
+				"1":{
 					"text": "Do you want potato salad?",
 					"end": true
 				}

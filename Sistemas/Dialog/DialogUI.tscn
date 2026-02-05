@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://di1x8todxh7ay"]
 
-[ext_resource type="Script" uid="uid://bng114ek46yiq" path="res://Interfaces/Dialog/DialogUI.gd" id="1_c35hn"]
+[ext_resource type="Script" uid="uid://bng114ek46yiq" path="res://Sistemas/Dialog/DialogUI.gd" id="1_c35hn"]
 [ext_resource type="Texture2D" uid="uid://bqcrejdrxocba" path="res://working_on_it.jpg" id="1_hgpvi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c35hn"]
