@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd5uihsy3vjqb"]
+
+[ext_resource type="Script" uid="uid://d4mkcdnrrtvl5" path="res://PlayerCharacter/PlayerMenu/PlayerMenuManager.gd" id="1_mh3t4"]
+[ext_resource type="PackedScene" uid="uid://br877hemq3s85" path="res://Sistemas/Inventarios/Player/PlayerInventory.tscn" id="2_664wf"]
+[ext_resource type="PackedScene" uid="uid://bk3fc3buerpw8" path="res://Sistemas/Misiones/QuestUi.tscn" id="3_nc4y5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh3t4"]
+bg_color = Color(0.2667363, 0.17884725, 0.03883013, 1)
+
+[node name="PlayerMenu" type="CanvasLayer"]
+script = ExtResource("1_mh3t4")
+
+[node name="Inventory" parent="." instance=ExtResource("2_664wf")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -430.0
+offset_top = 60.0
+offset_right = -36.0
+offset_bottom = 252.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="BookBackdrop" type="Panel" parent="."]
+offset_left = 60.0
+offset_top = 52.0
+offset_right = 1452.0
+offset_bottom = 1007.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mh3t4")
+
+[node name="MarginContainer" type="MarginContainer" parent="BookBackdrop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="QuestUi" parent="BookBackdrop/MarginContainer" instance=ExtResource("3_nc4y5")]
+layout_mode = 2

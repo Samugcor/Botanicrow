@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_ky1f7")
-id = "01"
+id = "lavander"
 name = "Lavender"
 description = "A plant that smells like sweet calm"
 sprite = ExtResource("1_acpjy")

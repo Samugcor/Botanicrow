@@ -22,6 +22,8 @@ DialogManager="*res://Autoloads/DialogManager.gd"
 GameState="*res://Autoloads/GameState.gd"
 InputManager="*res://Autoloads/InputManager.gd"
 GameplayState="*res://Autoloads/GameplayState.gd"
+GameCommander="*res://Autoloads/GameCommander.gd"
+QuestManager="*res://Autoloads/QuestManager.gd"
 
 [display]
 

@@ -1,4 +1,12 @@
-[gd_scene format=3 uid="uid://bk3fc3buerpw8"]
+[gd_scene load_steps=5 format=3 uid="uid://bk3fc3buerpw8"]
+
+[ext_resource type="Script" uid="uid://1gnbk0ppbhsb" path="res://Sistemas/Misiones/QuestUiManager.gd" id="1_1nlp6"]
+[ext_resource type="StyleBox" uid="uid://5f3gl5efidsi" path="res://Styles/QuestListLbl.tres" id="2_eevf6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4w4hy"]
+bg_color = Color(0.8663352, 0.77273154, 0.5862644, 1)
+
+[sub_resource type="Theme" id="Theme_63esf"]
 
 [node name="QuestUi" type="Control"]
 layout_mode = 3
@@ -7,13 +15,55 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1nlp6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4w4hy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="MisionsContainer" type="VBoxContainer" parent="Panel/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/MarginContainer/MisionsContainer"]
+layout_mode = 2
+theme = SubResource("Theme_63esf")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("2_eevf6")
+text = "Titulo Mision"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="MisionDetails" type="RichTextLabel" parent="Panel/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "La descripccón de la miisión que nos atañe, con movidas"
+scroll_active = false

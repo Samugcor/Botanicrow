@@ -33,6 +33,7 @@
 				},
 				"get_to_work":{
 					"text": "Well, lets get to work, come on now! Try moving using the 'wasd' keys!",
+					"effects":["activate_quest:identification_tutorial"],
 					"end": true
 				}
 			}

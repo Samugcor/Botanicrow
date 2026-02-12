@@ -1,6 +1,7 @@
 extends Node
 
 signal intent_interact
+signal intent_player_menu
 signal intent_move(axis)
 signal intent_ui_move
 
@@ -20,5 +21,7 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("ui_down"): dir = Vector2i.DOWN
 	
 	if dir != Vector2i.ZERO:
-		print("input sended ui move")
 		emit_signal("intent_ui_move", dir)
+
+	if event.is_action_released("inventario"):
+		intent_player_menu.emit()

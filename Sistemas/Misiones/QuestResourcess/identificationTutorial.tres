@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="QuestClass" load_steps=6 format=3 uid="uid://20gas72nrfo6"]
+
+[ext_resource type="Script" uid="uid://xj8gaoefyv02" path="res://Sistemas/Misiones/Classes/ObjectiveClass.gd" id="1_jllv7"]
+[ext_resource type="Script" uid="uid://hw008ct3e6k1" path="res://Sistemas/Misiones/Classes/GatherObjectiveClass.gd" id="2_shpx7"]
+[ext_resource type="Script" uid="uid://bswyw51ptu3ik" path="res://Sistemas/Misiones/Classes/QuestClass.gd" id="3_7qtyb"]
+
+[sub_resource type="Resource" id="Resource_w62n4"]
+script = ExtResource("2_shpx7")
+item_id = "lavander"
+id = "gather_lavander"
+description = "Look for a purple plant"
+metadata/_custom_type_script = "uid://hw008ct3e6k1"
+
+[sub_resource type="Resource" id="Resource_druk6"]
+script = ExtResource("2_shpx7")
+item_id = "rose"
+id = "gather_rose"
+description = "Gather a romantic flower"
+metadata/_custom_type_script = "uid://hw008ct3e6k1"
+
+[resource]
+script = ExtResource("3_7qtyb")
+quest_id = "identification_tutorial"
+quest_name = "Identify your cure"
+quest_description = "You need to find what plants the Bruja used to cure you!"
+quest_objectives = Array[ExtResource("1_jllv7")]([SubResource("Resource_w62n4"), SubResource("Resource_druk6")])
+metadata/_custom_type_script = "uid://bswyw51ptu3ik"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bi8ye0pfoxjgh"]
+[gd_scene load_steps=22 format=3 uid="uid://bi8ye0pfoxjgh"]
 
 [ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://PlayerCharacter/player_character.tscn" id="1_qtkfn"]
 [ext_resource type="Script" uid="uid://dmy5g06egtt8p" path="res://SceneManager.gd" id="1_umrci"]
@@ -19,6 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://bv0qv1n4y12g4" path="res://Personajes/Bruja/bruja.tscn" id="17_knbcn"]
 [ext_resource type="Texture2D" uid="uid://diut2tk5pwyxt" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p5.png" id="17_vg0nd"]
 [ext_resource type="Resource" uid="uid://dhn3qkyqxryvt" path="res://Personajes/Bruja/Bruja.tres" id="18_438rk"]
+[ext_resource type="Script" uid="uid://b46biu1ubcm0r" path="res://desk.gd" id="20_8ukvq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_58eo4"]
+radius = 81.608826
 
 [node name="GameDemo" type="Node2D"]
 script = ExtResource("1_umrci")
@@ -59,7 +63,7 @@ position = Vector2(847, 887)
 plantData = ExtResource("3_jyrld")
 
 [node name="Lavander02" parent="Ysortting" groups=["Pickable"] instance=ExtResource("2_81ndi")]
-position = Vector2(763, 659)
+position = Vector2(1020, 893)
 plantData = ExtResource("3_jyrld")
 
 [node name="Lavander03" parent="Ysortting" groups=["Pickable"] instance=ExtResource("2_81ndi")]
@@ -129,6 +133,15 @@ texture = ExtResource("16_8py3p")
 position = Vector2(1525, 893)
 npcData = ExtResource("18_438rk")
 
+[node name="Desk" type="Sprite2D" parent="Ysortting/Escenario"]
+script = ExtResource("20_8ukvq")
+
+[node name="Area2D" type="Area2D" parent="Ysortting/Escenario/Desk"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ysortting/Escenario/Desk/Area2D"]
+position = Vector2(951, 550)
+shape = SubResource("CircleShape2D_58eo4")
+
 [node name="Collaiders" type="Node2D" parent="."]
 visible = false
 
@@ -144,3 +157,6 @@ polygon = PackedVector2Array(1843, 696, 1591, 1031, 1238, 930, 1053, 1105, 1954,
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collaiders/Exterior"]
 polygon = PackedVector2Array(93, 773, 841, 988, 963, 861, 1018, 874, 703, 1197)
+
+[connection signal="body_entered" from="Ysortting/Escenario/Desk/Area2D" to="Ysortting/Escenario/Desk" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Ysortting/Escenario/Desk/Area2D" to="Ysortting/Escenario/Desk" method="_on_area_2d_body_exited"]

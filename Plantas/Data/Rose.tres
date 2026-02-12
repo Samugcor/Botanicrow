@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_5lgcg")
-id = "02"
+id = "rose"
 name = "Rose"
 description = "A classic flower ideal for romantic gestures"
 sprite = ExtResource("1_pt003")

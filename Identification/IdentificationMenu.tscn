@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwvltedcc148o"]
+
+[ext_resource type="Script" uid="uid://6x2fpsaufx46" path="res://Identification/IdentificationUI.gd" id="1_6h1wa"]
+[ext_resource type="PackedScene" uid="uid://br877hemq3s85" path="res://Sistemas/Inventarios/Player/PlayerInventory.tscn" id="2_ny8cm"]
+
+[node name="IdentificationMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6h1wa")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 443.0
+offset_right = 987.0
+offset_bottom = 466.0
+text = "Identification Menu"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1865.0
+offset_top = 35.0
+offset_right = 1883.0
+offset_bottom = 66.0
+text = "X"
+
+[node name="Inventory" parent="." instance=ExtResource("2_ny8cm")]
+layout_mode = 0
+offset_left = 1483.0
+offset_top = 127.0
+offset_right = 1877.0
+offset_bottom = 319.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
