@@ -22,6 +22,5 @@ func _update_quest_list(_quest_id):
 		questListContainer.add_child(lbl)
 
 func applyLblStyles(lbl:Label):
-	var normal := Theme.new()
 	lbl.add_theme_color_override("font_color", Color("#000000"))
 	lbl.add_theme_stylebox_override("normal",questListLblStyle)

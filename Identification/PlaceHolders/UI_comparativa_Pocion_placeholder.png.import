@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dadk8gys2we7s"
-path="res://.godot/imported/Interior_casa_bruja_placeholder_p4.png-1846bfdd7e7e0eb0db04dd680ef2f04d.ctex"
+uid="uid://bvu0xjmgvakth"
+path="res://.godot/imported/UI_comparativa_Pocion_placeholder.png-49a213f16b8cd48bb4848e5f7612fa4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_p4.png"
-dest_files=["res://.godot/imported/Interior_casa_bruja_placeholder_p4.png-1846bfdd7e7e0eb0db04dd680ef2f04d.ctex"]
+source_file="res://Identification/PlaceHolders/UI_comparativa_Pocion_placeholder.png"
+dest_files=["res://.godot/imported/UI_comparativa_Pocion_placeholder.png-49a213f16b8cd48bb4848e5f7612fa4f.ctex"]
 
 [params]
 

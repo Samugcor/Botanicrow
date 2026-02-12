@@ -35,3 +35,8 @@ func interact(player):
 func remove_self():
 	queue_free()
 	
+func setSelectedSprite():
+	sprite.texture = plantData.selectedSprite
+	
+func setNormalSprite():
+	sprite.texture = plantData.sprite

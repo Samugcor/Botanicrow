@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2bodhemjpl1m"]
+
+[ext_resource type="Script" uid="uid://b17th77ku07gs" path="res://Items/Plantas/Scripts/plant.gd" id="1_3b515"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36t3e"]
+radius = 49.010204
+
+[node name="Plant" type="Node2D" groups=["Items"]]
+y_sort_enabled = true
+script = ExtResource("1_3b515")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-1, -12)
+color = Color(0.078431375, 0.078431375, 0.078431375, 0.20392157)
+offset = Vector2(-83, 40)
+polygon = PackedVector2Array(130, -9, 137, -49, 34, -58, 46, -14)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -37)
+shape = SubResource("CircleShape2D_36t3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+offset = Vector2(-1, -46)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

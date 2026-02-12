@@ -89,7 +89,7 @@ func get_closest_interactable():
 #ACTIONS ==========================================================
 func pick_up(item:PlantClass):
 	var success = inventory.add_item(item)
-	print(success)
+	
 	if success:
 		current_interactable.remove_self()
 		set_current_interactable()

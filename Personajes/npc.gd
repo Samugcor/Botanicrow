@@ -23,14 +23,12 @@ func _update_visuals():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.add_interactable(self)
-		if npcData.spriteSelected:
-			sprite.texture = npcData.spriteSelected
-
+		
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.remove_interactable(self)
 		sprite.texture = npcData.sprite
 
-func interact(player):
+func interact(_player):
 	DialogManager.startNpcDialog(npcData.id,npcData.dialogFile)

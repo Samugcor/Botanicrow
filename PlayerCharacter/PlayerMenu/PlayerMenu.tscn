@@ -10,22 +10,28 @@ bg_color = Color(0.2667363, 0.17884725, 0.03883013, 1)
 [node name="PlayerMenu" type="CanvasLayer"]
 script = ExtResource("1_mh3t4")
 
-[node name="Inventory" parent="." instance=ExtResource("2_664wf")]
-anchors_preset = 1
-anchor_left = 1.0
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -430.0
-offset_top = 60.0
-offset_right = -36.0
-offset_bottom = 252.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.31776106, 0.35922134, 0.24870774, 1)
+
+[node name="Inventory" parent="." instance=ExtResource("2_664wf")]
+anchors_preset = -1
+offset_left = 1329.0
+offset_top = 250.0
+offset_right = 1329.0
+offset_bottom = 250.0
 grow_horizontal = 0
-grow_vertical = 1
+grow_vertical = 2
 
 [node name="BookBackdrop" type="Panel" parent="."]
 offset_left = 60.0
-offset_top = 52.0
-offset_right = 1452.0
-offset_bottom = 1007.0
+offset_top = 136.0
+offset_right = 1266.8859
+offset_bottom = 964.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mh3t4")
 
 [node name="MarginContainer" type="MarginContainer" parent="BookBackdrop"]

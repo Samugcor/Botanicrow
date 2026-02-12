@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7arlfdm68t7n"
-path="res://.godot/imported/lavender.png-54143617106597ed94e643e86cfcd3b3.ctex"
+uid="uid://bfmcw3wkhpgj4"
+path="res://.godot/imported/UI_comp_boton_interrogacion_placeholder.png-183a9795c88edbbc3f28b5047000d007.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Plantas/Icons/lavender.png"
-dest_files=["res://.godot/imported/lavender.png-54143617106597ed94e643e86cfcd3b3.ctex"]
+source_file="res://Identification/PlaceHolders/UI_comp_boton_interrogacion_placeholder.png"
+dest_files=["res://.godot/imported/UI_comp_boton_interrogacion_placeholder.png-183a9795c88edbbc3f28b5047000d007.ctex"]
 
 [params]
 

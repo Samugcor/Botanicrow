@@ -1,15 +1,26 @@
 extends Control
 
 @onready var inv: InventoryClass = preload("res://Sistemas/Inventarios/Player/player_inventory.tres")
-@onready var uiSlots: Array = $Panel/GridContainer.get_children()
+@onready var invSlotScene = preload("res://Sistemas/Inventarios/InvSlot.tscn")
+@onready var slotContainer = $TextureRect/MarginContainer/GridContainer
+ 
 
 
 func _ready() -> void:
 	inv.Update.connect(update_slots)
+	populateSlots()
 	update_slots()
 
-	
+func populateSlots():
+	for slot in inv.slots:
+		var invSlot = invSlotScene.instantiate()
+		slotContainer.add_child(invSlot)
+		
 func update_slots():
+	var uiSlots: Array = slotContainer.get_children()
+	if uiSlots.is_empty():
+		push_error("Inventory has no slots")
+		return
 	for i in range(min(inv.slots.size(), uiSlots.size())):
 		if inv.slots[i]:
 			uiSlots[i].updateTexture(inv.slots[i])

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clpkkbtay425x"
-path="res://.godot/imported/rose.png-8cff9f264e37ef95a852b34d907f5531.ctex"
+uid="uid://d2h5ygr3r7e0y"
+path="res://.godot/imported/Planta5_gr.png-f594a6568ac6c697a5f399e163c2b63b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Plantas/Icons/rose.png"
-dest_files=["res://.godot/imported/rose.png-8cff9f264e37ef95a852b34d907f5531.ctex"]
+source_file="res://Items/Plantas/Sprites/Detallle/Planta5_gr.png"
+dest_files=["res://.godot/imported/Planta5_gr.png-f594a6568ac6c697a5f399e163c2b63b.ctex"]
 
 [params]
 

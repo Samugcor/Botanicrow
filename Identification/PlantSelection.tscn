@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://1asw614d80g3"]
+
+[ext_resource type="Texture2D" uid="uid://4vsp6nvjo1xg" path="res://Identification/PlaceHolders/UI_comparativa_inventario_placeholder.png" id="1_rypkg"]
+
+[node name="PlantSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_rypkg")
+
+[node name="Label" type="Label" parent="Fondo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.60400003
+anchor_top = 0.095000006
+anchor_right = 0.60400003
+anchor_bottom = 0.095000006
+offset_left = -45.70401
+offset_top = -16.885002
+offset_right = 38.29599
+offset_bottom = 29.114998
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+text = "Place"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Fondo"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 95.0
+offset_right = 520.0
+offset_bottom = 674.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="GridContainer" type="GridContainer" parent="Fondo/MarginContainer"]
+layout_mode = 2
+columns = 3

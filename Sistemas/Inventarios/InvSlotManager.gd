@@ -1,7 +1,7 @@
 extends Control
 
-@onready var itemDisplay:TextureRect = $ColorRect/ItemDisplay
-@onready var amountDisplay: Label = $ColorRect/Label
+@onready var itemDisplay:TextureRect = $AspectRatioContainer/ColorRect/MarginContainer/ItemDisplay
+@onready var amountDisplay: Label = $AspectRatioContainer/ColorRect/MarginContainer/Label
 
 func updateTexture(slot: InvSlotClass):
 	if !slot.item:
