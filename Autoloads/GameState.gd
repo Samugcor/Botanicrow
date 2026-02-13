@@ -1,10 +1,21 @@
 extends Node
 
+
+#Level Data
+var current_level_path: String = "res://Escenarios/CasaBruja/CasaBruja.tscn"
+var current_spawn_id: String = "start_game"
+
 var npcs = {}
 var quests = {}
 
 #func loadGameState
-
+func newGame():
+	current_level_path="res://Escenarios/CasaBruja/CasaBruja.tscn"
+	current_spawn_id="start_game"
+	
+	npcs = {}
+	quests = {}
+	
 func checkCondition(condition:String) -> bool:
 	var parts = condition.split(":")
 	var type = parts[0]

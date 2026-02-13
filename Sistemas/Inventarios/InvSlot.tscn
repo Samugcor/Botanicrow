@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm4rkocy4kh64"]
+[gd_scene load_steps=6 format=3 uid="uid://bm4rkocy4kh64"]
 
 [ext_resource type="Script" uid="uid://brgki8lngo57g" path="res://Sistemas/Inventarios/InvSlotManager.gd" id="1_70bqb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he48w"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xjo5"]
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vn5ff"]
+bg_color = Color(0.9297146, 0.9297147, 0.9297146, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sub8b"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.12231488, 0.53789717, 0.58199424, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [node name="InvSlot" type="Control"]
 custom_minimum_size = Vector2(60, 60)
@@ -22,8 +54,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer"]
+[node name="ColorRect" type="Button" parent="AspectRatioContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_he48w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3xjo5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vn5ff")
+theme_override_styles/focus = SubResource("StyleBoxFlat_sub8b")
 
 [node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/ColorRect"]
 layout_mode = 1

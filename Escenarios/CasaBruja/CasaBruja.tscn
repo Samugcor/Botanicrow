@@ -1,0 +1,118 @@
+[gd_scene load_steps=13 format=3 uid="uid://cit803vco5lx1"]
+
+[ext_resource type="Texture2D" uid="uid://b8st2x1qa0vwy" path="res://Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_fondo_con_estanterías.png" id="1_4e7di"]
+[ext_resource type="Texture2D" uid="uid://dh55x4e58g0q" path="res://Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_caldero.png" id="2_2fvhc"]
+[ext_resource type="Texture2D" uid="uid://b6aysdafhnae0" path="res://Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_cama.png" id="3_wrvih"]
+[ext_resource type="Texture2D" uid="uid://dp2cg7jrhk2wo" path="res://Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_overlap_exterior.png" id="4_so3xj"]
+[ext_resource type="Texture2D" uid="uid://bux2mb1uqkyht" path="res://Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_zona_sillon.png" id="5_t8dq7"]
+[ext_resource type="PackedScene" uid="uid://bv0qv1n4y12g4" path="res://Personajes/Bruja/bruja.tscn" id="6_77xnf"]
+[ext_resource type="Resource" uid="uid://dhn3qkyqxryvt" path="res://Personajes/Bruja/Bruja.tres" id="7_hj43h"]
+[ext_resource type="Script" uid="uid://b46biu1ubcm0r" path="res://desk.gd" id="8_gb55e"]
+[ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Items/Plantas/Plant.tscn" id="9_6acbg"]
+[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Items/Plantas/Data/Bulbo.tres" id="10_asdya"]
+[ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenarios/Door.tscn" id="11_2fvhc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_58eo4"]
+radius = 81.608826
+
+[node name="CasaBruja" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Fondo" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(0.75277776, 0.75277776)
+texture = ExtResource("1_4e7di")
+centered = false
+
+[node name="Ysortting" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Escenario" type="Node2D" parent="Ysortting"]
+y_sort_enabled = true
+
+[node name="Caldero" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(1340, 663)
+scale = Vector2(0.7783019, 0.77830184)
+texture = ExtResource("2_2fvhc")
+offset = Vector2(0, -89.175)
+
+[node name="Cama" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(756, 819)
+scale = Vector2(0.71362233, 0.7136223)
+texture = ExtResource("3_wrvih")
+offset = Vector2(-442.81128, -169.5575)
+
+[node name="OverlapExterior" type="Sprite2D" parent="Ysortting/Escenario"]
+y_sort_enabled = true
+position = Vector2(948, 1070)
+scale = Vector2(0.7534722, 0.7534722)
+texture = ExtResource("4_so3xj")
+offset = Vector2(20.49768, -697.43774)
+
+[node name="Sillon" type="Sprite2D" parent="Ysortting/Escenario"]
+visible = false
+position = Vector2(1549.4999, 734.37103)
+scale = Vector2(0.7523447, 0.75234544)
+texture = ExtResource("5_t8dq7")
+
+[node name="Bruja" parent="Ysortting/Escenario" instance=ExtResource("6_77xnf")]
+position = Vector2(1525, 893)
+npcData = ExtResource("7_hj43h")
+
+[node name="Desk" type="Sprite2D" parent="Ysortting/Escenario"]
+script = ExtResource("8_gb55e")
+
+[node name="Area2D" type="Area2D" parent="Ysortting/Escenario/Desk"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ysortting/Escenario/Desk/Area2D"]
+position = Vector2(951, 550)
+shape = SubResource("CircleShape2D_58eo4")
+
+[node name="Plant" parent="Ysortting" instance=ExtResource("9_6acbg")]
+position = Vector2(1028, 461)
+plantData = ExtResource("10_asdya")
+
+[node name="Collaiders" type="Node2D" parent="."]
+visible = false
+
+[node name="Interior" type="StaticBody2D" parent="Collaiders"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collaiders/Interior"]
+polygon = PackedVector2Array(626, 959, 755, 833, 662, 783, 676, 753, 300, 638, 318, 624, 383, 649, 435, 624, 421, 601, 481, 610, 570, 593, 676, 615, 786, 530, 1069, 605, 1141, 552, 1194, 561, 1178, 633, 1470, 706, 1521, 665, 1800, 750, 1856, 696, 1844, 185, 689, 6, 460, 119, 334, 90, 55, 232, 86, 768)
+
+[node name="Exterior" type="StaticBody2D" parent="Collaiders"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collaiders/Exterior"]
+polygon = PackedVector2Array(1843, 696, 1591, 1031, 1238, 930, 1053, 1105, 1954, 1118)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collaiders/Exterior"]
+polygon = PackedVector2Array(93, 773, 841, 988, 963, 861, 1018, 874, 703, 1197)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(1127, 882)
+
+[node name="door_house_interior" type="Marker2D" parent="SpawnPoints" groups=["Spawners"]]
+
+[node name="start_game" type="Marker2D" parent="SpawnPoints" groups=["Spawners"]]
+position = Vector2(32, -113)
+
+[node name="desk" type="Marker2D" parent="SpawnPoints" groups=["Spawners"]]
+position = Vector2(-180, -331)
+
+[node name="ExitTriggers" type="Node" parent="."]
+
+[node name="Door_House" parent="ExitTriggers" instance=ExtResource("11_2fvhc")]
+position = Vector2(1097, 952)
+rotation = 0.25749725
+scale = Vector2(1.8551221, 0.75566405)
+destination_level_path = "res://Escenarios/HouseExterior/HouseExterior.tscn"
+destination_spawn = "door_house_exterior"
+
+[node name="cameraConfiguration" type="Node" parent="."]
+
+[connection signal="body_entered" from="Ysortting/Escenario/Desk/Area2D" to="Ysortting/Escenario/Desk" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Ysortting/Escenario/Desk/Area2D" to="Ysortting/Escenario/Desk" method="_on_area_2d_body_exited"]
+
+[editable path="ExitTriggers/Door_House"]

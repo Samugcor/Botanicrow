@@ -1,50 +1,37 @@
-[gd_scene load_steps=16 format=3 uid="uid://bi8ye0pfoxjgh"]
+[gd_scene load_steps=5 format=3 uid="uid://bi8ye0pfoxjgh"]
 
 [ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://PlayerCharacter/player_character.tscn" id="1_qtkfn"]
 [ext_resource type="Script" uid="uid://dmy5g06egtt8p" path="res://SceneManager.gd" id="1_umrci"]
 [ext_resource type="PackedScene" uid="uid://di1x8todxh7ay" path="res://Sistemas/Dialog/DialogUI.tscn" id="3_438rk"]
 [ext_resource type="PackedScene" uid="uid://cau4xgdqn1bpn" path="res://HUD/HUD.tscn" id="5_jyrld"]
-[ext_resource type="Texture2D" uid="uid://dh55x4e58g0q" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_caldero.png" id="8_58eo4"]
-[ext_resource type="Texture2D" uid="uid://b6aysdafhnae0" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_cama.png" id="10_llajs"]
-[ext_resource type="Texture2D" uid="uid://b8st2x1qa0vwy" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_fondo_con_estanterías.png" id="11_1uwtw"]
-[ext_resource type="Texture2D" uid="uid://dp2cg7jrhk2wo" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_overlap_exterior.png" id="12_0n4qq"]
-[ext_resource type="Texture2D" uid="uid://bux2mb1uqkyht" path="res://Escenarios/Casa bruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_zona_sillon.png" id="16_8py3p"]
-[ext_resource type="PackedScene" uid="uid://bv0qv1n4y12g4" path="res://Personajes/Bruja/bruja.tscn" id="17_knbcn"]
-[ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Items/Plantas/Plant.tscn" id="18_8ukvq"]
-[ext_resource type="Resource" uid="uid://dhn3qkyqxryvt" path="res://Personajes/Bruja/Bruja.tres" id="18_438rk"]
-[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Items/Plantas/Data/Bulbo.tres" id="19_58eo4"]
-[ext_resource type="Script" uid="uid://b46biu1ubcm0r" path="res://desk.gd" id="20_8ukvq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_58eo4"]
-radius = 81.608826
-
-[node name="GameDemo" type="Node2D"]
+[node name="GameDemo" type="Node2D" groups=["Scene_manager"]]
 script = ExtResource("1_umrci")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Hud" parent="CanvasLayer" instance=ExtResource("5_jyrld")]
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="Hud" parent="UI/CanvasLayer" instance=ExtResource("5_jyrld")]
 hint_offset = {
 "x": -60,
 "y": -170
 }
 
-[node name="DialogUi" parent="CanvasLayer" instance=ExtResource("3_438rk")]
+[node name="DialogUi" parent="UI/CanvasLayer" instance=ExtResource("3_438rk")]
 visible = false
 
-[node name="Fondo" type="Sprite2D" parent="."]
-scale = Vector2(0.75277776, 0.75277776)
-texture = ExtResource("11_1uwtw")
-centered = false
-
-[node name="Ysortting" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="PlayerCharacter" parent="Ysortting" instance=ExtResource("1_qtkfn")]
-position = Vector2(1106, 797)
+[node name="PlayerCharacter" parent="World" instance=ExtResource("1_qtkfn")]
 FRICTION = 2000
 
-[node name="Camera2D2" type="Camera2D" parent="Ysortting/PlayerCharacter"]
+[node name="Camera2D2" type="Camera2D" parent="World/PlayerCharacter"]
 position = Vector2(0, -56)
 limit_left = 0
 limit_top = 0
@@ -52,68 +39,5 @@ limit_right = 1920
 limit_bottom = 1080
 editor_draw_limits = true
 
-[node name="Escenario" type="Node2D" parent="Ysortting"]
+[node name="Enviroment" type="Node2D" parent="World"]
 y_sort_enabled = true
-
-[node name="Caldero" type="Sprite2D" parent="Ysortting/Escenario"]
-y_sort_enabled = true
-position = Vector2(1340, 663)
-scale = Vector2(0.7783019, 0.77830184)
-texture = ExtResource("8_58eo4")
-offset = Vector2(0, -89.175)
-
-[node name="Cama" type="Sprite2D" parent="Ysortting/Escenario"]
-y_sort_enabled = true
-position = Vector2(415, 859.00006)
-scale = Vector2(0.71362233, 0.7136223)
-texture = ExtResource("10_llajs")
-offset = Vector2(35.03253, -225.60962)
-
-[node name="OverlapExterior" type="Sprite2D" parent="Ysortting/Escenario"]
-y_sort_enabled = true
-position = Vector2(948, 1070)
-scale = Vector2(0.7534722, 0.7534722)
-texture = ExtResource("12_0n4qq")
-offset = Vector2(20.49768, -697.43774)
-
-[node name="Sillon" type="Sprite2D" parent="Ysortting/Escenario"]
-visible = false
-position = Vector2(1549.4999, 734.37103)
-scale = Vector2(0.7523447, 0.75234544)
-texture = ExtResource("16_8py3p")
-
-[node name="Bruja" parent="Ysortting/Escenario" instance=ExtResource("17_knbcn")]
-position = Vector2(1525, 893)
-npcData = ExtResource("18_438rk")
-
-[node name="Desk" type="Sprite2D" parent="Ysortting/Escenario"]
-script = ExtResource("20_8ukvq")
-
-[node name="Area2D" type="Area2D" parent="Ysortting/Escenario/Desk"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ysortting/Escenario/Desk/Area2D"]
-position = Vector2(951, 550)
-shape = SubResource("CircleShape2D_58eo4")
-
-[node name="Plant" parent="Ysortting" instance=ExtResource("18_8ukvq")]
-position = Vector2(993, 801)
-plantData = ExtResource("19_58eo4")
-
-[node name="Collaiders" type="Node2D" parent="."]
-visible = false
-
-[node name="Interior" type="StaticBody2D" parent="Collaiders"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collaiders/Interior"]
-polygon = PackedVector2Array(626, 959, 755, 833, 662, 783, 676, 753, 300, 638, 318, 624, 383, 649, 435, 624, 421, 601, 481, 610, 570, 593, 676, 615, 786, 530, 1069, 605, 1141, 552, 1194, 561, 1178, 633, 1470, 706, 1521, 665, 1800, 750, 1856, 696, 1844, 185, 689, 6, 460, 119, 334, 90, 55, 232, 86, 768)
-
-[node name="Exterior" type="StaticBody2D" parent="Collaiders"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collaiders/Exterior"]
-polygon = PackedVector2Array(1843, 696, 1591, 1031, 1238, 930, 1053, 1105, 1954, 1118)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collaiders/Exterior"]
-polygon = PackedVector2Array(93, 773, 841, 988, 963, 861, 1018, 874, 703, 1197)
-
-[connection signal="body_entered" from="Ysortting/Escenario/Desk/Area2D" to="Ysortting/Escenario/Desk" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Ysortting/Escenario/Desk/Area2D" to="Ysortting/Escenario/Desk" method="_on_area_2d_body_exited"]

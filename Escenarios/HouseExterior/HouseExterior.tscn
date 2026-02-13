@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://sogvl8ohqjh2"]
+
+[ext_resource type="Texture2D" uid="uid://b8d5ipg2smaet" path="res://Escenarios/HouseExterior/Placeholders/Mapa bosque 1 Placeholder boceto solofondo (1).jpg" id="1_5ermm"]
+[ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenarios/Door.tscn" id="2_ixqxo"]
+
+[node name="HouseExterior" type="Node2D"]
+y_sort_enabled = true
+
+[node name="MapaBosque1PlaceholderBocetoSolofondo(1)" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-32, 381)
+texture = ExtResource("1_5ermm")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(1127, 882)
+
+[node name="door_house_exterior" type="Marker2D" parent="SpawnPoints" groups=["Spawners"]]
+position = Vector2(97, -273)
+scale = Vector2(2.12, 2.4400012)
+
+[node name="Puertas" type="Node2D" parent="."]
+
+[node name="Door" parent="Puertas" instance=ExtResource("2_ixqxo")]
+position = Vector2(1310, 517.00006)
+rotation = 0.38125426
+destination_level_path = "res://Escenarios/CasaBruja/CasaBruja.tscn"
+destination_spawn = "door_house_interior"
+
+[editable path="Puertas/Door"]

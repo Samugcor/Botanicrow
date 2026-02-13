@@ -4,6 +4,7 @@ signal intent_interact
 signal intent_player_menu
 signal intent_move(axis)
 signal intent_ui_move
+signal intent_click_left
 
 func _physics_process(_delta: float) -> void:
 	var axis = Input.get_vector("move_left","move_right","move_up","move_down")
@@ -25,3 +26,6 @@ func _unhandled_input(event):
 
 	if event.is_action_released("inventario"):
 		intent_player_menu.emit()
+
+	if event.is_action_pressed("click_left"):
+		intent_click_left.emit()

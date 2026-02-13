@@ -45,6 +45,10 @@ func apply_movement(nAcceleration):
 	velocity += nAcceleration
 	velocity = velocity.limit_length(MAX_SPEED)
 
+func reset_movement():
+	velocity = Vector2.ZERO
+	moevement_axis = Vector2.ZERO
+	
 # INTERACIIONES =====================================================
 func _on_interact_intent():
 	if GameplayState.current() != self:
