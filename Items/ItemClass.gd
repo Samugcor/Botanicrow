@@ -5,6 +5,7 @@ class_name ItemClass
 @export_category("General information")
 @export var id : String
 @export var name : String
+@export var hint : String 
 @export_multiline var description : String
 @export_category("Sprites")
 @export var sprite : Texture2D 

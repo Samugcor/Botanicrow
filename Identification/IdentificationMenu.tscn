@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwvltedcc148o"]
+[gd_scene load_steps=10 format=3 uid="uid://bwvltedcc148o"]
 
 [ext_resource type="Script" uid="uid://6x2fpsaufx46" path="res://Identification/IdentificationUI.gd" id="1_6h1wa"]
 [ext_resource type="Texture2D" uid="uid://vi68axyeohgd" path="res://Identification/PlaceHolders/UI_comparativa_Fondo.png" id="2_hp62h"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bf0cgvsheahat" path="res://Identification/PlaceHolders/UI_comparativa_cuaderno_placeholder.png" id="5_tmtiy"]
 [ext_resource type="Texture2D" uid="uid://bvu0xjmgvakth" path="res://Identification/PlaceHolders/UI_comparativa_Pocion_placeholder.png" id="6_plqjj"]
 [ext_resource type="Texture2D" uid="uid://886cllk8uun8" path="res://Identification/PlaceHolders/UI_comparativa_mapa_placeholder.png" id="7_nijcj"]
+[ext_resource type="Texture2D" uid="uid://bxh63eymn6q7t" path="res://Identification/PlaceHolders/UI_comparativa_subrayado_plantas_placeholder.png" id="9_qop48"]
 
 [node name="IdentificationMenu" type="CanvasLayer"]
 layer = 2
@@ -61,10 +62,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -328.0
+offset_top = -460.0
+offset_right = 334.0
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -100,7 +101,7 @@ anchor_bottom = 1.0
 offset_left = -361.0
 offset_top = -329.0
 offset_right = 361.0
-offset_bottom = -26.0
+offset_bottom = -84.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("6_plqjj")
@@ -131,5 +132,27 @@ offset_left = 1334.0
 offset_top = 16.0
 offset_right = 1334.0
 offset_bottom = 16.0
+
+[node name="LineName" type="TextureRect" parent="."]
+offset_left = 648.0
+offset_top = 56.0
+offset_right = 1272.0
+offset_bottom = 100.0
+texture = ExtResource("9_qop48")
+
+[node name="PlantName" type="Label" parent="LineName"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.5
+offset_top = -32.0
+offset_right = 101.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "asdasdasd"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

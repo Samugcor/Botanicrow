@@ -11,9 +11,6 @@ var current_interactable = null
 var moevement_axis : Vector2
 
 
-signal interaction_prompt(text, visible)
-signal warning_prompt(text, visible)
-
 func _ready() -> void:
 	GameplayState.push(self)
 	InputManager.intent_interact.connect(_on_interact_intent)
@@ -71,14 +68,11 @@ func remove_interactable(obj):
 func set_current_interactable():
 	if  posible_interactables.is_empty():
 		current_interactable = null
-		emit_signal("interaction_prompt", "", false)
+		GameCommander.showInteractableHint(current_interactable)
 		return
 	
 	current_interactable = get_closest_interactable()
-	if current_interactable.is_in_group("Pickable"):
-		emit_signal("interaction_prompt", TextVariables.PICK_UP, true)
-	else:
-		emit_signal("interaction_prompt", TextVariables.PRESS_E, true)
+	GameCommander.showInteractableHint(current_interactable)
 	
 func get_closest_interactable():
 	var closest = null
@@ -98,6 +92,4 @@ func pick_up(item:PlantClass):
 		current_interactable.remove_self()
 		set_current_interactable()
 	else:
-		emit_signal("warning_prompt", TextVariables.INVENTORY_FULL, true)
-		await get_tree().create_timer(1.0).timeout
-		emit_signal("warning_prompt", TextVariables.INVENTORY_FULL, false)
+		GameCommander.warning_prompt.emit(TextVariables.WARNING_INVENTORY_FULL)

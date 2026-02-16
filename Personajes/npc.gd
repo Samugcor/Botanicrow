@@ -2,7 +2,7 @@
 extends Node2D
 
 var _npc_data: NpcClass
-@export var npcData: NpcClass:
+@export var data: NpcClass:
 	set(value):
 		_npc_data = value
 		_update_visuals()
@@ -16,9 +16,9 @@ func _ready() -> void:
 	_update_visuals()
 
 func _update_visuals():
-	if not sprite or not npcData:
+	if not sprite or not data:
 		return
-	sprite.texture = npcData.sprite
+	sprite.texture = data.sprite
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -28,7 +28,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.remove_interactable(self)
-		sprite.texture = npcData.sprite
+		sprite.texture = data.sprite
 
 func interact(_player):
-	DialogManager.startNpcDialog(npcData.id,npcData.dialogFile)
+	DialogManager.startNpcDialog(data.id,data.dialogFile)

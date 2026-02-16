@@ -1,15 +1,20 @@
-[gd_resource type="Resource" script_class="InventoryClass" load_steps=15 format=3 uid="uid://cjg47ri8sj5ry"]
+[gd_resource type="Resource" script_class="InventoryClass" load_steps=17 format=3 uid="uid://cjg47ri8sj5ry"]
 
 [ext_resource type="Script" uid="uid://slpqv6vmcfyg" path="res://Sistemas/Inventarios/InventoryClass.gd" id="1_ugkvl"]
 [ext_resource type="Script" uid="uid://dfjwqrqht27ym" path="res://Sistemas/Inventarios/InvSlotClass.gd" id="2_0ord3"]
+[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Items/Plantas/Data/Bulbo.tres" id="3_kis05"]
+[ext_resource type="Resource" uid="uid://maeeic0di2x8" path="res://Items/Plantas/Data/Trebol.tres" id="4_itg15"]
 
 [sub_resource type="Resource" id="Resource_lqpqo"]
 script = ExtResource("2_0ord3")
+item = ExtResource("3_kis05")
 cantidad = 1
 metadata/_custom_type_script = "uid://dfjwqrqht27ym"
 
 [sub_resource type="Resource" id="Resource_ugkvl"]
 script = ExtResource("2_0ord3")
+item = ExtResource("4_itg15")
+cantidad = 1
 metadata/_custom_type_script = "uid://dfjwqrqht27ym"
 
 [sub_resource type="Resource" id="Resource_0ord3"]

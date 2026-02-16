@@ -2,7 +2,7 @@
 extends Node2D
 
 var _plant_data: PlantClass
-@export var plantData: PlantClass:
+@export var data: PlantClass:
 	set(value):
 		_plant_data = value
 		_update_visuals()
@@ -16,9 +16,9 @@ func _ready() -> void:
 	_update_visuals()
 
 func _update_visuals():
-	if not sprite or not plantData:
+	if not sprite or not data:
 		return
-	sprite.texture = plantData.sprite
+	sprite.texture = data.sprite
 
 
 func _on_area_2d_body_entered(body:Node2D):
@@ -30,13 +30,13 @@ func _on_area_2d_body_exited(body: Node2D):
 		body.remove_interactable(self)
 
 func interact(player):
-	player.pick_up(plantData)
+	player.pick_up(data)
 	
 func remove_self():
 	queue_free()
 	
 func setSelectedSprite():
-	sprite.texture = plantData.selectedSprite
+	sprite.texture = data.selectedSprite
 	
 func setNormalSprite():
-	sprite.texture = plantData.sprite
+	sprite.texture = data.sprite
