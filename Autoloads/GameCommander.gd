@@ -1,5 +1,8 @@
 extends Node
 
+signal interaction_prompt(interactable)
+signal warning_prompt(text)
+
 func applyEffect(effect:String) -> void:
 	var parts = effect.split(":")
 	var type = parts[0]
@@ -22,3 +25,8 @@ func askGameState(condition):
 	
 func saveQuestState(questState: QuestRuntime):
 	GameState.setQuest(questState.quest_id, questState)
+
+
+# UI
+func showInteractableHint(interactable):
+	interaction_prompt.emit(interactable)

@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://dhn3qkyqxryvt" path="res://Personajes/Bruja/Bruja.tres" id="7_hj43h"]
 [ext_resource type="Script" uid="uid://b46biu1ubcm0r" path="res://desk.gd" id="8_gb55e"]
 [ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Items/Plantas/Plant.tscn" id="9_6acbg"]
-[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Items/Plantas/Data/Bulbo.tres" id="10_asdya"]
+[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Items/Plantas/Data/Bulbo.tres" id="10_0p8ny"]
 [ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenarios/Door.tscn" id="11_2fvhc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_58eo4"]
@@ -59,7 +59,7 @@ texture = ExtResource("5_t8dq7")
 
 [node name="Bruja" parent="Ysortting/Escenario" instance=ExtResource("6_77xnf")]
 position = Vector2(1525, 893)
-npcData = ExtResource("7_hj43h")
+data = ExtResource("7_hj43h")
 
 [node name="Desk" type="Sprite2D" parent="Ysortting/Escenario"]
 script = ExtResource("8_gb55e")
@@ -71,8 +71,12 @@ position = Vector2(951, 550)
 shape = SubResource("CircleShape2D_58eo4")
 
 [node name="Plant" parent="Ysortting" instance=ExtResource("9_6acbg")]
-position = Vector2(1028, 461)
-plantData = ExtResource("10_asdya")
+position = Vector2(1041, 468)
+data = ExtResource("10_0p8ny")
+
+[node name="Plant2" parent="Ysortting" instance=ExtResource("9_6acbg")]
+position = Vector2(1156, 765)
+data = ExtResource("10_0p8ny")
 
 [node name="Collaiders" type="Node2D" parent="."]
 visible = false

@@ -1,5 +1,7 @@
 extends Node
 
-const PICK_UP: String = "Press e to pickup"
-const PRESS_E: String = "Press e"
-const INVENTORY_FULL= "Inventory full"
+const HINT_TALK = "Talk"
+const HINT_PICK_UP: String = "Pick up"
+const HINT_GENERIC: String = "Interact"
+
+const WARNING_INVENTORY_FULL= "Inventory full"

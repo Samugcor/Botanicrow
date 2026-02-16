@@ -1,6 +1,5 @@
 extends Node2D
 
-
 func interact(_player):
 	var desk = preload("res://Identification/IdentificationMenu.tscn").instantiate()
 	get_tree().current_scene.add_child(desk)
