@@ -14,7 +14,6 @@ func applyEffect(effect:String) -> void:
 				GameState.setNpc(values[0],true)
 				return
 			"activate_quest": 
-				print("Game comander ordered to start mision")
 				QuestManager.startQuest(values[0])
 				return
 	

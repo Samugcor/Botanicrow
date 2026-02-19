@@ -25,6 +25,7 @@ GameplayState="*res://Autoloads/GameplayState.gd"
 GameCommander="*res://Autoloads/GameCommander.gd"
 QuestManager="*res://Autoloads/QuestManager.gd"
 Transition="*res://Autoloads/Transition.tscn"
+HelperFunctions="*res://Autoloads/HelperFunctions.gd"
 
 [display]
 

@@ -10,7 +10,6 @@ var active_quest: String
 		
 func _ready() -> void:
 	_load_all_quests(directory_path)
-	print(quest_db)
 	
 func _load_all_quests(path: String) -> void:
 	var dir = DirAccess.open(path)
@@ -34,9 +33,7 @@ func _register_quest(def: QuestClass) -> void:
 
 func startQuest(id):
 	#Vemos si ya está activa
-	print("start quest")
 	if !GameCommander.askGameState("quest_not_active:%s" % id):
-		print("active quest")
 		push_warning("Mision already active")
 		return
 		
@@ -48,19 +45,25 @@ func startQuest(id):
 		push_error("Mision not found inside mision db")
 		return
 	
-	var questState = QuestRuntime.new()
-	questState.quest_id = questData.quest_id
-	questState.quest_name = questData.quest_name
-	questState.quest_state = QuestRuntime.State.ACTIVE
+	var questruntime = createQuestRuntime(questData)
 	
 	#Con los datos de quest db creamos un questRuntime object y lo guardamos en GameState
 	#Se emite una señal para que la ui de listaMisiones se actualice
-	GameCommander.saveQuestState(questState)
-	quest_started.emit(questState.quest_id)
+	GameCommander.saveQuestState(questruntime)
+	quest_started.emit(questruntime.quest_id)
 	
 	#Marcar como misión activa
-	setActiveQuest(questState.quest_id)
-	
+	setActiveQuest(questruntime.quest_id)
+
+func createQuestRuntime(quest:QuestClass):
+	var questState = QuestRuntime.new()
+	questState.quest_id = quest.quest_id
+	questState.quest_name = quest.quest_name
+	questState.quest_type = quest.quest_type
+	questState.quest_state = QuestRuntime.State.ACTIVE
+
+	return questState
+		
 func get_quest_data(id: String):
 	var questData = quest_db.get(id,false)
 	if !questData:
@@ -71,3 +74,6 @@ func get_quest_data(id: String):
 func setActiveQuest(id: String):
 	active_quest= id
 	quest_active_changed.emit(id)
+
+
+	

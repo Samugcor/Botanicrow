@@ -92,6 +92,12 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
+[node name="RichTextLabel" type="RichTextLabel" parent="NoteBook/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "sdsaas
+asdssad"
+
 [node name="Caldero" type="TextureRect" parent="."]
 anchors_preset = 7
 anchor_left = 0.5

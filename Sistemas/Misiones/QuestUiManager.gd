@@ -8,7 +8,7 @@ func _ready() -> void:
 	QuestManager.quest_started.connect(_update_quest_list)
 
 func _update_quest_list(_quest_id):
-	var questList = GameState.getActiveQuests() #List of questrutime objects
+	var questList = GameState.getActiveQuestsDictionary() #Dictionary of questrutime objects
 	
 	#vaciar opciones
 	for quest in questListContainer.get_children():

@@ -72,10 +72,8 @@ func movePlayerToSpawn(spawn_id: String) -> void:
 func apply_camera_configuration():
 	var cameraConfiguration = current_level.get_node_or_null("cameraConfiguration")
 	if cameraConfiguration:
-		print("camera blocked")
 		camera.limit_enabled = true
 		return
 		
-	print("camera unblocked")
 	camera.limit_enabled = false
 	

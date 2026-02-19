@@ -15,11 +15,9 @@ func add_item(item:PlantClass):
 	var emptyslots = slots.filter(func (slot): return slot.item == null)
 	
 	if !existingsStacks.is_empty():
-		print("added to existing stack")
 		existingsStacks[0].cantidad += 1
 		
 	elif !emptyslots.is_empty(): 
-		print("added to newd stack")
 		emptyslots[0].item = item
 		emptyslots[0].cantidad = 1
 		

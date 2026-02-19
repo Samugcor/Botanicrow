@@ -57,7 +57,6 @@ func _on_interact_intent():
 	if GameplayState.current() != self:
 		return
 		
-	print("se pulso aceptar")
 	#si no hay opciones avanza
 	if optionsContainer.get_child_count() < 1:
 		DialogManager.advance()
@@ -69,7 +68,6 @@ func _on_interact_intent():
 		focused.emit_signal("pressed")
 	
 func _on_move_intent(axis:Vector2):
-	print("moving intent")
 	if GameplayState.current() != self:
 		return
 	if axis == Vector2.ZERO:
@@ -79,7 +77,7 @@ func _on_move_intent(axis:Vector2):
 		
 	var index := get_viewport().gui_get_focus_owner().get_index()
 	var child_count = optionsContainer.get_child_count()
-	index = index + vectorToPreviousOrNext(axis)
+	index = index + HelperFunctions.vectorToPreviousOrNext(axis)
 	index = (index + child_count) % child_count
 	optionsContainer.get_child(index).grab_focus()
 	
@@ -110,17 +108,3 @@ func setButtonStyles(button:Button):
 	button.add_theme_stylebox_override("hover", hover)
 	button.add_theme_stylebox_override("focus", focus)
 	
-func vectorToPreviousOrNext(vector):
-	if vector == Vector2.ZERO:
-		return 0
-	
-	if abs(vector.x) > abs(vector.y):
-		if vector.x>0:
-			return 1
-		else:
-			return -1
-	else:
-		if vector.y>0:
-			return -1
-		else:
-			return 1

@@ -8,5 +8,6 @@ enum State {
 }
 
 @export var quest_id: String
+@export var quest_type: QuestClass.questType
 @export var quest_name: String
 @export var quest_state: int
