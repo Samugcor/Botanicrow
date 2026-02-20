@@ -1,4 +1,5 @@
 extends Control
+class_name PlayerInventoryManager
 
 @onready var inv: InventoryClass = preload("res://Sistemas/Inventarios/Player/player_inventory.tres")
 @onready var invSlotScene = preload("res://Sistemas/Inventarios/InvSlot.tscn")
@@ -6,27 +7,115 @@ extends Control
  
 signal slot_selected
 
-var selected_slot: InvSlotClass
 var first_move: bool = false
 
+var selectedIndex #selected InvSlot indx
+var currentIndex #current hover InvSlot indx 
+var newIndex	#new hovered InvSlot indx 
+
+
 func _ready() -> void:
-	first_move = false
-	
-	GameplayState.push(self)
+
 	inv.Update.connect(update_slots)
-	InputManager.intent_ui_move.connect(_on_intent_move)
-	
-	
 	
 	populateSlots()
 	update_slots()
+	activate()
 
+func activate():
+	first_move = false
+	
+	openSlots()
+	
+	GameplayState.push(self)
+	InputManager.intent_ui_move.connect(_on_intent_move)
+	InputManager.intent_interact.connect(_on_intent_interact)
+	InputManager.intent_click_left.connect(_on_intent_interact)
+	
+func deactivate():
+	closeSlots()
+	
+	GameplayState.pop()
+	InputManager.intent_ui_move.disconnect(_on_intent_move)
+	InputManager.intent_interact.disconnect(_on_intent_interact)
+	InputManager.intent_click_left.disconnect(_on_intent_interact)
+	
+func _on_intent_move(axis:Vector2):
+	if GameplayState.current() != self:
+		return
+	if axis == Vector2.ZERO:
+		return
 		
+	if !first_move:
+		first_move = true
+		currentIndex  = 0
+		setInvSlotState(currentIndex,Enums.ui_button_state.HOVERED)
+		return
+		
+	#Regular el axis
+	axis = HelperFunctions.vectorToVectorDirection(axis)
+	
+	if axis == Vector2.LEFT:
+		newIndex = wrap(currentIndex-1, 0, inv.slots.size())
+		if currentIndex != selectedIndex:
+			setInvSlotState(currentIndex,Enums.ui_button_state.NORMAL)
+		if newIndex != selectedIndex:
+			setInvSlotState(newIndex,Enums.ui_button_state.HOVERED)
+		currentIndex=newIndex
+		return
+		
+	elif axis == Vector2.RIGHT:
+		newIndex = wrap(currentIndex+1, 0, inv.slots.size())
+		if currentIndex != selectedIndex:
+			setInvSlotState(currentIndex,Enums.ui_button_state.NORMAL)
+		if newIndex != selectedIndex:
+			setInvSlotState(newIndex,Enums.ui_button_state.HOVERED)
+		currentIndex=newIndex
+		return
+		
+	else:
+		var invColumns = slotContainer.columns
+		var current_fila = currentIndex/invColumns
+		var current_columna = wrapi(currentIndex%invColumns, 0, invColumns)
+		
+		if  axis == Vector2.DOWN:
+			newIndex = (current_fila-1) * invColumns + current_columna
+			if currentIndex != selectedIndex:
+				setInvSlotState(currentIndex,Enums.ui_button_state.NORMAL)
+			if newIndex != selectedIndex:
+				setInvSlotState(newIndex,Enums.ui_button_state.HOVERED)
+			currentIndex=newIndex
+			return
+			
+		elif axis == Vector2.UP:
+			newIndex = (current_fila+1) * invColumns + current_columna
+			if currentIndex != selectedIndex:
+				setInvSlotState(currentIndex,Enums.ui_button_state.NORMAL)
+			if newIndex != selectedIndex:
+				setInvSlotState(newIndex,Enums.ui_button_state.HOVERED)
+			currentIndex=newIndex
+			return
+			
+		else:
+			push_error("Error movimiento inventario, no se hacer matematicas")
+
+func _on_intent_interact():
+	if !currentIndex and currentIndex != 0:
+		return
+	if selectedIndex and currentIndex != selectedIndex or selectedIndex==0 and currentIndex != selectedIndex:
+		setInvSlotState(selectedIndex,Enums.ui_button_state.NORMAL)
+		setInvSlotState(currentIndex,Enums.ui_button_state.SELECTED)
+		selectedIndex=currentIndex
+		return
+		
+	selectedIndex = currentIndex
+	setInvSlotState(selectedIndex,Enums.ui_button_state.SELECTED)
+	
 func populateSlots():
 	for i in range(inv.slots.size()):
 		var invSlot = invSlotScene.instantiate()
 		invSlot.setup(i)
-		invSlot.slot_clicked.connect(_on_slot_clicked)
+		invSlot.mouse_on_hover.connect(_on_mouse_hover)
 		slotContainer.add_child(invSlot)
 		
 func update_slots():
@@ -38,68 +127,22 @@ func update_slots():
 		if inv.slots[i]:
 			uiSlots[i].updateTexture(inv.slots[i])
 
-func on_inventory_exit():
-	GameplayState.pop()
-	InputManager.intent_ui_move.disconnect(_on_intent_move)
-	
-func _on_intent_move(axis:Vector2):
-	if GameplayState.current() != self:
-		print("Not current gamplayState")
-		return
-	if axis == Vector2.ZERO:
-		print("axis was 0")
-		return
-	
-	print("se detectó movimiento")
-	#Regular el axis
-	axis = HelperFunctions.vectorToVectorDirection(axis)
-	
-	if !first_move:
-		activateClickSlot(0)
-		first_move = true
-		print("Era el primer movimiento")
-		return
-	
-	print("Ya había alguien focusseado así que cambiamos al siguiente")
-	if axis == Vector2.LEFT:
-		activateClickSlot(inv.slots.find_custom(func(slot): return slot == selected_slot) - 1)
-		return
-		
-	elif axis == Vector2.RIGHT:
-		activateClickSlot(inv.slots.find_custom(func(slot): return slot == selected_slot) + 1)
-		return
-		
-	else:
-		var invColumns = slotContainer.columns
-		var invFilas = inv.slots.size()/invColumns
-		var currentIndx = inv.slots.find_custom(func(slot): return slot == selected_slot)
-		
-		var mi_fila = currentIndx/invColumns
-		var mi_columna = wrapi(currentIndx%invColumns, 0, invColumns)
-		
-		if  axis == Vector2.UP:
-			mi_fila = wrapi(mi_fila-1, 0, invFilas)
-			var newIndex = mi_fila*invColumns + mi_columna 
-			activateClickSlot(newIndex)
-			return
-			
-		elif axis == Vector2.DOWN:
-			mi_fila = wrapi(mi_fila+1, 0, invFilas)
-			var newIndex = mi_fila*invColumns + mi_columna 
-			activateClickSlot(newIndex)
-			return
-			
-		else:
-			push_error("Error movimiento inventario, no se hacer matematicas")
-			
-func activateClickSlot(slot_index):
-	print("intentando activar slot :" ,slot_index)
-	slotContainer.get_child(slot_index).focusSelf()
-	var focused := get_viewport().gui_get_focus_owner()
-	if focused is Button and slotContainer.is_ancestor_of(focused):
-		focused.emit_signal("pressed")
-			
-func _on_slot_clicked(index:int):
-	selected_slot = inv.slots[index]
-	slot_selected.emit(selected_slot)
-	print("slot selected ", index)
+func setInvSlotState(index: int,  state:Enums.ui_button_state):
+	if state==Enums.ui_button_state.SELECTED:
+		slot_selected.emit(inv.slots[index])
+	slotContainer.get_child(index).setState(state)
+	print(index , " slot changed to ",state)
+
+func _on_mouse_hover( index:int):
+	if currentIndex and currentIndex != selectedIndex or currentIndex == 0 and currentIndex != selectedIndex:
+		setInvSlotState(currentIndex, Enums.ui_button_state.NORMAL)
+	setInvSlotState(index, Enums.ui_button_state.HOVERED)
+	currentIndex = index
+
+func openSlots():
+	for slot in slotContainer.get_children():
+		slot.isInvOpen = true
+
+func closeSlots():
+	for slot in slotContainer.get_children():
+		slot.isInvOpen = false

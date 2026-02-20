@@ -11,10 +11,6 @@ func _physics_process(_delta: float) -> void:
 	intent_move.emit(axis)
 	
 func _input(event):
-	if event.is_action_pressed("ui_right"):
-		print("UP reached InputManager (_input)")	
-
-func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 		intent_interact.emit()
 		
@@ -25,7 +21,6 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("ui_down"): dir = Vector2i.DOWN
 	
 	if dir != Vector2i.ZERO:
-		print("sigal emited from unhandled")
 		emit_signal("intent_ui_move", dir)
 
 	if event.is_action_released("inventario"):
@@ -33,3 +28,4 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("click_left"):
 		intent_click_left.emit()
+		print("left click")

@@ -26,6 +26,7 @@ GameCommander="*res://Autoloads/GameCommander.gd"
 QuestManager="*res://Autoloads/QuestManager.gd"
 Transition="*res://Autoloads/Transition.tscn"
 HelperFunctions="*res://Autoloads/HelperFunctions.gd"
+Enums="*res://Autoloads/Enums.gd"
 
 [display]
 

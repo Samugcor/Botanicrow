@@ -126,34 +126,18 @@ void fragment() {
 	} // ✏ end mode block
 
 	// ---- Combine ----
-
-	// Fill inside always
 	vec4 fill = fill_color;
-
-	// Border
-	vec4 border = vec4(0.0); // ✏ start with transparent
-
-	if (mode == 1) {
-    	// Only draw the pixels that are inside a dash
-    	border = vec4(border_color_hover.rgb, final_border_alpha); // final_border_alpha already = border_mask * dash_mask
+	vec4 border; 
+	if (mode==1){
+		border = vec4(border_color_hover.rgb, final_border_alpha);
 	}
-	// Selected solid border
-	else if (mode == 2) {
-    	border = vec4(border_color_selected.rgb, final_border_alpha); // solid alpha
+	
+	if (mode ==2){
+		border = vec4(border_color_selected.rgb, final_border_alpha);
 	}
 
-	// ✏ Now draw: fill is behind, border on top
-	// For hover, the gaps in the dash are fully transparent, so the dashed border "floats"
-	vec4 result;
-	if (mode == 1) {
-    	// Use the border as-is (transparent outside dash)
-    	result = fill;                // background fill
-    	result = result * vec4(1.0); // fill stays
-    	result = mix(result, border, border.a); // only the dash pixels show
-	} else {
-    	// normal or selected: border is fully visible
-    	result = mix(fill, border, border.a);
-	}
+	// Draw fill, then border on top
+	vec4 result = mix(fill, border, border.a);
 
 	// Clip outside the rounded rect
 	result.a *= shape_mask;

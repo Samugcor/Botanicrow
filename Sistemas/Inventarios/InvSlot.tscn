@@ -4,17 +4,18 @@
 [ext_resource type="Shader" uid="uid://jbaxxfbkw8se" path="res://Shaders/ButtonsOrPanels/button_hover_selected.gdshader" id="2_3xjo5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vn5ff"]
+resource_local_to_scene = true
 shader = ExtResource("2_3xjo5")
 shader_parameter/rect_size = Vector2(200, 100)
 shader_parameter/radius = 100.0
 shader_parameter/thickness = 5.0000002375
 shader_parameter/border_color_hover = Color(1, 1, 1, 1)
 shader_parameter/border_color_selected = Color(0.077799566, 0.5584265, 0.5293299, 1)
-shader_parameter/fill_color = Color(1, 1, 1, 0.47058824)
-shader_parameter/dash_count = 4.000000142499999
+shader_parameter/fill_color = Color(1, 1, 1, 0.69411767)
+shader_parameter/dash_count = 7.000000285
 shader_parameter/dash_ratio = 0.5
 shader_parameter/speed = 0.8
-shader_parameter/mode = 1
+shader_parameter/mode = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xjo5"]
 bg_color = Color(1, 1, 1, 1)
@@ -29,6 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_70bqb")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
@@ -69,4 +71,4 @@ text = "9"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[connection signal="gui_input" from="AspectRatioContainer/Panel" to="." method="_on_panel_gui_input"]
+[connection signal="mouse_entered" from="AspectRatioContainer/Panel" to="." method="_on_panel_mouse_entered"]

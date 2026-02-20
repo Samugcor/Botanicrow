@@ -133,12 +133,6 @@ offset_right = 1885.0
 offset_bottom = 1058.0
 texture = ExtResource("7_nijcj")
 
-[node name="Inventory" parent="." instance=ExtResource("2_ny8cm")]
-offset_left = 1334.0
-offset_top = 16.0
-offset_right = 1334.0
-offset_bottom = 16.0
-
 [node name="LineName" type="TextureRect" parent="."]
 offset_left = 648.0
 offset_top = 56.0
@@ -161,4 +155,11 @@ text = "asdasdasd"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Inventory" parent="." instance=ExtResource("2_ny8cm")]
+offset_left = 1333.0
+offset_top = 17.0
+offset_right = 1333.0
+offset_bottom = 17.0
+
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="slot_selected" from="Inventory" to="." method="_on_inventory_slot_selected"]

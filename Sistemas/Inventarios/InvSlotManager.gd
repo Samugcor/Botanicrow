@@ -4,12 +4,16 @@ extends Control
 @onready var amountDisplay: Label = $AspectRatioContainer/Panel/MarginContainer/Label
 @onready var panelShader = $AspectRatioContainer/Panel.material
 
-signal slot_clicked
+signal mouse_on_hover 
 
+var isInvOpen: bool = false
 var index:int = -1
+var current_state: Enums.ui_button_state = Enums.ui_button_state.NORMAL
 
 func _ready() -> void:
 	panelShader.set_shader_parameter("rect_size", size)
+	panelShader.set_shader_parameter("mode", 0)
+	current_state = Enums.ui_button_state.NORMAL
 
 func setup(i):
 	index=i
@@ -23,22 +27,23 @@ func updateTexture(slot: InvSlotClass):
 		amountDisplay.visible = true
 		amountDisplay.text = str(slot.cantidad)
 
-func _on_panel_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept") or event.is_action_pressed("click_left"):
-		applySelectShader()
-		slot_clicked.emit(index)
-		accept_event()
-		print("slotCliked")
-
-func applyHoverShader():
-	panelShader.set_shader_parameter("hover", true)
-	panelShader.set_shader_parameter("clicked", false)
+func _on_panel_mouse_entered() -> void:
+	if isInvOpen == false:
+		return
+	#Si está seleccionado hover no afecta
+	if current_state == Enums.ui_button_state.SELECTED:
+		return
+	mouse_on_hover.emit(index)
 	
-func applySelectShader():
-	panelShader.set_shader_parameter("hover", false)
-	panelShader.set_shader_parameter("clicked", true)
+func applyShader():
+	if current_state == Enums.ui_button_state.SELECTED:
+		panelShader.set_shader_parameter("mode", 2)
+		return
+	if current_state == Enums.ui_button_state.HOVERED:
+		panelShader.set_shader_parameter("mode", 1)
+		return
+	panelShader.set_shader_parameter("mode", 0)
 
-func applyNormalShader():
-	panelShader.set_shader_parameter("hover", false)
-	panelShader.set_shader_parameter("clicked", false)
-	
+func setState(st : Enums.ui_button_state):
+	current_state = st
+	applyShader()
