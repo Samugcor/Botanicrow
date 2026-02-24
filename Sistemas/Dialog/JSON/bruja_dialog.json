@@ -50,6 +50,14 @@
 				"1":{
 					"text": "Do you want potato salad?",
 					"end": true
+				},
+				"2":{
+					"text": "Did you need something?",
+					"end": true
+				},
+				"3":{
+					"text": "Look at you, with your cute little beak. Did you find anything shiny?",
+					"end": true
 				}
 			}
 		}

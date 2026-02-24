@@ -21,4 +21,5 @@ func _on_quest_active_changed(id):
 	for objective in quest_data.quest_objectives:
 		var label = Label.new()
 		label.text = objective.description
+		label.add_theme_font_size_override("font_size", 24)
 		objectivesContainer.add_child(label)

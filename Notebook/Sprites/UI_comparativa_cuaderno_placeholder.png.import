@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf0cgvsheahat"
-path="res://.godot/imported/UI_comparativa_cuaderno_placeholder.png-9c5035d603be8750621c75877237b7db.ctex"
+path="res://.godot/imported/UI_comparativa_cuaderno_placeholder.png-826d4064af9514b3cdd5b16b08915e59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Identification/PlaceHolders/UI_comparativa_cuaderno_placeholder.png"
-dest_files=["res://.godot/imported/UI_comparativa_cuaderno_placeholder.png-9c5035d603be8750621c75877237b7db.ctex"]
+source_file="res://Notebook/Sprites/UI_comparativa_cuaderno_placeholder.png"
+dest_files=["res://.godot/imported/UI_comparativa_cuaderno_placeholder.png-826d4064af9514b3cdd5b16b08915e59.ctex"]
 
 [params]
 

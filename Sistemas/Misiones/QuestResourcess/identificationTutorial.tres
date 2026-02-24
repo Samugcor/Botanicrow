@@ -1,21 +1,26 @@
-[gd_resource type="Resource" script_class="QuestClass" load_steps=6 format=3 uid="uid://20gas72nrfo6"]
+[gd_resource type="Resource" script_class="QuestClass" load_steps=10 format=3 uid="uid://20gas72nrfo6"]
 
 [ext_resource type="Script" uid="uid://xj8gaoefyv02" path="res://Sistemas/Misiones/Classes/ObjectiveClass.gd" id="1_jllv7"]
+[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Items/Plantas/Data/Bulbo.tres" id="2_6moli"]
 [ext_resource type="Script" uid="uid://hw008ct3e6k1" path="res://Sistemas/Misiones/Classes/GatherObjectiveClass.gd" id="2_shpx7"]
 [ext_resource type="Script" uid="uid://bswyw51ptu3ik" path="res://Sistemas/Misiones/Classes/QuestClass.gd" id="3_7qtyb"]
+[ext_resource type="Resource" uid="uid://maeeic0di2x8" path="res://Items/Plantas/Data/Trebol.tres" id="4_5vhwn"]
+[ext_resource type="Resource" uid="uid://ddtdh7plwhpxx" path="res://Items/Plantas/Data/HojasRizadas.tres" id="5_5vhwn"]
 
-[sub_resource type="Resource" id="Resource_w62n4"]
+[sub_resource type="Resource" id="Resource_gl3io"]
 script = ExtResource("2_shpx7")
-item_id = "lavander"
-id = "gather_lavander"
-description = "Look for a purple plant"
+required_item = ExtResource("2_6moli")
+id = "gather_bulbo"
 metadata/_custom_type_script = "uid://hw008ct3e6k1"
 
-[sub_resource type="Resource" id="Resource_druk6"]
+[sub_resource type="Resource" id="Resource_6moli"]
 script = ExtResource("2_shpx7")
-item_id = "rose"
-id = "gather_rose"
-description = "Gather a romantic flower"
+required_item = ExtResource("4_5vhwn")
+metadata/_custom_type_script = "uid://hw008ct3e6k1"
+
+[sub_resource type="Resource" id="Resource_uc0k3"]
+script = ExtResource("2_shpx7")
+required_item = ExtResource("5_5vhwn")
 metadata/_custom_type_script = "uid://hw008ct3e6k1"
 
 [resource]
@@ -23,5 +28,5 @@ script = ExtResource("3_7qtyb")
 quest_id = "identification_tutorial"
 quest_name = "Identify your cure"
 quest_description = "You need to find what plants the Bruja used to cure you!"
-quest_objectives = Array[ExtResource("1_jllv7")]([SubResource("Resource_w62n4"), SubResource("Resource_druk6")])
+quest_objectives = Array[ExtResource("1_jllv7")]([SubResource("Resource_gl3io"), SubResource("Resource_6moli"), SubResource("Resource_uc0k3")])
 metadata/_custom_type_script = "uid://bswyw51ptu3ik"

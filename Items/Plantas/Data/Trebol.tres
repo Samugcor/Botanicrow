@@ -6,11 +6,11 @@
 
 [resource]
 script = ExtResource("2_wv453")
-observations = "Cute leaves"
+observations = "Medium leaves with a light color, they grow in odd numbers on one short stem"
 detailView = ExtResource("1_3tvyd")
 id = "trebol"
 name = "Trebol"
 hint = "It has heart shaped leaves"
-description = "It has three small green leaves"
+description = "Leaves about half a hand's width long. It has a fairly long root."
 sprite = ExtResource("3_i31cw")
 metadata/_custom_type_script = "uid://dyn0ckxs3sfnt"

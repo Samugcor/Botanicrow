@@ -60,7 +60,8 @@ theme_override_constants/margin_bottom = 5
 
 [node name="ItemDisplay" type="TextureRect" parent="AspectRatioContainer/Panel/MarginContainer"]
 layout_mode = 2
-expand_mode = 1
+expand_mode = 4
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="AspectRatioContainer/Panel/MarginContainer"]
 layout_mode = 2

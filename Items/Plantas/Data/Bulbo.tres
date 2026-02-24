@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource("1_yve4q")
-observations = "Smells weird "
+observations = "The bulb's color also extends to the leaves. It smells a bit strange."
 detailView = ExtResource("1_3e2pg")
 id = "bulbo"
 name = "Bulbo"
-description = "A flower with two big leaves and blue flowers that has an acrid smell"
+description = "Composite flower, blue in color and with a musky scent."
 sprite = ExtResource("3_0odo7")
 metadata/_custom_type_script = "uid://dyn0ckxs3sfnt"

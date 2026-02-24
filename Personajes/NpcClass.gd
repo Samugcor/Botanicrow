@@ -6,4 +6,4 @@ class_name NpcClass
 @export var sprite : Texture2D 
 @export var spriteSelected: Texture2D
 @export var dialogFile: String
-@export var hint: String = TextVariables.HINT_TALK
+@export var ui_interaction_hint: String = TextVariables.HINT_TALK

@@ -20,7 +20,6 @@ func _ready() -> void:
 	
 	populateSlots()
 	update_slots()
-	activate()
 
 func activate():
 	first_move = false
@@ -131,7 +130,6 @@ func setInvSlotState(index: int,  state:Enums.ui_button_state):
 	if state==Enums.ui_button_state.SELECTED:
 		slot_selected.emit(inv.slots[index])
 	slotContainer.get_child(index).setState(state)
-	print(index , " slot changed to ",state)
 
 func _on_mouse_hover( index:int):
 	if currentIndex and currentIndex != selectedIndex or currentIndex == 0 and currentIndex != selectedIndex:

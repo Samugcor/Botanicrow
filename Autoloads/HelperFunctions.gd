@@ -26,3 +26,9 @@ func vectorToVectorDirection(vector:Vector2):
 			return Vector2.UP
 		else:
 			return Vector2.DOWN
+
+
+
+static func WorldToViewport( target: Node2D) -> Vector2:
+	var targetCanvasPosition:Vector2 = target.get_screen_transform().origin.clamp(Vector2.ZERO,target.get_viewport_rect().size)
+	return targetCanvasPosition;

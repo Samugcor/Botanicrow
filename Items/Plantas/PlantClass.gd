@@ -5,4 +5,4 @@ class_name PlantClass
 @export var detailView: Texture2D
 
 func _init() -> void:
-	hint = TextVariables.HINT_PICK_UP
+	ui_interaction_hint = TextVariables.HINT_PICK_UP

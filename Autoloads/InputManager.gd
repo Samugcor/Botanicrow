@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 signal intent_interact
 signal intent_player_menu
@@ -28,4 +28,3 @@ func _input(event):
 
 	if event.is_action_pressed("click_left"):
 		intent_click_left.emit()
-		print("left click")

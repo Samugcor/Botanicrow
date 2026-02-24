@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2bodhemjpl1m"]
+[gd_scene load_steps=5 format=3 uid="uid://c2bodhemjpl1m"]
 
 [ext_resource type="Script" uid="uid://b17th77ku07gs" path="res://Items/Plantas/Scripts/plant.gd" id="1_3b515"]
+[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Items/Plantas/Data/Bulbo.tres" id="2_lkqdu"]
+[ext_resource type="Texture2D" uid="uid://canystx8cmeo6" path="res://Items/Plantas/Sprites/Pequeña/Interior_casa_bruja_placeholder_p1.png" id="3_gfxjc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_36t3e"]
 radius = 49.010204
@@ -8,6 +10,7 @@ radius = 49.010204
 [node name="Plant" type="Node2D" groups=["Items"]]
 y_sort_enabled = true
 script = ExtResource("1_3b515")
+data = ExtResource("2_lkqdu")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-1, -12)
@@ -22,6 +25,7 @@ position = Vector2(0, -37)
 shape = SubResource("CircleShape2D_36t3e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_gfxjc")
 offset = Vector2(-1, -46)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cit803vco5lx1"]
+[gd_scene load_steps=14 format=3 uid="uid://cit803vco5lx1"]
 
 [ext_resource type="Texture2D" uid="uid://b8st2x1qa0vwy" path="res://Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_fondo_con_estanterías.png" id="1_4e7di"]
 [ext_resource type="Texture2D" uid="uid://dh55x4e58g0q" path="res://Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_caldero.png" id="2_2fvhc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b46biu1ubcm0r" path="res://desk.gd" id="8_gb55e"]
 [ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Items/Plantas/Plant.tscn" id="9_6acbg"]
 [ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Items/Plantas/Data/Bulbo.tres" id="10_0p8ny"]
+[ext_resource type="Resource" uid="uid://c06f57rv12fmm" path="res://Items/Plantas/Data/EstrellaCeleste.tres" id="10_o28mm"]
 [ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenarios/Door.tscn" id="11_2fvhc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_58eo4"]
@@ -71,11 +72,11 @@ position = Vector2(951, 550)
 shape = SubResource("CircleShape2D_58eo4")
 
 [node name="Plant" parent="Ysortting" instance=ExtResource("9_6acbg")]
-position = Vector2(1041, 468)
-data = ExtResource("10_0p8ny")
+position = Vector2(838, 943)
+data = ExtResource("10_o28mm")
 
 [node name="Plant2" parent="Ysortting" instance=ExtResource("9_6acbg")]
-position = Vector2(1156, 765)
+position = Vector2(432, 680)
 data = ExtResource("10_0p8ny")
 
 [node name="Collaiders" type="Node2D" parent="."]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://sogvl8ohqjh2"]
+[gd_scene load_steps=6 format=3 uid="uid://sogvl8ohqjh2"]
 
 [ext_resource type="Texture2D" uid="uid://b8d5ipg2smaet" path="res://Escenarios/HouseExterior/Placeholders/Mapa bosque 1 Placeholder boceto solofondo (1).jpg" id="1_5ermm"]
 [ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenarios/Door.tscn" id="2_ixqxo"]
+[ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Items/Plantas/Plant.tscn" id="3_j130n"]
+[ext_resource type="Resource" uid="uid://ddtdh7plwhpxx" path="res://Items/Plantas/Data/HojasRizadas.tres" id="4_gnybr"]
+[ext_resource type="Resource" uid="uid://maeeic0di2x8" path="res://Items/Plantas/Data/Trebol.tres" id="5_rmgtm"]
 
 [node name="HouseExterior" type="Node2D"]
 y_sort_enabled = true
@@ -10,6 +13,13 @@ y_sort_enabled = true
 z_index = -2
 position = Vector2(-32, 381)
 texture = ExtResource("1_5ermm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2670.0
+offset_top = -1573.0
+offset_right = 4794.0
+offset_bottom = 2767.0
+color = Color(0.43137255, 0.43137255, 0.43137255, 0.5529412)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 position = Vector2(1127, 882)
@@ -25,5 +35,13 @@ position = Vector2(1310, 517.00006)
 rotation = 0.38125426
 destination_level_path = "res://Escenarios/CasaBruja/CasaBruja.tscn"
 destination_spawn = "door_house_interior"
+
+[node name="Plant" parent="." instance=ExtResource("3_j130n")]
+position = Vector2(1554, 790)
+data = ExtResource("4_gnybr")
+
+[node name="Plant2" parent="." instance=ExtResource("3_j130n")]
+position = Vector2(1598, 844)
+data = ExtResource("5_rmgtm")
 
 [editable path="Puertas/Door"]
