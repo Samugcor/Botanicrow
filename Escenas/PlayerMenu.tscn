@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd5uihsy3vjqb"]
+
+[ext_resource type="Script" uid="uid://d4mkcdnrrtvl5" path="res://Menus/PlayerMenu/PlayerMenuController.gd" id="1_mh3t4"]
+[ext_resource type="PackedScene" uid="uid://br877hemq3s85" path="res://Escenas/PlayerInventory.tscn" id="2_664wf"]
+[ext_resource type="Script" uid="uid://c44ispqxs8d4v" path="res://Menus/PlayerMenu/PlayerMenuUi.gd" id="2_rrfqv"]
+[ext_resource type="PackedScene" uid="uid://bk3fc3buerpw8" path="res://Escenas/SpreadNotebookUi.tscn" id="4_rrfqv"]
+
+[node name="PlayerMenu" type="CanvasLayer"]
+script = ExtResource("1_mh3t4")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_rrfqv")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3372549)
+
+[node name="Inventory" parent="Control" instance=ExtResource("2_664wf")]
+layout_mode = 1
+offset_left = 1329.0
+offset_top = 250.0
+offset_right = 1329.0
+offset_bottom = 250.00002
+grow_horizontal = 0
+
+[node name="NotebookMenu" parent="Control" instance=ExtResource("4_rrfqv")]
+layout_mode = 1
+offset_right = 1350.0

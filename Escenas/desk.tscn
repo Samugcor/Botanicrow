@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://chjx2wu3ifcuc"]
+
+[ext_resource type="Script" uid="uid://b46biu1ubcm0r" path="res://Interactables/desk.gd" id="1_gpbqf"]
+[ext_resource type="Resource" uid="uid://crf7iwketuwat" path="res://Interactables/data/desk.tres" id="2_dq4e2"]
+[ext_resource type="Texture2D" uid="uid://dik2ikk44lrw" path="res://Assets/Art/Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_taburete.png" id="3_2x3ol"]
+[ext_resource type="Script" uid="uid://dcr3crvtwlpw4" path="res://Interactables/interactableVisual.gd" id="3_dq4e2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_58eo4"]
+radius = 81.608826
+
+[node name="Desk" type="Node2D" node_paths=PackedStringArray("visual_reference", "area_reference")]
+script = ExtResource("1_gpbqf")
+data = ExtResource("2_dq4e2")
+visual_reference = NodePath("Sprite")
+area_reference = NodePath("Sprite/Area2D")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+texture = ExtResource("3_2x3ol")
+script = ExtResource("3_dq4e2")
+
+[node name="Area2D" type="Area2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+shape = SubResource("CircleShape2D_58eo4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/StaticBody2D"]
+position = Vector2(-0.16394918, 25.427565)
+polygon = PackedVector2Array(64.16395, -2.4275646, 25.16395, 27.572433, 5.163949, 32.572433, -51.836052, 21.572433, -64.83605, 9.572433, -30.83605, -23.427567, -9.836051, -29.427567, 57.163948, -12.427567)

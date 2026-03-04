@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqmx0axt8n4fa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vbkib"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pad2r"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.37030464, 0.24032858, 0.1418064, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_305ep"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.7627673, 0.5452547, 0.3486069, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dljta"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18170351, 0.49306303, 0.6516057, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_ucm7b"]
+Button/styles/focus = SubResource("StyleBoxEmpty_vbkib")
+Button/styles/hover = SubResource("StyleBoxFlat_pad2r")
+Button/styles/normal = SubResource("StyleBoxFlat_305ep")
+Button/styles/pressed = SubResource("StyleBoxFlat_dljta")
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vbkib"]
+
+[node name="NotebookListItem" type="Button"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme = SubResource("Theme_ucm7b")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vbkib")
+text = "asdasdasd"
+alignment = 0
+autowrap_mode = 3

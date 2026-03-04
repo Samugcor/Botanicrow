@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://u0jodcluhq2e"]
+
+[ext_resource type="Script" uid="uid://bht71d54j4caw" path="res://Interactables/NPCs/npcController.gd" id="1_830ch"]
+[ext_resource type="Script" uid="uid://dcr3crvtwlpw4" path="res://Interactables/interactableVisual.gd" id="2_u58t6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lsdvp"]
+radius = 250.07199
+
+[node name="NPC" type="Node2D" node_paths=PackedStringArray("visual_reference", "area_reference") groups=["Npc"]]
+y_sort_enabled = true
+script = ExtResource("1_830ch")
+visual_reference = NodePath("Sprite2D")
+area_reference = NodePath("Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.43752754, -237.1476)
+scale = Vector2(0.67415965, 0.67415965)
+script = ExtResource("2_u58t6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -130)
+shape = SubResource("CircleShape2D_lsdvp")

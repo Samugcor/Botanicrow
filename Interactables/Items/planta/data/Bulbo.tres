@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PlantClass" load_steps=5 format=3 uid="uid://bycieo5i2mho3"]
+
+[ext_resource type="Texture2D" uid="uid://cycvpshl08f5i" path="res://Assets/Art/Detallle/Planta1_gr.png" id="1_3e2pg"]
+[ext_resource type="Script" uid="uid://dyn0ckxs3sfnt" path="res://Interactables/Items/planta/domain/PlantClass.gd" id="1_yve4q"]
+[ext_resource type="Texture2D" uid="uid://canystx8cmeo6" path="res://Assets/Art/Pequeña/Interior_casa_bruja_placeholder_p1.png" id="3_0odo7"]
+[ext_resource type="Texture2D" uid="uid://biftp2lntvury" path="res://Assets/Art/Pequeña/Interior_casa_bruja_placeholder_p1_select.png" id="3_841v6"]
+
+[resource]
+script = ExtResource("1_yve4q")
+observations = "The bulb's color also extends to the leaves. It smells a bit strange."
+detailView = ExtResource("1_3e2pg")
+description = "Composite flower, blue in color and with a musky scent."
+id = "bulbo"
+name = "Bulbo"
+sprite = ExtResource("3_0odo7")
+selectedSprite = ExtResource("3_841v6")
+metadata/_custom_type_script = "uid://dyn0ckxs3sfnt"

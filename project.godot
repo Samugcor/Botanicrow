@@ -13,29 +13,29 @@ config_version=5
 config/name="Botanicrow"
 run/main_scene="uid://bxt8gixtsh38b"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Assets/Icons/icon.svg"
 
 [autoload]
 
-TextVariables="*res://Autoloads/TextVariables.gd"
-DialogManager="*res://Autoloads/DialogManager.gd"
-GameState="*res://Autoloads/GameState.gd"
-InputManager="*res://Autoloads/InputManager.gd"
-GameplayState="*res://Autoloads/GameplayState.gd"
-GameCommander="*res://Autoloads/GameCommander.gd"
-QuestManager="*res://Autoloads/QuestManager.gd"
-Transition="*res://Autoloads/Transition.tscn"
-HelperFunctions="*res://Autoloads/HelperFunctions.gd"
-Enums="*res://Autoloads/Enums.gd"
+TextVariables="*res://Utils/TextVariables.gd"
+DialogManager="*res://Dialog/DialogManager.gd"
+GameState="*res://Core/GameState.gd"
+InputManager="*res://Core/InputManager.gd"
+GameplayState="*res://Core/GameplayState.gd"
+GameEvents="*res://Core/GameEvents.gd"
+QuestManager="*res://Quests/QuestManager.gd"
+Transition="*res://Escenas/Transition.tscn"
+HelperFunctions="*res://Utils/HelperFunctions.gd"
+Enums="*res://Utils/Enums.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/borderless=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [global_group]
 

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="QuestClass" load_steps=6 format=3 uid="uid://cf7m38kbf8ecd"]
+
+[ext_resource type="Script" uid="uid://xj8gaoefyv02" path="res://Quests/domain/ObjectiveClass.gd" id="1_soixp"]
+[ext_resource type="Script" uid="uid://bswyw51ptu3ik" path="res://Quests/domain/QuestClass.gd" id="2_1bfld"]
+[ext_resource type="Resource" uid="uid://dvvneboycauxj" path="res://Interactables/Items/planta/data/sunflower.tres" id="2_7d3u0"]
+[ext_resource type="Script" uid="uid://hw008ct3e6k1" path="res://Quests/domain/GatherObjectiveClass.gd" id="3_e1sic"]
+
+[sub_resource type="Resource" id="Resource_xkfsi"]
+script = ExtResource("3_e1sic")
+required_item = ExtResource("2_7d3u0")
+id = "gather_sunflower"
+metadata/_custom_type_script = "uid://hw008ct3e6k1"
+
+[resource]
+script = ExtResource("2_1bfld")
+quest_id = "you_want_more"
+quest_name = "A very special quest"
+quest_description = "If you want more work, you could try and find the special flower. They say it came from another videogame."
+quest_objectives = Array[ExtResource("1_soixp")]([SubResource("Resource_xkfsi")])
+metadata/_custom_type_script = "uid://bswyw51ptu3ik"

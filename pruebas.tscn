@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://biivjo3gbc4n6"]
+
+[ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://Escenas/PlayerCharacter.tscn" id="1_2j01p"]
+[ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Escenas/Plant.tscn" id="2_vdwn6"]
+[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Interactables/Items/planta/data/Bulbo.tres" id="3_a1c5d"]
+[ext_resource type="PackedScene" uid="uid://u0jodcluhq2e" path="res://Escenas/npc.tscn" id="4_46fo5"]
+[ext_resource type="Resource" uid="uid://dhn3qkyqxryvt" path="res://Interactables/NPCs/data/Bruja.tres" id="5_5hiqr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a1c5d"]
+modulate_color = Color(1, 0.48235294, 1, 1)
+
+[node name="Pruebas" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_2j01p")]
+position = Vector2(423, 273)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+limit_enabled = false
+
+[node name="Plant" parent="." instance=ExtResource("2_vdwn6")]
+position = Vector2(1064, 197)
+data = ExtResource("3_a1c5d")
+
+[node name="NPC" parent="." instance=ExtResource("4_46fo5")]
+position = Vector2(1252, 448)
+data = ExtResource("5_5hiqr")
+
+[node name="FoldableContainer" type="FoldableContainer" parent="."]
+layout_direction = 2
+offset_right = 299.0
+offset_bottom = 144.0
+size_flags_horizontal = 0
+theme_override_styles/title_panel = SubResource("StyleBoxTexture_a1c5d")
+title = "asdasda"
+
+[node name="Panel" type="Panel" parent="FoldableContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FoldableContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="FoldableContainer/Panel/MarginContainer"]
+layout_mode = 2
+text = "AKsfkhfakdnfkajhdfkjshakjslfjdasf"

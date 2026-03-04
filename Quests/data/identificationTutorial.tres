@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="QuestClass" load_steps=10 format=3 uid="uid://20gas72nrfo6"]
+
+[ext_resource type="Script" uid="uid://xj8gaoefyv02" path="res://Quests/domain/ObjectiveClass.gd" id="1_jllv7"]
+[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Interactables/Items/planta/data/Bulbo.tres" id="2_6moli"]
+[ext_resource type="Script" uid="uid://hw008ct3e6k1" path="res://Quests/domain/GatherObjectiveClass.gd" id="2_shpx7"]
+[ext_resource type="Script" uid="uid://bswyw51ptu3ik" path="res://Quests/domain/QuestClass.gd" id="3_7qtyb"]
+[ext_resource type="Resource" uid="uid://maeeic0di2x8" path="res://Interactables/Items/planta/data/Trebol.tres" id="4_5vhwn"]
+[ext_resource type="Resource" uid="uid://ddtdh7plwhpxx" path="res://Interactables/Items/planta/data/HojasRizadas.tres" id="5_5vhwn"]
+
+[sub_resource type="Resource" id="Resource_gl3io"]
+script = ExtResource("2_shpx7")
+required_item = ExtResource("2_6moli")
+id = "gather_bulbo"
+metadata/_custom_type_script = "uid://hw008ct3e6k1"
+
+[sub_resource type="Resource" id="Resource_6moli"]
+script = ExtResource("2_shpx7")
+required_item = ExtResource("4_5vhwn")
+metadata/_custom_type_script = "uid://hw008ct3e6k1"
+
+[sub_resource type="Resource" id="Resource_uc0k3"]
+script = ExtResource("2_shpx7")
+required_item = ExtResource("5_5vhwn")
+metadata/_custom_type_script = "uid://hw008ct3e6k1"
+
+[resource]
+script = ExtResource("3_7qtyb")
+quest_id = "identification_tutorial"
+quest_name = "Identify your cure"
+quest_description = "You need to find what plants the Bruja used to cure you!"
+quest_objectives = Array[ExtResource("1_jllv7")]([SubResource("Resource_gl3io"), SubResource("Resource_6moli"), SubResource("Resource_uc0k3")])
+metadata/_custom_type_script = "uid://bswyw51ptu3ik"

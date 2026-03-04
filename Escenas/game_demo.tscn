@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi8ye0pfoxjgh"]
+
+[ext_resource type="Script" uid="uid://dmy5g06egtt8p" path="res://Core/SceneManager.gd" id="1_ix4bc"]
+[ext_resource type="PackedScene" uid="uid://cau4xgdqn1bpn" path="res://Escenas/HUD.tscn" id="2_amiuk"]
+[ext_resource type="Script" uid="uid://6ibq1xf4ts48" path="res://Menus/UiManager.gd" id="2_oh6lr"]
+[ext_resource type="PackedScene" uid="uid://di1x8todxh7ay" path="res://Escenas/DialogUI.tscn" id="3_oh6lr"]
+[ext_resource type="PackedScene" uid="uid://cd5uihsy3vjqb" path="res://Escenas/PlayerMenu.tscn" id="4_amiuk"]
+[ext_resource type="PackedScene" uid="uid://dyw3qtj2y7a62" path="res://Escenas/PlayerCharacter.tscn" id="4_muwv7"]
+
+[node name="GameDemo" type="Node2D" groups=["Scene_manager"]]
+script = ExtResource("1_ix4bc")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_oh6lr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="Hud" parent="UI/CanvasLayer" instance=ExtResource("2_amiuk")]
+
+[node name="DialogUi" parent="UI/CanvasLayer" instance=ExtResource("3_oh6lr")]
+visible = false
+
+[node name="PlayerMenu" parent="UI/CanvasLayer" instance=ExtResource("4_amiuk")]
+visible = false
+
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PlayerCharacter" parent="World" instance=ExtResource("4_muwv7")]
+
+[node name="Camera2D2" type="Camera2D" parent="World/PlayerCharacter"]
+position = Vector2(0, -56)
+process_callback = 0
+limit_enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="Enviroment" type="Node2D" parent="World"]
+y_sort_enabled = true

@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://cau4xgdqn1bpn"]
+
+[ext_resource type="Script" uid="uid://jodoa56gc8u" path="res://UI/HudController.gd" id="1_b7ubu"]
+[ext_resource type="Script" uid="uid://cuanji2f4cebj" path="res://UI/HudUI.gd" id="2_6xl80"]
+[ext_resource type="Texture2D" uid="uid://ji30cynix0xv" path="res://Assets/Icons/Placeholder_HUD_mochila_estatua.png" id="2_amwvk"]
+[ext_resource type="Texture2D" uid="uid://dcg4dmwwl4yqe" path="res://Assets/Icons/Placeholder_HUD_interaccion-a.png" id="4_aa5tu"]
+[ext_resource type="PackedScene" uid="uid://cp5x8xmc781mg" path="res://Escenas/QuestTraker.tscn" id="5_rlgwt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_njmlf"]
+font_size = 22
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_b7ubu")
+
+[node name="HudUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_6xl80")
+
+[node name="QuestTraker" parent="HudUI" instance=ExtResource("5_rlgwt")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="warning" type="Label" parent="HudUI"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -253.0
+offset_right = 253.0
+offset_bottom = 91.09601
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Problemas"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="HudUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -141.0
+offset_right = 141.0
+grow_vertical = 0
+texture = ExtResource("2_amwvk")
+expand_mode = 1
+
+[node name="Interaction_hint" type="Control" parent="HudUI"]
+layout_mode = 1
+anchor_left = 0.49100003
+anchor_top = 0.5
+anchor_right = 0.49100003
+anchor_bottom = 0.5
+offset_left = -19.640001
+offset_top = -20.0
+offset_right = -19.640001
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudUI/Interaction_hint"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.0
+offset_right = 43.0
+offset_bottom = 31.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HudUI/Interaction_hint/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_aa5tu")
+expand_mode = 2
+
+[node name="Text" type="Label" parent="HudUI/Interaction_hint/HBoxContainer"]
+layout_mode = 2
+text = "aaaa"
+label_settings = SubResource("LabelSettings_njmlf")
+horizontal_alignment = 1

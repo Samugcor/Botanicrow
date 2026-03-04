@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm4rkocy4kh64"]
+
+[ext_resource type="Script" uid="uid://brgki8lngo57g" path="res://UI/InvSlotUI.gd" id="1_5uypj"]
+[ext_resource type="Shader" uid="uid://5kwryeganhq4" path="res://Assets/Shaders/ButtonsOrPanels/button_circle_hover_selected.gdshader" id="2_5uypj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vn5ff"]
+resource_local_to_scene = true
+shader = ExtResource("2_5uypj")
+shader_parameter/rect_size = Vector2(200, 200)
+shader_parameter/thickness = 15.0000007125
+shader_parameter/border_color_hover = Color(1, 1, 1, 1)
+shader_parameter/border_color_selected = Color(0.077799566, 0.5584265, 0.5293299, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 0.69411767)
+shader_parameter/dash_count = 7.000000285
+shader_parameter/dash_ratio = 0.5
+shader_parameter/speed = 0.8
+shader_parameter/mode = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xjo5"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="InvSlot" type="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("1_5uypj")
+
+[node name="Panel" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_vn5ff")
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3xjo5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ItemDisplay" type="TextureRect" parent="Panel/MarginContainer"]
+layout_mode = 2
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "9"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_panel_mouse_exited"]

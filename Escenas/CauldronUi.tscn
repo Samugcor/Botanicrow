@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://26inomjqf1f5"]
+
+[ext_resource type="Script" uid="uid://d4gqqgc14q231" path="res://Menus/CauldronController.gd" id="1_cljbr"]
+[ext_resource type="Texture2D" uid="uid://bvu0xjmgvakth" path="res://Assets/Art/Menus/PlaceHolders/UI_comparativa_Pocion_placeholder.png" id="1_e1kgk"]
+[ext_resource type="PackedScene" uid="uid://bm4rkocy4kh64" path="res://Escenas/InvSlot.tscn" id="1_lx4vu"]
+[ext_resource type="Script" uid="uid://hbbomk05iaui" path="res://UI/CauldronUi.gd" id="2_mmfyk"]
+
+[node name="Cauldron" type="Control"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 3
+anchor_right = 0.37916666
+anchor_bottom = 0.22962964
+script = ExtResource("1_cljbr")
+inv_slot_scene = ExtResource("1_lx4vu")
+metadata/_edit_use_anchors_ = true
+
+[node name="CauldronUi" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_mmfyk")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CauldronUi"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_e1kgk")
+stretch_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CauldronUi/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10110805
+anchor_top = 0.5816327
+anchor_right = 0.9099723
+anchor_bottom = 0.90816325
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+metadata/_edit_use_anchors_ = true

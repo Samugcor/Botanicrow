@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="NotebookClass" load_steps=2 format=3 uid="uid://bo832b0kd445q"]
-
-[ext_resource type="Script" uid="uid://c62gtbgwtpaja" path="res://Notebook/NotebookClass.gd" id="1_kncs6"]
-
-[resource]
-script = ExtResource("1_kncs6")
-metadata/_custom_type_script = "uid://c62gtbgwtpaja"

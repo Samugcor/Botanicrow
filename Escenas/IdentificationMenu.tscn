@@ -1,0 +1,209 @@
+[gd_scene load_steps=15 format=3 uid="uid://bwvltedcc148o"]
+
+[ext_resource type="Script" uid="uid://6x2fpsaufx46" path="res://UI/IdentificationUI.gd" id="1_djvno"]
+[ext_resource type="Script" uid="uid://dcpeop14qdmlp" path="res://Menus/IdentificationMenu/IdentificationMenuController.gd" id="1_ghwiv"]
+[ext_resource type="Texture2D" uid="uid://vi68axyeohgd" path="res://Assets/Art/Menus/PlaceHolders/UI_comparativa_Fondo.png" id="2_ghwiv"]
+[ext_resource type="Texture2D" uid="uid://c7dl4hgfrlg4c" path="res://Assets/Art/Menus/PlaceHolders/UI_comparativa_Ref.jpg" id="3_erp1i"]
+[ext_resource type="Texture2D" uid="uid://oigc5xc1lyhr" path="res://Assets/Art/Menus/PlaceHolders/UI_comparativa_apreciaciones_placeholder.png" id="4_0476k"]
+[ext_resource type="Texture2D" uid="uid://886cllk8uun8" path="res://Assets/Art/Menus/PlaceHolders/UI_comparativa_mapa_placeholder.png" id="6_t1nna"]
+[ext_resource type="Texture2D" uid="uid://bxh63eymn6q7t" path="res://Assets/Art/Menus/PlaceHolders/UI_comparativa_subrayado_plantas_placeholder.png" id="7_g33f6"]
+[ext_resource type="PackedScene" uid="uid://br877hemq3s85" path="res://Escenas/PlayerInventory.tscn" id="8_rintu"]
+[ext_resource type="Texture2D" uid="uid://bynabgde1b220" path="res://Assets/Art/Menus/PlaceHolders/Ff.png" id="10_0xyar"]
+[ext_resource type="PackedScene" uid="uid://26inomjqf1f5" path="res://Escenas/CauldronUi.tscn" id="11_erp1i"]
+[ext_resource type="PackedScene" uid="uid://bkc8wfvdilmf1" path="res://Escenas/HalfNoteBookUi.tscn" id="11_ghwiv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmtiy"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.76862746, 0.9019608, 0.85882354, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plqjj"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.34551585, 0.5795891, 0.694353, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nijcj"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.4168743, 0.65851617, 0.7768386, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="IdentificationMenu" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_ghwiv")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_djvno")
+
+[node name="Fondo" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ghwiv")
+
+[node name="UiComparativaRef" type="Sprite2D" parent="Control"]
+visible = false
+position = Vector2(960, 539)
+texture = ExtResource("3_erp1i")
+
+[node name="Exit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 1865.0
+offset_top = 35.0
+offset_right = 1883.0
+offset_bottom = 66.0
+text = "X"
+
+[node name="CrowObservations" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 22.0
+offset_right = 571.0
+offset_bottom = 293.0
+texture = ExtResource("4_0476k")
+
+[node name="Label" type="Label" parent="Control/CrowObservations"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.5
+offset_top = -69.5
+offset_right = 174.5
+offset_bottom = 90.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+visible_characters_behavior = 1
+
+[node name="PlantDetail" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.363
+anchor_right = 0.5
+anchor_bottom = 0.363
+offset_left = -320.0
+offset_top = -312.04
+offset_right = 307.72754
+offset_bottom = 375.96
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Map" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1360.0
+offset_top = 711.0
+offset_right = 1885.0
+offset_bottom = 1058.0
+texture = ExtResource("6_t1nna")
+
+[node name="LineName" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 56.0
+offset_right = 1272.0
+offset_bottom = 100.0
+texture = ExtResource("7_g33f6")
+
+[node name="PlantName" type="Label" parent="Control/LineName"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.5
+offset_top = -32.0
+offset_right = 101.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "asdasdasd"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 712.0
+offset_right = 995.0
+offset_bottom = 807.0
+texture_normal = ExtResource("10_0xyar")
+
+[node name="Inventory" parent="Control" instance=ExtResource("8_rintu")]
+layout_mode = 1
+anchor_left = 0.69427085
+anchor_top = 0.015740741
+anchor_right = 0.97083336
+anchor_bottom = 0.65185183
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Cauldron" parent="Control" instance=ExtResource("11_erp1i")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 600.0
+offset_top = 808.0
+offset_right = 1328.0
+offset_bottom = 1056.0
+
+[node name="Brew" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 1224.0
+offset_top = 864.0
+offset_right = 1314.0
+offset_bottom = 912.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmtiy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_plqjj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nijcj")
+text = "Brew"
+
+[node name="HalfNotebook" parent="Control" instance=ExtResource("11_ghwiv")]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 264.0
+offset_right = 606.0
+offset_bottom = 1048.0
+
+[connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Control/TextureButton" to="." method="_on_add_cauldron_button_pressed"]
+[connection signal="slot_selected" from="Control/Inventory" to="." method="_on_inventory_slot_selected"]
+[connection signal="pressed" from="Control/Brew" to="." method="_on_brew_pressed"]

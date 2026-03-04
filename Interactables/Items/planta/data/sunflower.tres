@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlantClass" load_steps=3 format=3 uid="uid://dvvneboycauxj"]
+
+[ext_resource type="Texture2D" uid="uid://b66ofmsxnm4r6" path="res://Assets/Art/temp/01e6f4db3671fbc0fa72abbbe680cf08.png" id="1_oj34v"]
+[ext_resource type="Script" uid="uid://dyn0ckxs3sfnt" path="res://Interactables/Items/planta/domain/PlantClass.gd" id="1_qe1li"]
+
+[resource]
+script = ExtResource("1_qe1li")
+observations = "It seems to generate little suns from time to time. Thats weird"
+detailView = ExtResource("1_oj34v")
+description = "A very happy plant that helped against the zoombie invasion"
+id = "sunflower"
+name = "Sunflower"
+sprite = ExtResource("1_oj34v")
+metadata/_custom_type_script = "uid://dyn0ckxs3sfnt"
