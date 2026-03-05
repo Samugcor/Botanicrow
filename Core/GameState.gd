@@ -1,29 +1,108 @@
 extends Node
 
 signal new_traked_quest(current_tracked_quest)
+ 
+const SAVE_PATH_JSON: String  = "user://botanicrow/save_files/savegame.json"
+const SAVE_PATH_BINARY: String = "user://botanicrow/save_files/savegame.save"
+
+const KEY_NEW_GAME_BOOL: String = "is_new_game"
+const KEY_INV_SIZE: String = "inv_size"
+const KEY_CURRENT_SCENE: String = "current_scene"
+const KEY_PLAYER_LOC: String = "current_coordinates"
+const KEY_PLAYER_LOC_X: String = "player_loc_x"
+const KEY_PLAYER_LOC_Y: String = "player_loc_y"
+const KEY_INVENTORY: String = "inventory"
+const KEY_ACHIVEMENTS: String = "achivements"
+const KEY_UNLOCKED_AREAS: String = "unlocked_areas"
+const KEY_KNOWN_PLANTS: String = "known_plants"
+const KEY_NPCS: String = "npcs"
+const KEY_CURRENT_QUEST: String = "current_quest"
+const KEY_QUESTS: String = "quests"
+
+enum AREAS {
+	HOUSE,
+	HOUSE_EXTERIOR
+}
+#DATA FOR SAVING
+var new_game:bool = true
+var inv_size:int = 12
 
 #Level Data
 var current_level_path: String = "res://Escenas/CasaBruja.tscn"
-var current_spawn_id: String = "start_game"
+var current_coordinates: Vector2 = Vector2.ZERO
 
+#Player
+var inventory: InventoryClass = InventoryClass.new("playerinventory",12)
+var achivements: Array = []
+var unlockedAreas: Array[AREAS]
+var known_plants: Array = [] #plant_id
+var npcs: Dictionary = {} # {npc_id : known(bool)}
+
+#Quests
 var current_tracked_quest: String: #id
 	set(value):
 		current_tracked_quest=value
 		new_traked_quest.emit(value)
-		
-var npcs = {}
-var quests = {} # {quest_id : QuestRuntime}
+var quests: Dictionary = {} # {quest_id : QuestRuntime}		
 
-#func loadGameState
+
+#SAVING AND LOADING FUNCTIONS
 func newGame():
-	current_level_path="res://Escenas/CasaBruja.tscn"
-	current_spawn_id="start_game"
-	
-	current_tracked_quest = ""
-	
-	npcs = {}
-	quests = {} 
-	
+	new_game = true
+	inv_size=12
+	current_level_path = "res://Escenas/CasaBruja.tscn"
+	current_coordinates = Vector2.ZERO
+	inventory = InventoryClass.new("playerinventory",12)
+	achivements = []
+	unlockedAreas = [AREAS.HOUSE]
+	known_plants = [] 
+	npcs = {} 
+	current_tracked_quest=""
+	quests = {}
+
+func save_data_to_json():
+	var save_data:Dictionary = {
+		KEY_NEW_GAME_BOOL: new_game,
+		KEY_INV_SIZE:inv_size,
+		KEY_CURRENT_SCENE: current_level_path,
+		KEY_PLAYER_LOC_X: current_coordinates.x,
+		KEY_PLAYER_LOC_Y: current_coordinates.y,
+		KEY_INVENTORY: inventory.duplicate_deep(),
+		KEY_ACHIVEMENTS: achivements.duplicate(), 
+		KEY_UNLOCKED_AREAS: unlockedAreas.duplicate(),
+		KEY_KNOWN_PLANTS: known_plants.duplicate(),
+		KEY_NPCS: npcs.duplicate(),
+		KEY_CURRENT_QUEST: current_tracked_quest,
+		KEY_QUESTS: quests.duplicate()
+	}
+
+	var err:Error = FileHandler.store_json_file(save_data,SAVE_PATH_JSON, true)
+	if err != OK:
+		push_error("Could not save player data (JSON): ",error_string(err))
+
+func save_data_to_binary():
+	var save_data:Dictionary = {
+		KEY_NEW_GAME_BOOL: new_game,
+		KEY_INV_SIZE:inv_size,
+		KEY_CURRENT_SCENE: current_level_path,
+		KEY_PLAYER_LOC: current_coordinates,
+		KEY_INVENTORY: inventory.duplicate_deep(),
+		KEY_ACHIVEMENTS: achivements.duplicate(), 
+		KEY_UNLOCKED_AREAS: unlockedAreas.duplicate(),
+		KEY_KNOWN_PLANTS: known_plants.duplicate(),
+		KEY_NPCS: npcs.duplicate(),
+		KEY_CURRENT_QUEST: current_tracked_quest,
+		KEY_QUESTS: quests.duplicate()
+	}
+
+	var err:Error = FileHandler.store_binary_file(save_data,SAVE_PATH_BINARY, true)
+	if err != OK:
+		push_error("Could not save player data (binary): ",error_string(err))
+
+
+
+
+#DATA ACCESS FUNCTIONS	
 func checkCondition(condition:String) -> bool:
 	var parts = condition.split(":")
 	var type = parts[0]

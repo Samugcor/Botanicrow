@@ -3,7 +3,8 @@ extends CharacterBody2D
 @export var MAX_SPEED = 400
 @export var ACCELERATION = 1500
 @export var FRICTION = 1200
-@export var inventory:InventoryClass
+
+var inventory:InventoryClass
 
 var movement_axis : Vector2
 var posible_interactables = []
@@ -16,7 +17,7 @@ signal picked_up(item)
 signal unable_to_pick
 
 func _ready():
-	
+	inventory = GameState.inventory
 	GameplayState.push(self)
 	
 	InputManager.intent_move.connect(_on_move_intent)

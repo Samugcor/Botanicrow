@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://br877hemq3s85"]
+[gd_scene load_steps=5 format=3 uid="uid://br877hemq3s85"]
 
 [ext_resource type="Script" uid="uid://cg86kdinkx840" path="res://Inventory/InventoryController.gd" id="1_b2vgl"]
 [ext_resource type="Texture2D" uid="uid://4vsp6nvjo1xg" path="res://Assets/Art/Menus/PlaceHolders/UI_comparativa_inventario_placeholder.png" id="2_ajhyj"]
 [ext_resource type="Script" uid="uid://dglq0vg8uv6ae" path="res://UI/PlayerInventoryUi.gd" id="2_q5a5u"]
-[ext_resource type="Resource" uid="uid://cjg47ri8sj5ry" path="res://Inventory/data/PlayerInventory.tres" id="2_uid7h"]
 [ext_resource type="PackedScene" uid="uid://bm4rkocy4kh64" path="res://Escenas/InvSlot.tscn" id="3_axrrc"]
 
 [node name="PlayerInventory" type="Control"]
@@ -16,7 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_b2vgl")
-data = ExtResource("2_uid7h")
 slotScene = ExtResource("3_axrrc")
 
 [node name="InventoryUi" type="Control" parent="."]

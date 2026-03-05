@@ -1,13 +1,13 @@
 extends SubmenuController
 class_name InventoryManager
 
-@export var data: InventoryClass
 @export var slotScene: PackedScene
 
 @onready var invUi = $InventoryUi
  
 signal slot_selected(data_slot)
 
+var data: InventoryClass
 var first_move: bool = false
 
 var selectedIndex #selected InvSlot indx
@@ -17,6 +17,8 @@ var newIndex	#new hovered InvSlot indx
 func _ready() -> void:
 
 	super()
+	data = GameState.inventory
+	print_rich("[color=red]"+data.string_data()+"[/color]")
 	data.Update.connect(_on_data_updated)
 	
 	populateSlots()

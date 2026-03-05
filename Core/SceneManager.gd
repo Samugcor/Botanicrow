@@ -7,12 +7,16 @@ extends Node2D
 var current_level: Node = null
 
 func  _ready() -> void:
-	loadEnviroment(GameState.current_level_path,GameState.current_spawn_id,false)
+	if GameState.new_game:
+		loadEnviroment(GameState.current_level_path,Vector2.ZERO,"start_game",false)
+		return
+		
+	loadEnviroment(GameState.current_level_path,GameState.current_coordinates,"",false)
 
 func request_enviroment_change(scene_path: String, spawn_id: String):
-	call_deferred("loadEnviroment", scene_path, spawn_id)
+	call_deferred("loadEnviroment", scene_path, Vector2.ZERO, spawn_id)
 
-func loadEnviroment(scene_path: String, spawn_id: String, sart_transition: bool = true, end_transition: bool = true) -> void:
+func loadEnviroment(scene_path: String, coordinates:Vector2 = Vector2.ZERO , spawn_id:String = "", sart_transition: bool = true, end_transition: bool = true) -> void:
 	player.reset_movement()
 	Transition.add_to_gaplay_state()
 	if sart_transition:
@@ -37,8 +41,10 @@ func loadEnviroment(scene_path: String, spawn_id: String, sart_transition: bool 
 	current_level = packed.instantiate()
 	environment_container.add_child(current_level)
 		
-	# Move player to spawn point
-	movePlayerToSpawn(spawn_id)
+	if spawn_id:
+		movePlayerToSpawn(spawn_id)
+	else:
+		movePlayerToCoordinates(coordinates)
 	
 	#Apply camera conf
 	apply_camera_configuration()
@@ -49,6 +55,10 @@ func loadEnviroment(scene_path: String, spawn_id: String, sart_transition: bool 
 	if end_transition:
 		await Transition.play_end_transition(Transition.TransitionType.FADE_OUT)
 	Transition.remove_from_gaplay_state()
+
+func movePlayerToCoordinates(coordinates:Vector2):
+	player.global_position = coordinates
+	player.reset_movement()
 	
 func movePlayerToSpawn(spawn_id: String) -> void:
 	if current_level == null:
@@ -60,14 +70,36 @@ func movePlayerToSpawn(spawn_id: String) -> void:
 	if !spawnContainer:
 		push_error("No spawn container found in ",current_level.name )
 		return
-		
+	
+	
 	var spawn = spawnContainer.get_node_or_null(spawn_id) as Marker2D
 	if !spawn:
 		push_warning("No spawn " + spawn_id + " found in " + current_level.name )
 		return
 
+	
 	player.global_position = spawn.global_position
 	player.reset_movement()
+
+func getSpawnCoordinates(spawn_id: String):
+	if current_level == null:
+		push_error("No enviroment loaded")
+		return
+
+	#Find spawners
+	var spawnContainer = current_level.get_node_or_null("SpawnPoints")
+	if !spawnContainer:
+		push_error("No spawn container found in ",current_level.name )
+		return
+	
+	
+	var spawn = spawnContainer.get_node_or_null(spawn_id) as Marker2D
+	if !spawn:
+		push_warning("No spawn " + spawn_id + " found in " + current_level.name )
+		return
+
+	return spawn.global_position as Vector2
+	
 	
 func apply_camera_configuration():
 	var cameraConfiguration = current_level.get_node_or_null("cameraConfiguration")

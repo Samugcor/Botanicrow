@@ -2,9 +2,16 @@ extends Resource
 
 class_name InventoryClass
 
+@export var name:String
 @export var slots: Array[InvSlotClass]
 
 signal Update
+
+func _init(identidicaor : String = "", size : int=0) -> void:
+	name = identidicaor
+	slots.resize(size)
+	for i in range(size):
+		slots[i] = InvSlotClass.new()
 
 func add_item(item:PlantClass):
 	if !item:
@@ -25,7 +32,15 @@ func add_item(item:PlantClass):
 		return false
 	
 	emit_signal("Update")
+	print_rich(string_data())
 	return true
 	
 func set_slots(slotArray :Array[InvSlotClass] ):
 	slots.assign(slotArray)
+
+func string_data():
+	var string = "[color=cyan]" + name + " contents: [/color]\n"
+	for slot in slots:
+		string += slot.string_data() + "\n"
+		
+	return string
