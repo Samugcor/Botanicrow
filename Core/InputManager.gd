@@ -2,6 +2,7 @@ extends Node2D
 
 signal intent_interact
 signal intent_player_menu
+signal intent_esc
 signal intent_move(axis)
 signal intent_ui_move
 signal intent_click_left
@@ -33,3 +34,6 @@ func _input(event):
 		
 	if event is InputEventMouseMotion:
 		mouse_motion.emit()
+
+	if event.is_action_released("esc"):
+		intent_esc.emit()

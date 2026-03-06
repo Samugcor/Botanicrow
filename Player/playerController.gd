@@ -17,6 +17,7 @@ signal picked_up(item)
 signal unable_to_pick
 
 func _ready():
+	GameState.player_reference = self
 	inventory = GameState.inventory
 	GameplayState.push(self)
 	
@@ -72,7 +73,7 @@ func remove_interactable(obj):
 		set_current_interactable()
 	
 func set_current_interactable():
-	print(posible_interactables)
+	#print(posible_interactables)
 	if  posible_interactables.is_empty():
 		current_interactable = null
 		new_current_interactable.emit(current_interactable)

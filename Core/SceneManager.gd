@@ -40,7 +40,9 @@ func loadEnviroment(scene_path: String, coordinates:Vector2 = Vector2.ZERO , spa
 	# Instantiate and add to container
 	current_level = packed.instantiate()
 	environment_container.add_child(current_level)
-		
+	
+	GameState.current_level_path = scene_path
+	
 	if spawn_id:
 		movePlayerToSpawn(spawn_id)
 	else:
@@ -105,9 +107,7 @@ func apply_camera_configuration():
 	var cameraConfiguration = current_level.get_node_or_null("cameraConfiguration")
 	if cameraConfiguration:
 		camera.limit_enabled = true
-		print("camera limited")
 		return
 		
 	camera.limit_enabled = false
-	print("camera unlimited")
 	

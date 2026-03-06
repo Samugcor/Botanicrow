@@ -2,8 +2,8 @@ extends Node
 
 signal new_traked_quest(current_tracked_quest)
  
-const SAVE_PATH_JSON: String  = "user://botanicrow/save_files/savegame.json"
-const SAVE_PATH_BINARY: String = "user://botanicrow/save_files/savegame.save"
+const SAVE_PATH_JSON: String  = "user://save_files/savegame.json"
+const SAVE_PATH_BINARY: String = "user://save_files/savegame.save"
 
 const KEY_NEW_GAME_BOOL: String = "is_new_game"
 const KEY_INV_SIZE: String = "inv_size"
@@ -23,6 +23,10 @@ enum AREAS {
 	HOUSE,
 	HOUSE_EXTERIOR
 }
+
+#References
+var player_reference
+
 #DATA FOR SAVING
 var new_game:bool = true
 var inv_size:int = 12
@@ -61,26 +65,36 @@ func newGame():
 	quests = {}
 
 func save_data_to_json():
+	current_coordinates = player_reference.position
+	
+	var quests_save = {}
+	for quest in quests:
+		quests_save[quest] =  quests[quest].to_dictionary()
+		
 	var save_data:Dictionary = {
 		KEY_NEW_GAME_BOOL: new_game,
 		KEY_INV_SIZE:inv_size,
 		KEY_CURRENT_SCENE: current_level_path,
 		KEY_PLAYER_LOC_X: current_coordinates.x,
 		KEY_PLAYER_LOC_Y: current_coordinates.y,
-		KEY_INVENTORY: inventory.duplicate_deep(),
+		KEY_INVENTORY: inventory.to_dictionary(),
 		KEY_ACHIVEMENTS: achivements.duplicate(), 
 		KEY_UNLOCKED_AREAS: unlockedAreas.duplicate(),
 		KEY_KNOWN_PLANTS: known_plants.duplicate(),
 		KEY_NPCS: npcs.duplicate(),
 		KEY_CURRENT_QUEST: current_tracked_quest,
-		KEY_QUESTS: quests.duplicate()
+		KEY_QUESTS: quests_save
 	}
 
 	var err:Error = FileHandler.store_json_file(save_data,SAVE_PATH_JSON, true)
 	if err != OK:
 		push_error("Could not save player data (JSON): ",error_string(err))
+		return
+	print("Game saved")
 
 func save_data_to_binary():
+	current_coordinates = player_reference.position
+	
 	var save_data:Dictionary = {
 		KEY_NEW_GAME_BOOL: new_game,
 		KEY_INV_SIZE:inv_size,

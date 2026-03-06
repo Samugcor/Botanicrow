@@ -25,7 +25,6 @@ func _on_mouse_motion():
 	#push_error("Error in my logic :D submenus are not handled properly")
 	
 func update_current_submenu(submenu):
-	print("update submenu to ",submenu)
 	if current_submenu:
 		current_submenu.deactivate()
 	current_submenu=submenu

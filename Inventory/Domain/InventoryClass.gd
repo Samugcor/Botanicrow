@@ -32,7 +32,7 @@ func add_item(item:PlantClass):
 		return false
 	
 	emit_signal("Update")
-	print_rich(string_data())
+	#print_rich(string_data())
 	return true
 	
 func set_slots(slotArray :Array[InvSlotClass] ):
@@ -44,3 +44,16 @@ func string_data():
 		string += slot.string_data() + "\n"
 		
 	return string
+
+func to_dictionary() -> Dictionary:
+	var dic = {
+		"name": name,
+		"slots":[]
+	}
+	
+	for slot in slots:
+		dic.slots.append(slot.to_dictionary()) 
+		
+	return dic
+
+	
