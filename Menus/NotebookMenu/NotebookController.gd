@@ -70,6 +70,8 @@ func add_map_section():
 	pass
 
 func get_current_page_data():
+	if notebook_content[current_section_key].is_empty():
+		return null
 	return notebook_content[current_section_key][current_page]
 
 

@@ -1,34 +1,61 @@
 extends Control
 
-@onready var quest_name_lbl  = $NotebookSprite/MarginContainer/VBoxContainer/Nombre
-@onready var quest_description_lbl = $NotebookSprite/MarginContainer/VBoxContainer/QuestDescription
-@onready var quest_objectives_lbl = $NotebookSprite/MarginContainer/VBoxContainer/QuestObjectives
-@onready var lbl2 = $NotebookSprite/MarginContainer/VBoxContainer/Label2
+#GENERAL
+@onready var previousPage : TextureButton = $previousPage
+@onready var nextPage : TextureButton = $nextPage
+
+@export var ui_sections : Array[Control] = []
+
+#QUEST
+@onready var questSection = $NotebookSprite/MarginContainer/QuestSection
+@onready var questName  = $NotebookSprite/MarginContainer/QuestSection/VBoxContainer/Nombre
+@onready var questDescription = $NotebookSprite/MarginContainer/QuestSection/VBoxContainer/QuestDescription
+@onready var questObjectives = $NotebookSprite/MarginContainer/QuestSection/VBoxContainer/QuestObjectives
+@onready var objectiveTitle = $NotebookSprite/MarginContainer/QuestSection/VBoxContainer/Label2
 
 var notebook_type = "Half"
-var active_section
+var ui_active_section = 0
 
 func _ready() -> void:
-	lbl2.text = "Plant descriptions:"
+	objectiveTitle.text = "Plant descriptions:"
+	
+	for section in ui_sections:
+		section.visible = false
+	
 
 func set_quest_details(data):
 	if data == null:
-		quest_description_lbl.text = ""
-		quest_description_lbl.append_text(TextVariables.NOTEBOOK_NO_QUEST_DETAILS_BBCODE)
-		quest_objectives_lbl.text = ""
-		quest_objectives_lbl.text = "[ul] Get a quest [/ul]"
+		questDescription.text = ""
+		questDescription.append_text(TextVariables.NOTEBOOK_NO_QUEST_DETAILS_BBCODE)
+		questObjectives.text = ""
+		questObjectives.text = "[ul] Get a quest [/ul]"
+		set_sections_visibility(ui_sections.find(questSection))
 		return
 		
-	quest_name_lbl.text = data.quest_name
-	quest_description_lbl.text = ""
-	quest_description_lbl.add_text(data.quest_description)
+	questName.text = data.quest_name
+	questDescription.text = ""
+	questDescription.add_text(data.quest_description)
 	
-	quest_objectives_lbl.text = ""
+	questObjectives.text = ""
 	var objList = "[ul]"
 	for objective in data.quest_objectives:
 		objList += "[p]"+objective.description + "[/p][br]"
 	objList +="[/ul]"
 
-	quest_objectives_lbl.text = objList
+	questObjectives.text = objList
 	
-	quest_objectives_lbl.visible = true
+	questObjectives.visible = true
+	
+	set_sections_visibility(ui_sections.find(questSection))
+
+func set_sections_visibility(new_active_section = 0):
+	
+	ui_sections[ui_active_section].visible = false
+	ui_active_section = new_active_section
+	ui_sections[ui_active_section].visible = true
+	
+func set_previous_page_visibility(b:bool):
+	previousPage.visible = b
+	
+func set_next_page_visibility(b:bool):
+	nextPage.visible = b

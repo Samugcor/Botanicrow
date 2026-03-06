@@ -1,10 +1,14 @@
 extends CanvasLayer
 
+@export var button_scene : PackedScene
+
 @onready var panel = $Panel
 @onready var characterName = $Panel/NameBackdrop/MarginContainer/Name
 @onready var dialogText = $Panel/MarginContainer/VBoxContainer/DialogText
 @onready var optionsContainer= $Panel/MarginContainer/VBoxContainer/OptionsContainer
 #@onready var characterPortrait= $CharacterPortrait
+
+var focus_button: int
 
 func _ready() -> void:
 	DialogManager.start_dialog.connect(_on_start_dialog)
@@ -31,15 +35,14 @@ func _on_node_changed_dialog(characterId,text,choices):
 	
 	#Poner nuevas opciones
 	for choice in choices:
-		var button = Button.new()
-		button.text = choice.text
-		button.pressed.connect(_on_option_selected.bind(choice.next))
+		var button = button_scene.instantiate()
+		button.button_text = choice.text
+		button.button_clicked.connect(_on_option_selected.bind(choice.next))
 		optionsContainer.add_child(button)
-		setButtonStyles(button)
 		
 	#Focus first
 	if optionsContainer.get_child_count() > 0:
-		optionsContainer.get_child(0).grab_focus()
+		optionsContainer.get_child(focus_button).set_button_state(Enums.ui_button_state.HOVERED)
 	
 func _on_end_dialog():
 	#Desuscribirse del input
@@ -63,9 +66,7 @@ func _on_interact_intent():
 		return
 	
 	#Si hay opciones elge la que está focus
-	var focused := get_viewport().gui_get_focus_owner()
-	if focused is Button and optionsContainer.is_ancestor_of(focused):
-		focused.emit_signal("pressed")
+	optionsContainer.get_child(focus_button).button_clicked.emit()
 	
 func _on_move_intent(axis:Vector2):
 	if GameplayState.current() != self:
@@ -75,11 +76,11 @@ func _on_move_intent(axis:Vector2):
 	if optionsContainer.get_child_count() < 0:
 		return
 		
-	var index := get_viewport().gui_get_focus_owner().get_index()
+	optionsContainer.get_child(focus_button).set_button_state(Enums.ui_button_state.NORMAL)
 	var child_count = optionsContainer.get_child_count()
-	index = index + HelperFunctions.vectorToPreviousOrNext(axis)
-	index = (index + child_count) % child_count
-	optionsContainer.get_child(index).grab_focus()
+	focus_button = focus_button + HelperFunctions.vectorToPreviousOrNext(axis)
+	focus_button = (focus_button + child_count) % child_count
+	optionsContainer.get_child(focus_button).set_button_state(Enums.ui_button_state.HOVERED)
 	
 
 #HELPERS ===============================
@@ -88,23 +89,3 @@ func show_dialogUI():
 	
 func hide_dialogUI():
 	self.visible = false
-
-func setButtonStyles(button:Button):
-	var normal := StyleBoxFlat.new()
-	normal.bg_color = Color("8f8f8fff")
-	
-	var hover := normal.duplicate()
-	hover.bg_color = Color("5d5d5dff")
-
-	var focus := normal.duplicate()
-	focus.bg_color = Color("#5d5d5dff")
-	focus.border_width_left = 3
-	focus.border_width_right = 3
-	focus.border_width_top = 3
-	focus.border_width_bottom = 3
-	focus.border_color = Color("#7c5cff")
-
-	button.add_theme_stylebox_override("normal", normal)
-	button.add_theme_stylebox_override("hover", hover)
-	button.add_theme_stylebox_override("focus", focus)
-	

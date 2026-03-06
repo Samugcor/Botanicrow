@@ -6,11 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://lwi158u4d1y2" path="res://Assets/Art/Dialog/Pl_dialog_Nombre.png" id="4_elxr3"]
 
 [node name="Button" type="Control"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 445.0
 offset_bottom = 99.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_q4m6i")
 font_size = null
 normal_texture = ExtResource("1_7056o")

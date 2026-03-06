@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bljlwdll8sjnx"
-path="res://.godot/imported/Pl_dialog_Corneja_nt.png-eebc292133ceaf42345beabd7877ea9e.ctex"
+uid="uid://do05dvxgle0fk"
+path="res://.godot/imported/Pl_dialog_Corneja_nt_correccion.png-c0f2366a7329ec803d7715a09e068324.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Dialog/Pl_dialog_Corneja_nt.png"
-dest_files=["res://.godot/imported/Pl_dialog_Corneja_nt.png-eebc292133ceaf42345beabd7877ea9e.ctex"]
+source_file="res://Assets/Art/Dialog/Pl_dialog_Corneja_nt_correccion.png"
+dest_files=["res://.godot/imported/Pl_dialog_Corneja_nt_correccion.png-c0f2366a7329ec803d7715a09e068324.ctex"]
 
 [params]
 

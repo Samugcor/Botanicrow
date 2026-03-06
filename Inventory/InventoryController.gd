@@ -18,7 +18,7 @@ func _ready() -> void:
 
 	super()
 	data = GameState.inventory
-	print_rich("[color=red]"+data.string_data()+"[/color]")
+	#print_rich("[color=red]"+data.string_data()+"[/color]")
 	data.Update.connect(_on_data_updated)
 	
 	populateSlots()

@@ -39,6 +39,22 @@
 			}
 		},
 		{
+			"id":"identification_tutorial_compleated",
+			"priority":100,
+			"conditions": ["quest_completed:identification_tutorial"],
+			"nodes":{
+				"start":{
+					"text": "Yes! That's the right one, i can smell it",
+					"next":"come_near"
+				},
+				"come_near":{
+					"text": "Get closer so i can put it on your wing",
+					"end": true
+				}
+			
+			}
+		},
+		{
 			"id":"you_want_more",
 			"priority":50,
 			"conditions": ["quest_active_or_completed:identification_tutorial", "no_quest:you_want_more"],

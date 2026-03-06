@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://di1x8todxh7ay"]
+[gd_scene load_steps=7 format=3 uid="uid://di1x8todxh7ay"]
 
 [ext_resource type="Script" uid="uid://bng114ek46yiq" path="res://UI/DialogUI.gd" id="1_c35hn"]
+[ext_resource type="PackedScene" uid="uid://rtvdnlref0ay" path="res://Escenas/button.tscn" id="2_0pawc"]
 [ext_resource type="Texture2D" uid="uid://3t6s03fxvdsn" path="res://Assets/Art/Dialog/Pl_dialog_cuadro.png" id="2_quet5"]
 [ext_resource type="Texture2D" uid="uid://lwi158u4d1y2" path="res://Assets/Art/Dialog/Pl_dialog_Nombre.png" id="3_0pawc"]
-[ext_resource type="Texture2D" uid="uid://bljlwdll8sjnx" path="res://Assets/Art/Dialog/Pl_dialog_Corneja_nt.png" id="4_grlxb"]
+[ext_resource type="Texture2D" uid="uid://do05dvxgle0fk" path="res://Assets/Art/Dialog/Pl_dialog_Corneja_nt_correccion.png" id="4_quet5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc8kw"]
 bg_color = Color(1, 1, 1, 0.5529412)
 
 [node name="DialogUi" type="CanvasLayer"]
 script = ExtResource("1_c35hn")
+button_scene = ExtResource("2_0pawc")
 
 [node name="Fondo" type="Panel" parent="."]
 anchors_preset = 15
@@ -90,7 +92,7 @@ text = "Lorem"
 
 [node name="OptionsContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -98,5 +100,5 @@ offset_left = 69.0
 offset_top = 499.0
 offset_right = 571.0
 offset_bottom = 868.0
-texture = ExtResource("4_grlxb")
+texture = ExtResource("4_quet5")
 stretch_mode = 2

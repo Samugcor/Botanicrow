@@ -133,6 +133,9 @@ func checkCondition(condition:String) -> bool:
 				
 			"quest_active_or_completed":
 				return true if quests.get(value, false) else false
+			
+			"quest_completed":
+				return is_quest_state(value, Enums.quest_state.COMPLETED)
 				
 			"no_quest":
 				return not quests.get(value,false)
@@ -145,7 +148,12 @@ func setNpc(key: String,value: bool):
 
 func setQuest(key: String,value: QuestRuntime):
 	quests[key]=value
-	
+
+func setQuestState(key: String, state : Enums.quest_state) -> Error:
+	if !quests.has(key):
+		return ERR_DOES_NOT_EXIST
+	quests[key].quest_state = state
+	return OK
 func setTrackedQUest(id:String):
 	current_tracked_quest=id
 

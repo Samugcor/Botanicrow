@@ -64,6 +64,7 @@ func _on_brew_pressed() -> void:
 	var potion_components = []
 	
 	if  !quest_data:
+		push_error("No potion can be brewed without an active quest")
 		return
 		
 	for objective in quest_data.quest_objectives:
@@ -71,6 +72,8 @@ func _on_brew_pressed() -> void:
 
 	if cauldron_controler.check_potion(potion_components):
 		print_rich("[color=green]Misión completada![/color]")
+		#play animation
+		QuestManager.completeActiveQuest(quest_data.quest_id)
 		return
 	else:
 		print_rich("[color=red]Algo está mal[/color]")

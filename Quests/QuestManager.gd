@@ -104,3 +104,8 @@ func createQuestRuntime(quest: QuestClass):
 	questState.quest_state = Enums.quest_state.ACTIVE
 
 	return questState
+
+func completeActiveQuest(quest_id: String):
+	var err : Error = GameState.setQuestState(quest_id, Enums.quest_state)
+	if err != OK:
+		push_error("Error compleating quest ", err)
