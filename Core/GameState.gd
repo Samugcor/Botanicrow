@@ -19,6 +19,21 @@ const KEY_NPCS: String = "npcs"
 const KEY_CURRENT_QUEST: String = "current_quest"
 const KEY_QUESTS: String = "quests"
 
+const save_dictionary_keys = [
+	KEY_NEW_GAME_BOOL,
+	KEY_INV_SIZE,
+	KEY_CURRENT_SCENE,
+	KEY_PLAYER_LOC,
+	KEY_PLAYER_LOC_X,
+	KEY_PLAYER_LOC_Y,
+	KEY_INVENTORY,
+	KEY_ACHIVEMENTS,
+	KEY_UNLOCKED_AREAS,
+	KEY_KNOWN_PLANTS,
+	KEY_NPCS,
+	KEY_CURRENT_QUEST,
+	KEY_QUESTS
+]
 enum AREAS {
 	HOUSE,
 	HOUSE_EXTERIOR
@@ -113,8 +128,97 @@ func save_data_to_binary():
 	if err != OK:
 		push_error("Could not save player data (binary): ",error_string(err))
 
+func load_data_json():
+	var save_data: Dictionary = {}
+	var err: Error = FileHandler.open_json_file(SAVE_PATH_JSON, save_data)
+	if err != OK:
+		push_error("Could not load save data (JSON): ", error_string(err))
+		return
+	
+	err = verify_save_data_json(save_data)
+	if err!= OK:
+		push_error("Invalid save file structure")
+		return
+	
+	new_game = save_data[KEY_NEW_GAME_BOOL]
+	inv_size = save_data[KEY_INV_SIZE]
+	current_level_path = save_data[KEY_CURRENT_SCENE]
+	current_coordinates.x = save_data[KEY_PLAYER_LOC_X]
+	current_coordinates.y = save_data[KEY_PLAYER_LOC_Y]
+	
+	var inv_slots_t :Array[InvSlotClass] = []
+	for slot in save_data[KEY_INVENTORY].slots:
+		if slot.is_empty():
+			continue
+		var invslot = InvSlotClass.new()
+		invslot.from_dictionary(slot)
+		inv_slots_t.append(invslot)
+		
+	inventory.set_slots(inv_slots_t) 
+	achivements = save_data[KEY_ACHIVEMENTS]
+	
+	unlockedAreas.clear()
+	for area in save_data[KEY_UNLOCKED_AREAS]:
+		unlockedAreas.append(int(area))
+		
+	known_plants = save_data[KEY_KNOWN_PLANTS]
+	npcs = save_data[KEY_NPCS]
+	current_tracked_quest = save_data[KEY_CURRENT_QUEST]
+	
+	var quests_save = {}
+	for quest in save_data[KEY_QUESTS]:
+		var runtime = QuestRuntime.new()
+		runtime.from_dictionary(save_data[KEY_QUESTS][quest])
+		quests_save[runtime.quest_id] = runtime
+	quests.clear()
+	quests.assign(quests_save)
+	
+func load_data_binary():
+	var save_data: Dictionary = {}
+	var err: Error = FileHandler.open_binary_file(SAVE_PATH_BINARY, save_data)
+	if err != OK:
+		push_error("Could not load save data (binary): ", error_string(err))
+		return
+	
+	err = verify_save_data_binary(save_data)
+	if err!= OK:
+		push_error("Invalid save file structure")
+		return
+	
+	new_game = save_data[KEY_NEW_GAME_BOOL]
+	inv_size = save_data[KEY_INV_SIZE]
+	current_level_path = save_data[KEY_CURRENT_SCENE]
+	current_coordinates = save_data[KEY_PLAYER_LOC]
+	inventory.set_slots(save_data[KEY_INVENTORY].slots) 
+	achivements = save_data[KEY_ACHIVEMENTS]
+	unlockedAreas = save_data[KEY_UNLOCKED_AREAS]
+	known_plants = save_data[KEY_KNOWN_PLANTS]
+	npcs = save_data[KEY_NPCS]
+	current_tracked_quest =save_data[KEY_CURRENT_QUEST]
+	
+	var quests_save = {}
+	for quest in save_data[KEY_QUESTS]:
+		var runtime = QuestRuntime.new()
+		runtime.from_dictionary(quest)
+		quests_save[runtime.quest_id] = runtime
+	quests.clear()
+	quests.assign(quests_save)
+	
+func verify_save_data_json(save_data: Dictionary) -> Error:
+	for key in save_dictionary_keys:
+		if key == KEY_PLAYER_LOC: #JSON files dont have this key becouse it is divided in two separate values
+			continue
+		if not save_data.has(key):
+			return ERR_DOES_NOT_EXIST
+	return OK
 
-
+func verify_save_data_binary(save_data: Dictionary) -> Error:
+	for key in save_dictionary_keys:
+		if key == KEY_PLAYER_LOC_X or key == KEY_PLAYER_LOC_Y: #Binary files dont have this keys becouse it is grouped in a single value
+			continue
+		if not save_data.has(key):
+			return ERR_DOES_NOT_EXIST
+	return OK
 
 #DATA ACCESS FUNCTIONS	
 func checkCondition(condition:String) -> bool:

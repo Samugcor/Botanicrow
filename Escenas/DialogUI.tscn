@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://di1x8todxh7ay"]
+[gd_scene load_steps=8 format=3 uid="uid://di1x8todxh7ay"]
 
 [ext_resource type="Script" uid="uid://bng114ek46yiq" path="res://UI/DialogUI.gd" id="1_c35hn"]
 [ext_resource type="PackedScene" uid="uid://rtvdnlref0ay" path="res://Escenas/button.tscn" id="2_0pawc"]
 [ext_resource type="Texture2D" uid="uid://3t6s03fxvdsn" path="res://Assets/Art/Dialog/Pl_dialog_cuadro.png" id="2_quet5"]
 [ext_resource type="Texture2D" uid="uid://lwi158u4d1y2" path="res://Assets/Art/Dialog/Pl_dialog_Nombre.png" id="3_0pawc"]
+[ext_resource type="Texture2D" uid="uid://c1jbgmccomafa" path="res://Assets/Art/Dialog/Pl_dialog_Bruja_nt.png" id="4_4c5x7"]
 [ext_resource type="Texture2D" uid="uid://do05dvxgle0fk" path="res://Assets/Art/Dialog/Pl_dialog_Corneja_nt_correccion.png" id="4_quet5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc8kw"]
@@ -21,26 +22,50 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jc8kw")
 
+[node name="NPC" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.60729164
+anchor_top = 0.29074073
+anchor_right = 0.878125
+anchor_bottom = 0.89858806
+offset_left = 186.0
+offset_top = -314.0
+offset_right = 204.0
+offset_bottom = -87.0
+texture = ExtResource("4_4c5x7")
+stretch_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Corneja" type="TextureRect" parent="."]
+offset_left = 88.0
+offset_top = 456.0
+offset_right = 590.0
+offset_bottom = 825.0
+texture = ExtResource("4_quet5")
+stretch_mode = 2
+
 [node name="Panel" type="TextureRect" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -879.5
-offset_top = -235.0
-offset_right = 879.5
+offset_left = -880.0
+offset_top = -280.0
+offset_right = 879.0
+offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("2_quet5")
 stretch_mode = 2
 
 [node name="NameBackdrop" type="TextureRect" parent="Panel"]
-layout_mode = 0
-anchor_left = 0.66875
-anchor_top = -0.12181303
-anchor_right = 0.928125
-anchor_bottom = 0.13597734
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.62308127
+anchor_top = -0.23829795
+anchor_right = 0.9061967
+anchor_bottom = 0.1489361
 texture = ExtResource("3_0pawc")
 metadata/_edit_use_anchors_ = true
 
@@ -94,11 +119,3 @@ text = "Lorem"
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 69.0
-offset_top = 499.0
-offset_right = 571.0
-offset_bottom = 868.0
-texture = ExtResource("4_quet5")
-stretch_mode = 2

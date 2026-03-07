@@ -36,7 +36,8 @@ func add_item(item:PlantClass):
 	return true
 	
 func set_slots(slotArray :Array[InvSlotClass] ):
-	slots.assign(slotArray)
+	slots.clear()
+	slots.append_array(slotArray)
 
 func string_data():
 	var string = "[color=cyan]" + name + " contents: [/color]\n"

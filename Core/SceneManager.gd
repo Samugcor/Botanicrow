@@ -9,6 +9,8 @@ var current_level: Node = null
 func  _ready() -> void:
 	if GameState.new_game:
 		loadEnviroment(GameState.current_level_path,Vector2.ZERO,"start_game",false)
+		#Cinematica dentro
+		GameState.new_game = false
 		return
 		
 	loadEnviroment(GameState.current_level_path,GameState.current_coordinates,"",false)
@@ -43,7 +45,7 @@ func loadEnviroment(scene_path: String, coordinates:Vector2 = Vector2.ZERO , spa
 	
 	GameState.current_level_path = scene_path
 	
-	if spawn_id:
+	if spawn_id != "":
 		movePlayerToSpawn(spawn_id)
 	else:
 		movePlayerToCoordinates(coordinates)

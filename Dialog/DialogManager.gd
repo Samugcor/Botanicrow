@@ -13,19 +13,20 @@ var dialog_node
 var dialog_choices
 
 #current npc data
-var npc_id
-var file_path
+var npc_data : NpcClass
+var npc_portrait
 
-func startNpcDialog(_npc_id,_file_path):
-	npc_id = _npc_id
-	file_path = _file_path
+func startNpcDialog(_npc_data : NpcClass):
+	npc_data = _npc_data
+	npc_portrait = npc_data.NORMAL
+	
 	#Comprobamos si dialogo está en cache
 	dialog_data = getDialogueFromCache()
 	
 	#Si no está cargamos archivo a caché
 	if !dialog_data:
 		dialog_data = getFileContents()
-		dialogue_cache[npc_id] = dialog_data
+		dialogue_cache[npc_data.id] = dialog_data
 		
 	#Seleccionamos la entrada correcta(por prioridad y/o condiciones)
 	dialog_entry = getCorrespondingDialogEntry()
@@ -40,11 +41,11 @@ func startNpcDialog(_npc_id,_file_path):
 	# Signal start to dialog ui
 	emit_signal("start_dialog")
 	#signal node change with current values
-	emit_signal("node_changed_dialog", npc_id, dialog_node.text,dialog_choices)
+	emit_signal("node_changed_dialog", npc_data.id, npc_portrait, dialog_node.text,dialog_choices)
 	
 func getFileContents():
 	
-	var data =  FileAccess.get_file_as_string(file_path)
+	var data =  FileAccess.get_file_as_string(npc_data.dialogFile)
 	if !data:
 		push_error("Error FileAccess: ", FileAccess.get_open_error())
 		return 
@@ -56,8 +57,8 @@ func getFileContents():
 	return parsed_data
 	
 func getDialogueFromCache():
-	if dialogue_cache.has(npc_id):
-		return dialogue_cache[npc_id]
+	if dialogue_cache.has(npc_data.id):
+		return dialogue_cache[npc_data.id]
 	
 	return 
 
@@ -92,7 +93,16 @@ func getDialogNode(node_id):
 	if dialog_node.has("effects"):
 		for effect in dialog_node.effects:
 			GameEvents.applyEffect(effect)
-			
+	if dialog_node.has("portrait"):
+		match dialog_node.portrait:
+			"NORMAL" : 
+				npc_portrait = npc_data.NORMAL
+			"ANGRY": 
+				npc_portrait = npc_data.ANGRY
+			"SAD":
+				npc_portrait = npc_data.SAD
+			_:
+				npc_portrait = npc_data.NORMAL
 	dialog_choices = dialog_node.choices if dialog_node.has("choices") else []
 
 func advance(next_node_id: String = ""):
@@ -105,13 +115,13 @@ func advance(next_node_id: String = ""):
 	#Si nos han pasado un id avanzamos hasta ese nodo
 	if next_node_id:
 		getDialogNode(next_node_id)
-		emit_signal("node_changed_dialog", npc_id, dialog_node.text,dialog_choices)
+		emit_signal("node_changed_dialog", npc_data.id, npc_portrait,dialog_node.text,dialog_choices)
 		return
 	
 	#Si no es final y no nos han indicado siguiente buscamos cual sería el siguiente
 	if dialog_node.has("next"):
 		getDialogNode(dialog_node.next)
-		emit_signal("node_changed_dialog", npc_id, dialog_node.text,dialog_choices)
+		emit_signal("node_changed_dialog", npc_data.id, npc_portrait, dialog_node.text,dialog_choices)
 		return
 	
 	push_error("The conversation has reached a breaking point")

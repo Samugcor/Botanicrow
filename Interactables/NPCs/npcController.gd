@@ -12,4 +12,4 @@ func _ready() -> void:
 	visual_reference.setSprite(data.sprite)
 
 func interact(_player):
-	DialogManager.startNpcDialog(data.id,data.dialogFile)
+	DialogManager.startNpcDialog(npc_data)

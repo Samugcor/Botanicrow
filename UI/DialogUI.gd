@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var characterName = $Panel/NameBackdrop/MarginContainer/Name
 @onready var dialogText = $Panel/MarginContainer/VBoxContainer/DialogText
 @onready var optionsContainer= $Panel/MarginContainer/VBoxContainer/OptionsContainer
-#@onready var characterPortrait= $CharacterPortrait
+@onready var characterPortrait= $NPC
 
 var focus_button: int
 
@@ -25,9 +25,12 @@ func _on_start_dialog():
 	InputManager.intent_ui_move.connect(_on_move_intent)
 	show_dialogUI()
 
-func _on_node_changed_dialog(characterId,text,choices):
+func _on_node_changed_dialog(characterId,charater_portrait,text,choices):
 	characterName.text = characterId
 	dialogText.text = text
+	
+	if charater_portrait:
+		characterPortrait.texture =  charater_portrait
 	
 	#vaciar opciones
 	for option in optionsContainer.get_children():
@@ -73,7 +76,7 @@ func _on_move_intent(axis:Vector2):
 		return
 	if axis == Vector2.ZERO:
 		return 
-	if optionsContainer.get_child_count() < 0:
+	if optionsContainer.get_child_count() <= 0:
 		return
 		
 	optionsContainer.get_child(focus_button).set_button_state(Enums.ui_button_state.NORMAL)

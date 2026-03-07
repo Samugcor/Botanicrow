@@ -10,6 +10,13 @@ func string_data():
 	
 	return "[color=red] no item [/color]" 
 
+func from_dictionary(dic : Dictionary):
+	if !dic.has("item_id") or !dic.has("cantidad"):
+		push_error("Invalid dictionary to form InvSlotClass")
+		return
+	
+	item = PlantMAnager.get_plant_data_by_id(dic["item_id"])
+	cantidad = dic["cantidad"]
 
 func to_dictionary() -> Dictionary:
 	if !item:
