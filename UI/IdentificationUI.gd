@@ -7,6 +7,10 @@ extends Control
 @onready var observationsLabel:Label = $CrowObservations/Label
 @onready var addButton = $TextureButton
 @onready var brewButton = $Brew
+@onready var animationReference = $AnimationSolve
+
+func _ready() -> void:
+	animationReference.visible = false
 
 func set_brew_button_visibility(visibility:bool):
 	brewButton.visible = visibility
@@ -26,3 +30,13 @@ func set_observations(plant_data:PlantClass):
 		observationsLabel.text = ""
 		return
 	observationsLabel.text = plant_data.observations
+
+func start_correct_animation():
+	animationReference.visible = true
+	await animationReference.start_correct_animation()
+	animationReference.visible = false
+
+func start_wrong_animarion():
+	animationReference.visible = true
+	await animationReference.start_incorrect_animation()
+	animationReference.visible = false

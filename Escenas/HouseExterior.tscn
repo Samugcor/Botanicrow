@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://sogvl8ohqjh2"]
+[gd_scene load_steps=13 format=3 uid="uid://sogvl8ohqjh2"]
 
 [ext_resource type="Texture2D" uid="uid://b8d5ipg2smaet" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Mapa bosque 1 Placeholder boceto solofondo (1).jpg" id="1_ah621"]
 [ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenas/Door.tscn" id="2_e1rlt"]
 [ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Escenas/Plant.tscn" id="3_cccko"]
 [ext_resource type="Resource" uid="uid://ddtdh7plwhpxx" path="res://Interactables/Items/planta/data/HojasRizadas.tres" id="4_bhdgv"]
 [ext_resource type="Resource" uid="uid://maeeic0di2x8" path="res://Interactables/Items/planta/data/Trebol.tres" id="5_4t8st"]
+[ext_resource type="PackedScene" uid="uid://bmgj7i1bq3qys" path="res://Escenas/Tree.tscn" id="5_e1rlt"]
+[ext_resource type="Texture2D" uid="uid://dv0g4aq7u6fy1" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Ph_arbol_con_01.png" id="6_bhc4f"]
+[ext_resource type="Texture2D" uid="uid://bwjenpv1mhncy" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Ph_arbol_ribera_01.png" id="7_nrnw8"]
+[ext_resource type="Texture2D" uid="uid://dmgotgvqnyjya" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Ph_arbol_ribera_02.png" id="8_jo3gh"]
+[ext_resource type="Texture2D" uid="uid://cu3viuwvpbyp1" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Ph_arbol_ribera_03.png" id="9_0satv"]
+[ext_resource type="Resource" uid="uid://dvvneboycauxj" path="res://Interactables/Items/planta/data/sunflower.tres" id="10_nrnw8"]
+[ext_resource type="Texture2D" uid="uid://b66ofmsxnm4r6" path="res://Assets/Art/temp/01e6f4db3671fbc0fa72abbbe680cf08.png" id="11_jo3gh"]
 
 [node name="HouseExterior" type="Node2D"]
 y_sort_enabled = true
@@ -15,11 +22,135 @@ position = Vector2(-32, 381)
 texture = ExtResource("1_ah621")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -2670.0
-offset_top = -1573.0
-offset_right = 4794.0
-offset_bottom = 2767.0
+offset_left = -2674.0
+offset_top = -1586.0
+offset_right = 4790.0
+offset_bottom = 2754.0
 color = Color(0.43137255, 0.43137255, 0.43137255, 0.5529412)
+
+[node name="YSortting" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Plant" parent="YSortting" instance=ExtResource("3_cccko")]
+position = Vector2(1554, 790)
+data = ExtResource("4_bhdgv")
+
+[node name="Plant2" parent="YSortting" instance=ExtResource("3_cccko")]
+position = Vector2(1598, 844)
+data = ExtResource("5_4t8st")
+
+[node name="Tree" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(1799, -1687.0001)
+scale = Vector2(1.4634503, 1.4634504)
+texture = ExtResource("6_bhc4f")
+offset = Vector2(-342, -1390)
+
+[node name="Tree2" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(2365, 629)
+texture = ExtResource("7_nrnw8")
+offset = Vector2(-469, -1381)
+
+[node name="CollisionShape2D" parent="YSortting/Tree2/Tree/StaticBody2D" index="0"]
+position = Vector2(-39, -63)
+
+[node name="Tree7" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(89, 498)
+texture = ExtResource("7_nrnw8")
+offset = Vector2(-469, -1381)
+flip_h = true
+
+[node name="CollisionShape2D" parent="YSortting/Tree7/Tree/StaticBody2D" index="0"]
+position = Vector2(37, -58)
+
+[node name="Tree3" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(647, 562)
+texture = ExtResource("8_jo3gh")
+offset = Vector2(-417, -632)
+
+[node name="CollisionShape2D" parent="YSortting/Tree3/Tree/StaticBody2D" index="0"]
+position = Vector2(-9.5, -51.75)
+
+[node name="Tree8" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(4583, 85)
+texture = ExtResource("8_jo3gh")
+offset = Vector2(-417, -632)
+flip_h = true
+
+[node name="Tree9" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(4818, -82)
+texture = ExtResource("8_jo3gh")
+offset = Vector2(-417, -632)
+
+[node name="Tree16" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(-5432, -678)
+texture = ExtResource("8_jo3gh")
+offset = Vector2(-417, -632)
+
+[node name="Tree4" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(-4179, 649)
+
+[node name="Tree13" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(1530, 3068)
+texture = ExtResource("6_bhc4f")
+offset = Vector2(-342, -1390)
+
+[node name="Tree14" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(-2427, 2115)
+texture = ExtResource("6_bhc4f")
+offset = Vector2(-342, -1390)
+
+[node name="Tree10" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(5081, -364)
+
+[node name="Tree11" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(3651, -2760)
+
+[node name="Tree12" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(-1319, -1723)
+
+[node name="Tree6" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(-974, 2362)
+
+[node name="Tree5" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(3399, 2261)
+texture = ExtResource("9_0satv")
+offset = Vector2(-469, -1941)
+
+[node name="Tree15" parent="YSortting" instance=ExtResource("5_e1rlt")]
+position = Vector2(-4932, -444)
+texture = ExtResource("9_0satv")
+offset = Vector2(-469, -1941)
+
+[node name="Plant3" parent="YSortting" instance=ExtResource("3_cccko")]
+position = Vector2(2302, 556)
+data = ExtResource("10_nrnw8")
+
+[node name="Sprite2D" parent="YSortting/Plant3" index="0"]
+position = Vector2(-3, -52)
+scale = Vector2(0.18769716, 0.18769717)
+texture = ExtResource("11_jo3gh")
+
+[node name="Colliders" type="Node2D" parent="."]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Colliders"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colliders/StaticBody2D"]
+polygon = PackedVector2Array(-3542, -1517, -2882, -1458, -2744, -1261, -2310, -1320, -2271, -1399, -1611, -1350, -862, -1586, -508, -1606, -222, -1468, -163, -1606, 172, -1547, 63, -1714, 783, -1596, 714, -1764, 1255, -1724, 1442, -1754, 1590, -1685, 2112, -1616, 2398, -1478, 2516, -1281, 2861, -995, 3166, -503, 2221, -1035, 1856, -1035, 1748, -1123, 950, -1153, 773, -1074, 428, -976, 221, -1045, 83, -1025, 103, -808, -252, -670, -616, -769, -1109, -798, -1266, -700, -1286, -207, -1010, 118, -1700, 305, -2231, -119, -2143, -572, -2419, -444, -2685, -424, -2882, -503, -2891, -611, -3069, -660, -3108, -818, -3345, -1074)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Colliders/StaticBody2D"]
+polygon = PackedVector2Array(-4132, 916, -3788, 1093, -3423, 1231, -3345, 1388, -3207, 1477, -2872, 1477, -2744, 1388, -2300, 1418, -1719, 1379, -1926, 1625, -3118, 1832, -3325, 1773, -3551, 1507, -3857, 1201)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Colliders/StaticBody2D"]
+polygon = PackedVector2Array(-1178, 1615, -399, 1832, -133, 1901, 310, 1832, 556, 1861, 950, 1773, 1196, 1881, 2093, 1841, 2211, 1704, 2555, 1566, 2674, 1369, 2969, 1201, 3284, 1201, 3462, 965, 3728, 965, 4033, 1024, 4447, 1152, 4082, 1231, 3994, 1201, 3757, 1329, 3540, 1339, 3245, 1625, 2703, 1999, 2546, 2098, 2605, 2147, 2260, 2226, 2033, 2344, 1492, 2393, 1147, 2314, 940, 2334, 812, 2432, 438, 2639, 162, 2629, -55, 2718, -360, 2423, -626, 2393, -803, 2088)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Colliders/StaticBody2D"]
+polygon = PackedVector2Array(1776, 640, 1140, 462, 1066, 536, 874, 588, 200, 418, 513, -363, 1076, -359, 1691, -255, 2129, 100)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Colliders"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colliders/StaticBody2D2"]
+polygon = PackedVector2Array(-6530, -2201, -6253, -993, -6157, -475, -5908, 139, -5006, 504, -4986, 1310, -4698, 2174, -4084, 2750, -3355, 3325, -3048, 4170, -2434, 3863, -2126, 4304, -1915, 4823, -802, 4823, -610, 4208, 119, 3709, 350, 4228, 714, 3940, 983, 3287, 1367, 3767, 2058, 3057, 2154, 4036, 2480, 4247, 2807, 4515, 3210, 4324, 3824, 3959, 3843, 2922, 4189, 3076, 4323, 4170, 4688, 4036, 4803, 2999, 5283, 3402, 5762, 2654, 6146, 3114, 6914, 2097, 6377, 1828, 5878, 1464, 5551, 869, 5302, 178, 5532, -417, 5283, -648, 4572, -379, 3939, -686, 3670, -1147, 4380, -1128, 5321, -1396, 4841, -1704, 4937, -2068, 4611, -2817, 4284, -3258, 2250, -3066, 367, -3032, 1135, -1870, 81, -1840, -155, -3052, -470, -3101, -1002, -3091, -1111, -2766, -1416, -2677, -1583, -2904, -1967, -3012, -2292, -2855, -3376, -2736, -4253, -3012, -6898, -3159, -7373, -4296, 7048, -4045, 7087, 4953, -7067, 4927, -7016, -3399)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 position = Vector2(1127, 882)
@@ -36,12 +167,10 @@ rotation = 0.38125426
 destination_level_path = "res://Escenas/CasaBruja.tscn"
 destination_spawn = "door_house_interior"
 
-[node name="Plant" parent="." instance=ExtResource("3_cccko")]
-position = Vector2(1554, 790)
-data = ExtResource("4_bhdgv")
-
-[node name="Plant2" parent="." instance=ExtResource("3_cccko")]
-position = Vector2(1598, 844)
-data = ExtResource("5_4t8st")
-
+[editable path="YSortting/Tree2"]
+[editable path="YSortting/Tree7"]
+[editable path="YSortting/Tree3"]
+[editable path="YSortting/Tree5"]
+[editable path="YSortting/Tree15"]
+[editable path="YSortting/Plant3"]
 [editable path="Puertas/Door"]

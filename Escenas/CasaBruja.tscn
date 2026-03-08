@@ -50,7 +50,7 @@ offset = Vector2(-442.81128, -169.5575)
 
 [node name="OverlapExterior" type="Sprite2D" parent="Ysortting/Escenario"]
 y_sort_enabled = true
-position = Vector2(948, 1070)
+position = Vector2(948, 1067)
 scale = Vector2(0.7534722, 0.7534722)
 texture = ExtResource("4_pgu6k")
 offset = Vector2(20.49768, -697.43774)
@@ -92,6 +92,7 @@ polygon = PackedVector2Array(1843, 696, 1591, 1031, 1238, 930, 1053, 1105, 1954,
 polygon = PackedVector2Array(93, 773, 841, 988, 963, 861, 1018, 874, 703, 1197)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
+visible = false
 position = Vector2(1127, 882)
 
 [node name="door_house_interior" type="Marker2D" parent="SpawnPoints" groups=["Spawners"]]

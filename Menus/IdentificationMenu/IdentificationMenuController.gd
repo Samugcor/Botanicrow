@@ -72,8 +72,9 @@ func _on_brew_pressed() -> void:
 
 	if cauldron_controler.check_potion(potion_components):
 		print_rich("[color=green]Misión completada![/color]")
-		#play animation
 		QuestManager.completeActiveQuest(quest_data.quest_id)
+		menu_view.start_correct_animation()
 		return
 	else:
 		print_rich("[color=red]Algo está mal[/color]")
+		menu_view.start_wrong_animarion()

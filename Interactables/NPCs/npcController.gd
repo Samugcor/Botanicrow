@@ -6,9 +6,6 @@ var npc_data: NpcClass
 func _ready() -> void:
 	super()
 	npc_data = data as NpcClass
-	if npc_data == null:
-		push_error("NpcController received non-NpcClass data")
-		return
 	visual_reference.setSprite(data.sprite)
 
 func interact(_player):

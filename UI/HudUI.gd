@@ -3,7 +3,7 @@ extends Control
 @onready var interactioHint: Control = $Interaction_hint
 @onready var interactioHintLabel: Label = $Interaction_hint/HBoxContainer/Text
 @onready var warning: Label = $warning
-
+@onready var questTrakerReference = $QuestTraker
 
 func _ready() -> void:
 	

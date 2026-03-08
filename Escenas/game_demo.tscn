@@ -24,8 +24,9 @@ script = ExtResource("2_oh6lr")
 [node name="DialogUi" parent="UI/CanvasLayer" instance=ExtResource("3_oh6lr")]
 visible = false
 
-[node name="PlayerMenu" parent="UI/CanvasLayer" instance=ExtResource("4_amiuk")]
+[node name="PlayerMenu" parent="UI/CanvasLayer" node_paths=PackedStringArray("player_ref") instance=ExtResource("4_amiuk")]
 visible = false
+player_ref = NodePath("../../../World/PlayerCharacter")
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true

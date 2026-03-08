@@ -5,7 +5,7 @@ signal node_changed_dialog(npc_id, text, choices)
 signal end_dialog
 
 var dialogue_cache:={}  # id -> parsed dialogue data
-
+var seen_dialogs = [] # entri id
 #current dialog data
 var dialog_data 
 var dialog_entry
@@ -30,6 +30,8 @@ func startNpcDialog(_npc_data : NpcClass):
 		
 	#Seleccionamos la entrada correcta(por prioridad y/o condiciones)
 	dialog_entry = getCorrespondingDialogEntry()
+	
+	seen_dialogs.append(dialog_entry.id)
 	
 	#if entry has effects apply effects
 	if dialog_entry.has("effects"):
@@ -71,6 +73,12 @@ func getCorrespondingDialogEntry():
 	#Una vez ordenadas comprobamos requisitos y
 	#devolvemos la primera (más alta prioridad) que cumpla los requisitos
 	for entry in sorted_entries:
+		if entry.has("repeat"):
+			if entry.repeat == "once":
+				if seen_dialogs.has(entry.id):
+					continue
+			
+		
 		if entry.conditions.is_empty():
 			return entry
 			

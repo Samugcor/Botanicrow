@@ -42,6 +42,7 @@
 			"id":"identification_tutorial_compleated",
 			"priority":100,
 			"conditions": ["quest_completed:identification_tutorial"],
+			"repeat": "once",
 			"nodes":{
 				"start":{
 					"text": "Yes! That's the right one, i can smell it",

@@ -29,6 +29,8 @@ func _ready() -> void:
 	set_notebook_view()
 	set_page_button_view()
 	
+	GameState.new_traked_quest.connect(_on_new_tracked_mision)
+	
 func set_section_and_page( section = 0 , page = 0):
 	current_section_key = wrapi(section, 0, notebook_content.size())
 	current_page = wrapi(page , 0, notebook_content[current_section_key].size())
@@ -54,6 +56,7 @@ func set_notebook_content():
 	
 func add_active_quests_section():
 	QuestManager.quest_started.connect(_update_active_quests_section)
+	QuestManager.quest_completed.connect(_update_active_quests_section)
 	notebook_content[ntb_sections.ACTIVE_QUESTS]=QuestManager.get_quests_data_by_state(Enums.quest_state.ACTIVE)
 
 func _update_active_quests_section(_id):
@@ -100,6 +103,9 @@ func set_notebook_view():
 				#print_rich("[color=cyan] aka: active quests[/color]")
 
 				view_reference.set_active_quests_view(notebook_content[current_section_key])
+				if !notebook_content[current_section_key].is_empty():
+					view_reference.set_quest_details(notebook_content[ntb_sections.ACTIVE_QUESTS][current_page])
+					GameState.current_tracked_quest = notebook_content[ntb_sections.ACTIVE_QUESTS][current_page].quest_id
 				return
 			ntb_sections.SETTINGS:
 				#print_rich("[color=cyan] aka: settings[/color]")
@@ -169,3 +175,10 @@ func _on_next_page_pressed() -> void:
 	check_beggining_or_end()
 	set_page_button_view()
 	set_notebook_view()
+
+func _on_new_tracked_mision(index):
+	var quest = QuestManager.get_quest_data_by_id(index)
+	if notebook_content.has(ntb_sections.ACTIVE_QUESTS):
+		var i = notebook_content[ntb_sections.ACTIVE_QUESTS].find(quest)
+		if view_reference.notebook_type == "Spread":
+			view_reference.set_pressed_quest_button(i)

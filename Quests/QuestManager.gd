@@ -1,31 +1,38 @@
 extends Node
 
 signal quest_started(quest_id:String)
-
-var directory_path = "res://Quests/data/"
+signal quest_completed(quest_id:String)
+var db: QuestDBClass = load("res://Quests/data/questDB.tres")
+#var directory_path = "res://Quests/data/"
 var quest_db = {}
 
 #Funciones de inicio
 		
 func _ready() -> void:
-	_load_all_quests(directory_path)
+	_load_all_quests()
 	
-func _load_all_quests(path: String) -> void:
-	var dir = DirAccess.open(path)
-	if dir == null:
-		push_error("Quest folder not found: " + path)
-		return
-
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-
-	while file_name != "":
-		if file_name.ends_with(".tres"):
-			var quest: QuestClass = load(path + file_name)
-			_register_quest(quest)
-		file_name = dir.get_next()
-
-	dir.list_dir_end()
+func _load_all_quests() -> void:
+	for quest in db.quests:
+		_register_quest(quest)
+	
+#OLD	
+#func _load_all_quests(path: String) -> void:
+#	var dir = DirAccess.open(path)
+#	if dir == null:
+#		push_error("Quest folder not found: " + path)
+#		return
+#
+#	print("Files from dir:", dir.get_files())
+#	dir.list_dir_begin()
+#	var file_name = dir.get_next()
+#
+#	while file_name != "":
+#		
+#		var quest: QuestClass = load(path + file_name)
+#		_register_quest(quest)
+#		file_name = dir.get_next()
+#
+#	dir.list_dir_end()
 	
 func _register_quest(def: QuestClass) -> void:
 	quest_db[def.quest_id] = def	
@@ -109,3 +116,8 @@ func completeActiveQuest(quest_id: String):
 	var err : Error = GameState.setQuestState(quest_id, Enums.quest_state.COMPLETED)
 	if err != OK:
 		push_error("Error compleating quest ", err)
+		return
+		
+	quest_completed.emit(quest_id)
+	var misiones_activas = GameState.getQuestIdsByState( Enums.quest_state.ACTIVE)
+	GameState.current_tracked_quest = misiones_activas[0] if !misiones_activas.is_empty() else ""

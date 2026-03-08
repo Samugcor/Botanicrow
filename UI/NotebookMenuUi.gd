@@ -26,6 +26,7 @@ var ui_active_section = 0
 signal active_mision_selected(index)
 
 func _ready() -> void:
+	
 	for section in ui_sections:
 		section.visible = false
 
@@ -101,6 +102,16 @@ func set_previous_page_visibility(b:bool):
 	
 func set_next_page_visibility(b:bool):
 	nextPage.visible = b
+
+func set_pressed_quest_button(index):
+	if questListContainer.get_child_count() > 0: 
+		if questListContainer.get_child(0) is not Label:
+			questListContainer.get_child(index).button_pressed = true
+			
 	
 func _on_button_group_pressed(button):
 	active_mision_selected.emit(button.get_index())
+
+
+	
+	

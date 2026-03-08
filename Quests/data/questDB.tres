@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="QuestDBClass" load_steps=5 format=3 uid="uid://cd3i181rbxleu"]
+
+[ext_resource type="Script" uid="uid://bswyw51ptu3ik" path="res://Quests/domain/QuestClass.gd" id="1_upx8b"]
+[ext_resource type="Script" uid="uid://cuk2dpn5acb1n" path="res://Quests/domain/QuestDBClass.gd" id="2_5xaoi"]
+[ext_resource type="Resource" uid="uid://cf7m38kbf8ecd" path="res://Quests/data/you_want_more.tres" id="2_85ysr"]
+[ext_resource type="Resource" uid="uid://20gas72nrfo6" path="res://Quests/data/identificationTutorial.tres" id="3_13cy7"]
+
+[resource]
+script = ExtResource("2_5xaoi")
+quests = Array[ExtResource("1_upx8b")]([ExtResource("2_85ysr"), ExtResource("3_13cy7")])
+metadata/_custom_type_script = "uid://cuk2dpn5acb1n"

@@ -11,11 +11,12 @@ config_version=5
 [application]
 
 config/name="Botanicrow"
+config/version="0.3"
 run/main_scene="uid://bxt8gixtsh38b"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Botanicrow"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://Assets/Icons/icon.svg"
+config/icon="uid://cxvlns1g6a4b2"
 
 [autoload]
 
@@ -25,17 +26,16 @@ GameState="*res://Core/GameState.gd"
 InputManager="*res://Core/InputManager.gd"
 GameplayState="*res://Core/GameplayState.gd"
 GameEvents="*res://Core/GameEvents.gd"
-QuestManager="*res://Quests/QuestManager.gd"
 Transition="*res://Escenas/Transition.tscn"
 HelperFunctions="*res://Utils/HelperFunctions.gd"
 Enums="*res://Utils/Enums.gd"
 PlantMAnager="*res://Interactables/Items/planta/PlantManager.gd"
+QuestManager="*res://Quests/QuestManager.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/borderless=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"

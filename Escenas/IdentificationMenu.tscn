@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwvltedcc148o"]
+[gd_scene load_steps=16 format=3 uid="uid://bwvltedcc148o"]
 
 [ext_resource type="Script" uid="uid://6x2fpsaufx46" path="res://UI/IdentificationUI.gd" id="1_djvno"]
 [ext_resource type="Script" uid="uid://dcpeop14qdmlp" path="res://Menus/IdentificationMenu/IdentificationMenuController.gd" id="1_ghwiv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bynabgde1b220" path="res://Assets/Art/Menus/PlaceHolders/Ff.png" id="10_0xyar"]
 [ext_resource type="PackedScene" uid="uid://26inomjqf1f5" path="res://Escenas/CauldronUi.tscn" id="11_erp1i"]
 [ext_resource type="PackedScene" uid="uid://bkc8wfvdilmf1" path="res://Escenas/HalfNoteBookUi.tscn" id="11_ghwiv"]
+[ext_resource type="PackedScene" uid="uid://dpbey2vficomm" path="res://Animations/AnimationSolve.tscn" id="12_erp1i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmtiy"]
 content_margin_left = 20.0
@@ -202,6 +203,9 @@ offset_left = 27.0
 offset_top = 264.0
 offset_right = 606.0
 offset_bottom = 1048.0
+
+[node name="AnimationSolve" parent="Control" instance=ExtResource("12_erp1i")]
+layout_mode = 1
 
 [connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Control/TextureButton" to="." method="_on_add_cauldron_button_pressed"]

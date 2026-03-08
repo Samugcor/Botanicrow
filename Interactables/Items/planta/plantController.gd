@@ -7,9 +7,6 @@ var plant_data: PlantClass
 func _ready() -> void:
 	super()
 	plant_data = data as PlantClass
-	if plant_data == null:
-		push_error("PlantController received non-PlantClass data")
-		return
 		
 	visual_reference.setSprite(data.sprite)
 
