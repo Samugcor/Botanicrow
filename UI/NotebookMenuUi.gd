@@ -19,6 +19,7 @@ extends Control
 
 #SETTINGS
 @onready var settinsSection = $SettingsSection
+@onready var optionsMenu = $OptionsMenu
 
 var notebook_type = "Spread"
 var ui_active_section = 0
@@ -26,7 +27,6 @@ var ui_active_section = 0
 signal active_mision_selected(index)
 
 func _ready() -> void:
-	
 	for section in ui_sections:
 		section.visible = false
 
@@ -108,6 +108,8 @@ func set_pressed_quest_button(index):
 		if questListContainer.get_child(0) is not Label:
 			questListContainer.get_child(index).button_pressed = true
 			
+func set_option_menu_visibility(b:bool):
+	optionsMenu.visible = b
 	
 func _on_button_group_pressed(button):
 	active_mision_selected.emit(button.get_index())

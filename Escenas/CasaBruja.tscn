@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cit803vco5lx1"]
+[gd_scene load_steps=15 format=3 uid="uid://cit803vco5lx1"]
 
 [ext_resource type="Texture2D" uid="uid://b8st2x1qa0vwy" path="res://Assets/Art/Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_fondo_con_estanterías.png" id="1_piupr"]
 [ext_resource type="Texture2D" uid="uid://dh55x4e58g0q" path="res://Assets/Art/Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_caldero.png" id="2_6g5ns"]
@@ -12,6 +12,8 @@
 [ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Interactables/Items/planta/data/Bulbo.tres" id="10_piupr"]
 [ext_resource type="Resource" uid="uid://c06f57rv12fmm" path="res://Interactables/Items/planta/data/EstrellaCeleste.tres" id="10_q1wpe"]
 [ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenas/Door.tscn" id="11_gdr6t"]
+[ext_resource type="AudioStream" uid="uid://cpk88gf8acyr8" path="res://Assets/Music/Ambiente/fireplace.mp3" id="13_pgu6k"]
+[ext_resource type="AudioStream" uid="uid://dpqd0runeg4uw" path="res://Assets/Music/Ambiente/cauldron-boilig.mp3" id="14_u0w0o"]
 
 [node name="CasaBruja" type="Node2D"]
 y_sort_enabled = true
@@ -113,5 +115,21 @@ destination_level_path = "res://Escenas/HouseExterior.tscn"
 destination_spawn = "door_house_exterior"
 
 [node name="cameraConfiguration" type="Node" parent="."]
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("13_pgu6k")
+autoplay = true
+bus = &"Ambiance"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(1325, 574)
+stream = ExtResource("14_u0w0o")
+volume_db = 24.0
+autoplay = true
+max_distance = 380.0
+attenuation = 0.5743491
+bus = &"Ambiance"
 
 [editable path="ExitTriggers/Door_House"]

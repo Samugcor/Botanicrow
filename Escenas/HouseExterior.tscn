@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://sogvl8ohqjh2"]
+[gd_scene load_steps=17 format=3 uid="uid://sogvl8ohqjh2"]
 
-[ext_resource type="Texture2D" uid="uid://b8d5ipg2smaet" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Mapa bosque 1 Placeholder boceto solofondo (1).jpg" id="1_ah621"]
+[ext_resource type="Texture2D" uid="uid://cqp0hcvf5ykva" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Pl_bosque_wip2.png" id="1_jo3gh"]
 [ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenas/Door.tscn" id="2_e1rlt"]
 [ext_resource type="PackedScene" uid="uid://c2bodhemjpl1m" path="res://Escenas/Plant.tscn" id="3_cccko"]
 [ext_resource type="Resource" uid="uid://ddtdh7plwhpxx" path="res://Interactables/Items/planta/data/HojasRizadas.tres" id="4_bhdgv"]
@@ -12,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://cu3viuwvpbyp1" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Ph_arbol_ribera_03.png" id="9_0satv"]
 [ext_resource type="Resource" uid="uid://dvvneboycauxj" path="res://Interactables/Items/planta/data/sunflower.tres" id="10_nrnw8"]
 [ext_resource type="Texture2D" uid="uid://b66ofmsxnm4r6" path="res://Assets/Art/temp/01e6f4db3671fbc0fa72abbbe680cf08.png" id="11_jo3gh"]
+[ext_resource type="AudioStream" uid="uid://c6ne6xkr2vyjp" path="res://Assets/Music/Ambiente/forestsounds.mp3" id="13_va63x"]
+[ext_resource type="AudioStream" uid="uid://iobybuj81ja1" path="res://Assets/Music/Ambiente/river and frogs.mp3" id="14_va63x"]
+[ext_resource type="AudioStream" uid="uid://dgri3iykat0qy" path="res://Assets/Music/Ambiente/river.mp3" id="15_ydxiu"]
+[ext_resource type="AudioStream" uid="uid://th1o40ojpjk7" path="res://Assets/Music/Ambiente/nickype-waterfall-in-the-mountains_nature-sound-161925.mp3" id="16_13epc"]
 
 [node name="HouseExterior" type="Node2D"]
 y_sort_enabled = true
@@ -19,14 +23,7 @@ y_sort_enabled = true
 [node name="MapaBosque1PlaceholderBocetoSolofondo(1)" type="Sprite2D" parent="."]
 z_index = -2
 position = Vector2(-32, 381)
-texture = ExtResource("1_ah621")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -2674.0
-offset_top = -1586.0
-offset_right = 4790.0
-offset_bottom = 2754.0
-color = Color(0.43137255, 0.43137255, 0.43137255, 0.5529412)
+texture = ExtResource("1_jo3gh")
 
 [node name="YSortting" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -166,6 +163,42 @@ position = Vector2(1310, 517.00006)
 rotation = 0.38125426
 destination_level_path = "res://Escenas/CasaBruja.tscn"
 destination_spawn = "door_house_interior"
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("13_va63x")
+volume_db = 1.268
+autoplay = true
+bus = &"Ambiance"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(6218, -381)
+stream = ExtResource("14_va63x")
+volume_db = 12.316
+autoplay = true
+bus = &"Ambiance"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(5036, -2709)
+stream = ExtResource("15_ydxiu")
+volume_db = 13.684
+autoplay = true
+bus = &"Ambiance"
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(6549, 891)
+stream = ExtResource("15_ydxiu")
+volume_db = 16.421
+autoplay = true
+bus = &"Ambiance"
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(6249, -424)
+stream = ExtResource("16_13epc")
+volume_db = 13.684
+autoplay = true
+bus = &"Ambiance"
 
 [editable path="YSortting/Tree2"]
 [editable path="YSortting/Tree7"]

@@ -182,3 +182,7 @@ func _on_new_tracked_mision(index):
 		var i = notebook_content[ntb_sections.ACTIVE_QUESTS].find(quest)
 		if view_reference.notebook_type == "Spread":
 			view_reference.set_pressed_quest_button(i)
+
+
+func _on_button_options_button_clicked() -> void:
+	view_reference.set_option_menu_visibility(true)

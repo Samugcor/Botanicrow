@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://drkpye80xf3rp" path="res://Utils/sprite_pivot_positioning.gd" id="2_8keds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_frveq"]
-size = Vector2(116, 121)
+size = Vector2(119, 104.5)
 
 [node name="Sprite2D" type="Sprite2D"]
 texture = ExtResource("1_frveq")

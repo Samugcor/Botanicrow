@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk3fc3buerpw8"]
+[gd_scene load_steps=10 format=3 uid="uid://bk3fc3buerpw8"]
 
 [ext_resource type="Script" uid="uid://n1mrfvds3rd" path="res://Menus/NotebookMenu/NotebookController.gd" id="1_5v8j8"]
 [ext_resource type="Script" uid="uid://1gnbk0ppbhsb" path="res://UI/NotebookMenuUi.gd" id="2_vpcdm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqmx0axt8n4fa" path="res://Escenas/NotebookListItem.tscn" id="4_op6r1"]
 [ext_resource type="PackedScene" uid="uid://rtvdnlref0ay" path="res://Escenas/button.tscn" id="5_vpcdm"]
 [ext_resource type="Texture2D" uid="uid://djcjmfiwyk5dk" path="res://Assets/Art/Menus/PlaceHolders/UI_PLboton_pasarpag.png" id="6_4wfjp"]
+[ext_resource type="PackedScene" uid="uid://0he4shmx3gjx" path="res://Escenas/optionsMenu.tscn" id="7_op6r1"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_48hyb"]
 
@@ -182,6 +183,12 @@ layout_mode = 2
 button_text = "Save"
 font_size = 26
 
+[node name="ButtonOptions" parent="NotebookUi/SettingsSection/MarginContainer/VBoxContainer" instance=ExtResource("5_vpcdm")]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+button_text = "Options"
+font_size = 26
+
 [node name="ButtonExit" parent="NotebookUi/SettingsSection/MarginContainer/VBoxContainer" instance=ExtResource("5_vpcdm")]
 custom_minimum_size = Vector2(50, 70)
 layout_mode = 2
@@ -221,7 +228,11 @@ texture_hover = ExtResource("6_4wfjp")
 flip_h = true
 metadata/_edit_use_anchors_ = true
 
+[node name="OptionsMenu" parent="NotebookUi" instance=ExtResource("7_op6r1")]
+layout_mode = 1
+
 [connection signal="button_clicked" from="NotebookUi/SettingsSection/MarginContainer/VBoxContainer/ButtonSave" to="." method="_on_button_save_button_clicked"]
+[connection signal="button_clicked" from="NotebookUi/SettingsSection/MarginContainer/VBoxContainer/ButtonOptions" to="." method="_on_button_options_button_clicked"]
 [connection signal="button_clicked" from="NotebookUi/SettingsSection/MarginContainer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_button_clicked"]
 [connection signal="pressed" from="NotebookUi/nextPage" to="." method="_on_next_page_pressed"]
 [connection signal="pressed" from="NotebookUi/previousPage" to="." method="_on_previous_page_pressed"]

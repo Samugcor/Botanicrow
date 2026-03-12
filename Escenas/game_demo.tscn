@@ -46,3 +46,5 @@ editor_draw_limits = true
 
 [node name="Enviroment" type="Node2D" parent="World"]
 y_sort_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
