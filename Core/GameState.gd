@@ -147,6 +147,8 @@ func load_data_json():
 	var inv_slots_t :Array[InvSlotClass] = []
 	for slot in save_data[KEY_INVENTORY].slots:
 		if slot.is_empty():
+			var emptyinvslot = InvSlotClass.new()
+			inv_slots_t.append(emptyinvslot)
 			continue
 		var invslot = InvSlotClass.new()
 		invslot.from_dictionary(slot)

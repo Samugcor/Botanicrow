@@ -10,6 +10,7 @@ var BG_music_node : AudioStreamPlayer = null
 var BG_music_track = load("res://Assets/Music/airtone_-_timebeing_1.mp3")
 
 var SE_node: AudioStreamPlayer = null
+var SE_is_playing: bool =false
 var sound_effects_tracks :={
 	SE_TURN_PAGE:load("res://Assets/Music/Soundeffects/ui/Pasarpagina.wav"),
 	SE_NEXT_BUTTON:load("res://Assets/Music/Soundeffects/ui/se_sys_click_short.wav"),
@@ -32,5 +33,7 @@ func _ready() -> void:
 	
 	
 func play_sound_effect(track_name:String):
+	if SE_node.playing:
+		return
 	SE_node.stream = sound_effects_tracks[track_name]
 	SE_node.play()

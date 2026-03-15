@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biftp2lntvury"
-path="res://.godot/imported/Interior_casa_bruja_placeholder_p1_select.png-89881b951409dce92dbe9a536a21980f.ctex"
+uid="uid://diut2tk5pwyxt"
+path="res://.godot/imported/Interior_casa_bruja_placeholder_p5.png-30141e53f066032150741af13fd53c6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Pequeña/Interior_casa_bruja_placeholder_p1_select.png"
-dest_files=["res://.godot/imported/Interior_casa_bruja_placeholder_p1_select.png-89881b951409dce92dbe9a536a21980f.ctex"]
+source_file="res://Assets/Art/Plantas/Pequeña/Interior_casa_bruja_placeholder_p5.png"
+dest_files=["res://.godot/imported/Interior_casa_bruja_placeholder_p5.png-30141e53f066032150741af13fd53c6c.ctex"]
 
 [params]
 

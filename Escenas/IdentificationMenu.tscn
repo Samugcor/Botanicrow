@@ -198,10 +198,8 @@ text = "Brew"
 
 [node name="HalfNotebook" parent="Control" instance=ExtResource("11_ghwiv")]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 264.0
-offset_right = 606.0
-offset_bottom = 1048.0
+offset_top = 256.0
+offset_bottom = 1040.0
 
 [node name="AnimationSolve" parent="Control" instance=ExtResource("12_erp1i")]
 visible = false

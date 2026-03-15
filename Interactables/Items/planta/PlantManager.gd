@@ -43,3 +43,4 @@ func set_known_plants_from_quest(quest_data : QuestClass):
 			if objective.required_item is PlantClass:
 				GameState.addKnownPlant(objective.required_item.id)
 				new_known_plant.emit()
+				print("new plant emmited")

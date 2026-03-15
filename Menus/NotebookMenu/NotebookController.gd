@@ -2,9 +2,13 @@ extends SubmenuController
 
 @onready var view_reference = $NotebookUi
 
+signal page_changed
+
 #	ALL_QUESTS,
 #	PLANTS,
-#	MAP,
+#	MAP
+
+
 enum ntb_sections{
 	ACTIVE_QUESTS,
 	PLANTS,
@@ -81,6 +85,7 @@ func add_settings_section():
 
 #Known plants section _______________________________________________________
 func add_known_plants_section():
+	connect_or_disconect_signals_plants_section(true)
 	notebook_content[ntb_sections.PLANTS] = PlantMAnager.get_data_of_known_plants()
 
 func connect_or_disconect_signals_plants_section(b:bool):
@@ -142,7 +147,7 @@ func set_notebook_view():
 				view_reference.set_not_known_plants()
 				return
 				
-			view_reference.set_known_plant_view(notebook_content[ntb_sections.ACTIVE_QUESTS][current_page])
+			view_reference.set_known_plant_view(notebook_content[ntb_sections.PLANTS][current_page])
 		_:
 			push_error("No section found")
 
@@ -185,6 +190,7 @@ func _on_previous_page_pressed() -> void:
 	check_beggining_or_end()
 	set_page_button_view()
 	set_notebook_view()
+	page_changed.emit()
 	
 func _on_next_page_pressed() -> void:
 	MusicManager.play_sound_effect(MusicManager.SE_TURN_PAGE)
@@ -198,7 +204,8 @@ func _on_next_page_pressed() -> void:
 	check_beggining_or_end()
 	set_page_button_view()
 	set_notebook_view()
-
+	page_changed.emit()
+	
 #Quests
 func _on_new_tracked_quest_intent(index: int): #Signal from view
 	var quest_data = QuestManager.get_quest_data_by_id(notebook_content[ntb_sections.ACTIVE_QUESTS][index].quest_id)
@@ -239,6 +246,7 @@ func _update_active_quests_section(_id): #Signal from QuestManager for new or co
 #Plants
 func _update_known_plants_section():
 	
+	print("_update_plants section")
 	if current_section_key == ntb_sections.PLANTS and !notebook_content[ntb_sections.PLANTS].is_empty():
 		var plant_to_hold = notebook_content[ntb_sections.PLANTS][current_page]
 		notebook_content[ntb_sections.PLANTS] = PlantMAnager.get_data_of_known_plants()
@@ -246,6 +254,9 @@ func _update_known_plants_section():
 	else:
 		notebook_content[ntb_sections.PLANTS] = PlantMAnager.get_data_of_known_plants()
 
+	check_beggining_or_end()
+	set_notebook_view()
+	set_page_button_view()
 
 #Settings
 func _on_button_save_button_clicked() -> void:

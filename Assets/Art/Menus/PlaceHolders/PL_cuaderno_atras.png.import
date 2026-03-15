@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cycvpshl08f5i"
-path="res://.godot/imported/Planta1_gr.png-b1f0729c19303b3fa80f89426f4174bc.ctex"
+uid="uid://f4onfavs5gl7"
+path="res://.godot/imported/PL_cuaderno_atras.png-49df825d4bcbf565931e85be6b9946de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Detallle/Planta1_gr.png"
-dest_files=["res://.godot/imported/Planta1_gr.png-b1f0729c19303b3fa80f89426f4174bc.ctex"]
+source_file="res://Assets/Art/Menus/PlaceHolders/PL_cuaderno_atras.png"
+dest_files=["res://.godot/imported/PL_cuaderno_atras.png-49df825d4bcbf565931e85be6b9946de.ctex"]
 
 [params]
 

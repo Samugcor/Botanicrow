@@ -15,6 +15,7 @@ func _ready() -> void:
 	
 	cauldron_controler.cauldron_full_changed_to.connect(_on_cauldron_status_changed)
 	cauldron_controler.cauldron_conten_changed.connect(_on_cauldron_conten_changed)
+	notebook_controler.page_changed.connect(_on_page_changed)
 	
 	set_add_cauldron_button_view()
 	set_brew_button_view()
@@ -97,3 +98,6 @@ func _on_brew_pressed() -> void:
 	else:
 		print_rich("[color=red]Algo está mal[/color]")
 		menu_view.start_wrong_animarion()
+
+func _on_page_changed():
+	cauldron_controler.set_cauldron_slots(notebook_controler.get_current_page_data())
