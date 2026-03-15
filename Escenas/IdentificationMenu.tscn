@@ -152,7 +152,6 @@ offset_right = 101.5
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 40
-text = "asdasdasd"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -205,6 +204,7 @@ offset_right = 606.0
 offset_bottom = 1048.0
 
 [node name="AnimationSolve" parent="Control" instance=ExtResource("12_erp1i")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]

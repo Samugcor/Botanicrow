@@ -17,6 +17,15 @@ extends Control
 @onready var questObjectives = $QuestSection/HBoxContainer/MarginContainer2/VBoxContainer/QuestObjectives
 @onready var objectiveTitle = $QuestSection/HBoxContainer/MarginContainer2/VBoxContainer/Label2
 
+#PLANTS
+@onready var plantSection = $KnownPlantsSection
+@onready var knownPlantView = $KnownPlantsSection/KnownPlant
+@onready var notKnownPlantView = $KnownPlantsSection/NotKnown
+@onready var plantImage = $KnownPlantsSection/KnownPlant/PlantImage
+@onready var plantName = $KnownPlantsSection/KnownPlant/PlantName
+@onready var plantDescription = $KnownPlantsSection/KnownPlant/MarginContainer/VBoxContainer/TXTPlantDescription
+@onready var plantObservations = $KnownPlantsSection/KnownPlant/MarginContainer/VBoxContainer/TXTPlantObservations
+
 #SETTINGS
 @onready var settinsSection = $SettingsSection
 @onready var optionsMenu = $OptionsMenu
@@ -24,29 +33,21 @@ extends Control
 var notebook_type = "Spread"
 var ui_active_section = 0
 
-signal active_mision_selected(index)
+signal new_tracked_quest_intent(index)
+
+#FUNCIONES____________________________________________________________
 
 func _ready() -> void:
 	for section in ui_sections:
 		section.visible = false
 
-func set_active_quests_view(content):
+#QUEST SECTION____________________________________________________________
+
+func set_list_of_active_quests_view(content, active_button):
 	#Vaciar container 
 	for quest in questListContainer.get_children():
 		quest.free()
 	
-	if content.is_empty():
-		var lbl = Label.new()
-		lbl.text = TextVariables.NOTEBOOK_NO_QUESTS
-		lbl.add_theme_font_size_override("font_size", 20)
-		lbl.modulate = Color("000000ff")
-		questListContainer.add_child(lbl)
-		
-		questDetailsContainer.visible = false
-		
-		set_sections_visibility(ui_sections.find(questSection))
-		return
-		
 	#Llenar container
 	var button_group := ButtonGroup.new()
 	for quest in content:
@@ -57,17 +58,30 @@ func set_active_quests_view(content):
 		
 	button_group.pressed.connect(_on_button_group_pressed)
 	
-	if questListContainer.get_child_count() > 0: 
-		for i in range(content.size()):
-			if content[i].quest_id == GameState.current_tracked_quest:
-				questListContainer.get_child(i).button_pressed = true
-				break
+	set_pressed_quest_button(active_button)
 	
 	set_sections_visibility(ui_sections.find(questSection))
 
-func set_settings_view():
-	set_sections_visibility(ui_sections.find(settinsSection))
-		
+func set_pressed_quest_button(index):
+	if questListContainer.get_child_count() > 0: 
+		if questListContainer.get_child(0) is not Label:
+			questListContainer.get_child(index).button_pressed = true	
+
+func set_no_items_in_quest_section_view():
+	for quest in questListContainer.get_children():
+		quest.free()
+	
+	var lbl = Label.new()
+	lbl.text = TextVariables.NOTEBOOK_NO_QUESTS
+	lbl.add_theme_font_size_override("font_size", 20)
+	lbl.modulate = Color("000000ff")
+	questListContainer.add_child(lbl)
+	
+	questDetailsContainer.visible = false
+	
+	set_sections_visibility(ui_sections.find(questSection))
+	return
+
 func set_quest_details(data):
 	questName.text = data.quest_name
 	questDescription.text = ""
@@ -90,7 +104,32 @@ func set_objectiveTitle(questData):
 		objectiveTitle.text = "Plant descriptions:"
 	else:
 		objectiveTitle.text = "Objectives:"
+
+#KNOWN PLANTS SECTION _____________________________________________________
+func set_not_known_plants():
+	knownPlantView.visible = false
+	notKnownPlantView.visible = true
+	set_sections_visibility(ui_sections.find(plantSection))
+	
+	
+func set_known_plant_view(plantData: PlantClass):
+	knownPlantView.visible = true
+	notKnownPlantView.visible = false
+	
+	plantImage.texture = plantData.detailView
+	plantName.text = plantData.name
+	plantDescription.text = plantData.description
+	plantObservations.text = plantData.observations
+	
+	set_sections_visibility(ui_sections.find(plantSection))
+
+
+#SETTINGS SECTION__________________________________________________________
+
+func set_settings_view():
+	set_sections_visibility(ui_sections.find(settinsSection))
 		
+
 func set_sections_visibility(new_active_section = 0):
 	
 	ui_sections[ui_active_section].visible = false
@@ -103,16 +142,14 @@ func set_previous_page_visibility(b:bool):
 func set_next_page_visibility(b:bool):
 	nextPage.visible = b
 
-func set_pressed_quest_button(index):
-	if questListContainer.get_child_count() > 0: 
-		if questListContainer.get_child(0) is not Label:
-			questListContainer.get_child(index).button_pressed = true
+
 			
 func set_option_menu_visibility(b:bool):
 	optionsMenu.visible = b
 	
 func _on_button_group_pressed(button):
-	active_mision_selected.emit(button.get_index())
+	new_tracked_quest_intent.emit(button.get_index())
+	MusicManager.play_sound_effect(MusicManager.SE_SELECT_BUTTON)
 
 
 	

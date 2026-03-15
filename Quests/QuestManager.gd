@@ -2,8 +2,9 @@ extends Node
 
 signal quest_started(quest_id:String)
 signal quest_completed(quest_id:String)
+signal new_tracked_quest(quest_data)
+
 var db: QuestDBClass = load("res://Quests/data/questDB.tres")
-#var directory_path = "res://Quests/data/"
 var quest_db = {}
 
 #Funciones de inicio
@@ -15,30 +16,14 @@ func _load_all_quests() -> void:
 	for quest in db.quests:
 		_register_quest(quest)
 	
-#OLD	
-#func _load_all_quests(path: String) -> void:
-#	var dir = DirAccess.open(path)
-#	if dir == null:
-#		push_error("Quest folder not found: " + path)
-#		return
-#
-#	print("Files from dir:", dir.get_files())
-#	dir.list_dir_begin()
-#	var file_name = dir.get_next()
-#
-#	while file_name != "":
-#		
-#		var quest: QuestClass = load(path + file_name)
-#		_register_quest(quest)
-#		file_name = dir.get_next()
-#
-#	dir.list_dir_end()
-	
 func _register_quest(def: QuestClass) -> void:
 	quest_db[def.quest_id] = def	
 
 # Funciones para la obtención de datos
 func get_quest_data_by_id(id: String):
+	if !id:
+		return
+	print("Get quest data by id")
 	var questData = quest_db.get(id,null)
 	if !questData:
 		push_error("Mision not found inside mision db")
@@ -87,6 +72,7 @@ func startQuest(id):
 		return
 		
 	#Si no la buscamos en la questdb
+	print_rich("[color=orange]get_quest_data_by_id from start new quest[/color]")
 	var questData = get_quest_data_by_id(id)
 	
 	#si no se encuentra notificar
@@ -100,7 +86,7 @@ func startQuest(id):
 	#Se emite una señal para que la ui de listaMisiones se actualice
 	GameState.setQuest(id, questruntime)
 	#Marcar como misión activa
-	GameState.setTrackedQUest(id)
+	setTrackedQuest(questData)
 	
 	quest_started.emit(id)
 
@@ -119,5 +105,20 @@ func completeActiveQuest(quest_id: String):
 		return
 		
 	quest_completed.emit(quest_id)
+	
 	var misiones_activas = GameState.getQuestIdsByState( Enums.quest_state.ACTIVE)
-	GameState.current_tracked_quest = misiones_activas[0] if !misiones_activas.is_empty() else ""
+	if misiones_activas.is_empty():
+		setNoTrackedQuest()
+		return
+	setTrackedQuest(get_quest_data_by_id(misiones_activas[0]))
+
+func setTrackedQuest(quest_data : QuestClass):
+	GameState.current_tracked_quest = quest_data.quest_id
+	new_tracked_quest.emit(quest_data)
+	
+func setNoTrackedQuest():
+	GameState.current_tracked_quest = ""
+	new_tracked_quest.emit(null)
+
+func get_tracked_quest_data():
+	return get_quest_data_by_id(GameState.current_tracked_quest)

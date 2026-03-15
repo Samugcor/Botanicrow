@@ -10,10 +10,18 @@ var cauldron_full
 
 func _ready() -> void:
 	super()
+	
+	
+	
 	cauldron_controler.cauldron_full_changed_to.connect(_on_cauldron_status_changed)
 	cauldron_controler.cauldron_conten_changed.connect(_on_cauldron_conten_changed)
+	
 	set_add_cauldron_button_view()
 	set_brew_button_view()
+	
+	
+	cauldron_controler.set_cauldron_slots(QuestManager.get_tracked_quest_data())
+	
 	GameplayState.push(self)
 	
 func set_brew_button_view():
@@ -49,9 +57,17 @@ func _on_cauldron_status_changed(isfull:bool):
 	cauldron_full = isfull
 	set_brew_button_view()
 
-func _on_inventory_slot_selected(data_slot: Variant) -> void:
+func _on_inventory_slot_selected(data_slot: PlantClass) -> void:
 	menu_view.set_plant_detail(data_slot)
 	menu_view.set_observations(data_slot)
+	if !data_slot:
+		menu_view.set_plant_name(" ")
+	else:
+		if GameState.known_plants.has(data_slot.id):
+			menu_view.set_plant_name(data_slot.name)
+		else :
+			menu_view.set_plant_name()
+		
 	selectedPlant = data_slot
 	set_add_cauldron_button_view()
 	
@@ -73,7 +89,10 @@ func _on_brew_pressed() -> void:
 	if cauldron_controler.check_potion(potion_components):
 		print_rich("[color=green]Misión completada![/color]")
 		QuestManager.completeActiveQuest(quest_data.quest_id)
-		menu_view.start_correct_animation()
+		PlantMAnager.set_known_plants_from_quest(quest_data)
+		await menu_view.start_correct_animation()
+		GameplayState.pop()
+		self.queue_free()
 		return
 	else:
 		print_rich("[color=red]Algo está mal[/color]")

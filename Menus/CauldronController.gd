@@ -15,7 +15,8 @@ var fullcauldron : bool = false:
 func _ready() -> void:
 	super()
 	cauldronContents = []
-	set_cauldron_slots()
+	
+	QuestManager.new_tracked_quest.connect(_on_new_tracked_quest)
 	
 func activate():
 	super()
@@ -24,43 +25,31 @@ func activate():
 func deactivate():
 	super()
 	closeSlots()
-	
-func set_cauldron_slots(n : int = 0):
+		
+func set_cauldron_slots(quest_data : QuestClass):
+	if !quest_data:
+		#push_warning("No quest data to set cauldron slots to")
+		return
+		
 	var slot_scenes=[]
 	var inv_slot
 	var slot_scene
 	
 	cauldronContents.clear()
 	
-	if n:
-		for i in range(n):
-			inv_slot = InvSlotClass.new()
-			cauldronContents.append(inv_slot)
+	for i in range(quest_data.quest_objectives.size()):
+		inv_slot = InvSlotClass.new()
+		cauldronContents.append(inv_slot)
 			
-			slot_scene = inv_slot_scene.instantiate()
-			slot_scene.setup(i,Color(Color(0.681, 0.159, 0.286, 1.0)))
-			slot_scene.mouse_on_click.connect(_on_cauldron_slot_clicked)
-			slot_scene.mouse_on_hover.connect(_on_cauldron_slot_hover)
-			slot_scenes.append(slot_scene)
-			
-		view_reference.set_slot_container(slot_scenes)
+		slot_scene = inv_slot_scene.instantiate()
+		slot_scene.setup(i,Color(0.549, 0.247, 0.255))
+		slot_scene.mouse_on_click.connect(_on_cauldron_slot_clicked)
+		slot_scene.mouse_on_hover.connect(_on_cauldron_slot_hover)
+		slot_scenes.append(slot_scene)
 		
-	elif GameState.current_tracked_quest:	
-		var quest_data = QuestManager.get_quest_data_by_id(GameState.current_tracked_quest)
-		for i in range(quest_data.quest_objectives.size()):
-			inv_slot = InvSlotClass.new()
-			cauldronContents.append(inv_slot)
-			
-			slot_scene = inv_slot_scene.instantiate()
-			slot_scene.setup(i,Color(0.549, 0.247, 0.255))
-			slot_scene.mouse_on_click.connect(_on_cauldron_slot_clicked)
-			slot_scene.mouse_on_hover.connect(_on_cauldron_slot_hover)
-			slot_scenes.append(slot_scene)
-		
-		view_reference.set_slot_container(slot_scenes)
+	view_reference.set_slot_container(slot_scenes)
 	
-	else:
-		return
+	
 		
 func openSlots():
 	for slot in view_reference.slotContainer.get_children():
@@ -122,10 +111,11 @@ func _on_cauldron_slot_clicked(index):
 	cauldron_conten_changed.emit()
 	
 func _on_cauldron_slot_hover( index:int):
-	print("is hoveringAAAAAaaaa")
 	var state = view_reference.slotContainer.get_child(index).current_state
 	
 	if state == Enums.ui_button_state.SELECTED:
 		return
 	view_reference.slotContainer.get_child(index).setState(Enums.ui_button_state.HOVERED)
 	
+func _on_new_tracked_quest(quest_data):
+	set_cauldron_slots(quest_data)

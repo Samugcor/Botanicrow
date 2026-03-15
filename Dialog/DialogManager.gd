@@ -28,7 +28,7 @@ func startNpcDialog(_npc_data : NpcClass):
 		dialog_data = getFileContents()
 		dialogue_cache[npc_data.id] = dialog_data
 		
-	#Seleccionamos la entrada correcta(por prioridad y/o condiciones)
+	#Seleccionamos la entrada correcta(pororidad y/o condiciones)
 	dialog_entry = getCorrespondingDialogEntry()
 	
 	seen_dialogs.append(dialog_entry.id)

@@ -1,6 +1,4 @@
 extends Node
-
-signal new_traked_quest(current_tracked_quest)
  
 const SAVE_PATH_JSON: String  = "user://save_files/savegame.json"
 const SAVE_PATH_BINARY: String = "user://save_files/savegame.save"
@@ -61,7 +59,7 @@ var npcs: Dictionary = {} # {npc_id : known(bool)}
 var current_tracked_quest: String: #id
 	set(value):
 		current_tracked_quest=value
-		new_traked_quest.emit(value)
+		print("CURRENT TRACKED QUEST", value)
 var quests: Dictionary = {} # {quest_id : QuestRuntime}		
 
 
@@ -225,7 +223,6 @@ func checkCondition(condition:String) -> bool:
 	var parts = condition.split(":")
 	var type = parts[0]
 	var values = parts.slice(1)
-	print("condition: ", condition)
 	
 	for value in values:
 		match type:
@@ -253,6 +250,9 @@ func setNpc(key: String,value: bool):
 func setQuest(key: String,value: QuestRuntime):
 	quests[key]=value
 
+func addKnownPlant(id):
+	known_plants.append(id)
+	
 func setQuestState(key: String, state : Enums.quest_state) -> Error:
 	if !quests.has(key):
 		return ERR_DOES_NOT_EXIST

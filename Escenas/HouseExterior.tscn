@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cu3viuwvpbyp1" path="res://Assets/Art/Escenarios/HouseExterior/Placeholders/Ph_arbol_ribera_03.png" id="9_0satv"]
 [ext_resource type="Resource" uid="uid://dvvneboycauxj" path="res://Interactables/Items/planta/data/sunflower.tres" id="10_nrnw8"]
 [ext_resource type="Texture2D" uid="uid://b66ofmsxnm4r6" path="res://Assets/Art/temp/01e6f4db3671fbc0fa72abbbe680cf08.png" id="11_jo3gh"]
-[ext_resource type="AudioStream" uid="uid://c6ne6xkr2vyjp" path="res://Assets/Music/Ambiente/forestsounds.mp3" id="13_va63x"]
+[ext_resource type="AudioStream" uid="uid://cserfjx73a23o" path="res://Assets/Music/Ambiente/freesound_community-birds-19624.mp3" id="13_ydxiu"]
 [ext_resource type="AudioStream" uid="uid://iobybuj81ja1" path="res://Assets/Music/Ambiente/river and frogs.mp3" id="14_va63x"]
 [ext_resource type="AudioStream" uid="uid://dgri3iykat0qy" path="res://Assets/Music/Ambiente/river.mp3" id="15_ydxiu"]
 [ext_resource type="AudioStream" uid="uid://th1o40ojpjk7" path="res://Assets/Music/Ambiente/nickype-waterfall-in-the-mountains_nature-sound-161925.mp3" id="16_13epc"]
@@ -62,7 +62,7 @@ position = Vector2(37, -58)
 [node name="Tree3" parent="YSortting" instance=ExtResource("5_e1rlt")]
 position = Vector2(647, 562)
 texture = ExtResource("8_jo3gh")
-offset = Vector2(-417, -632)
+offset = Vector2(-417.5, -632)
 
 [node name="CollisionShape2D" parent="YSortting/Tree3/Tree/StaticBody2D" index="0"]
 position = Vector2(-9.5, -51.75)
@@ -70,18 +70,18 @@ position = Vector2(-9.5, -51.75)
 [node name="Tree8" parent="YSortting" instance=ExtResource("5_e1rlt")]
 position = Vector2(4583, 85)
 texture = ExtResource("8_jo3gh")
-offset = Vector2(-417, -632)
+offset = Vector2(-417.5, -632)
 flip_h = true
 
 [node name="Tree9" parent="YSortting" instance=ExtResource("5_e1rlt")]
 position = Vector2(4818, -82)
 texture = ExtResource("8_jo3gh")
-offset = Vector2(-417, -632)
+offset = Vector2(-417.5, -632)
 
 [node name="Tree16" parent="YSortting" instance=ExtResource("5_e1rlt")]
 position = Vector2(-5432, -678)
 texture = ExtResource("8_jo3gh")
-offset = Vector2(-417, -632)
+offset = Vector2(-417.5, -632)
 
 [node name="Tree4" parent="YSortting" instance=ExtResource("5_e1rlt")]
 position = Vector2(-4179, 649)
@@ -167,9 +167,11 @@ destination_spawn = "door_house_interior"
 [node name="Audio" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("13_va63x")
-volume_db = 1.268
+stream = ExtResource("13_ydxiu")
+volume_db = -10.78
+pitch_scale = 0.98
 autoplay = true
+mix_target = 1
 bus = &"Ambiance"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]

@@ -16,7 +16,6 @@ func _on_intent_player_menu():
 		return
 	if !self.visible:
 		self.visible = true
-		notebook_ref.set_section_and_page(notebook_ref.ntb_sections.ACTIVE_QUESTS)
 		GameplayState.push(self)
 		return
 	if self.visible:

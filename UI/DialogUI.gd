@@ -70,6 +70,8 @@ func _on_interact_intent():
 	
 	#Si hay opciones elge la que está focus
 	optionsContainer.get_child(focus_button).button_clicked.emit()
+	MusicManager.play_sound_effect(MusicManager.SE_SELECT_BUTTON)
+
 	
 func _on_move_intent(axis:Vector2):
 	if GameplayState.current() != self:
@@ -85,6 +87,7 @@ func _on_move_intent(axis:Vector2):
 	focus_button = (focus_button + child_count) % child_count
 	optionsContainer.get_child(focus_button).set_button_state(Enums.ui_button_state.HOVERED)
 	
+	MusicManager.play_sound_effect(MusicManager.SE_NEXT_BUTTON)
 
 #HELPERS ===============================
 func show_dialogUI():

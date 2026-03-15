@@ -13,8 +13,22 @@ extends Control
 @onready var questObjectives = $NotebookSprite/MarginContainer/QuestSection/VBoxContainer/QuestObjectives
 @onready var objectiveTitle = $NotebookSprite/MarginContainer/QuestSection/VBoxContainer/Label2
 
+#PLANTS
+@onready var plantSection = $NotebookSprite/MarginContainer/KnownPlantsSection
+@onready var knownPlantView = $NotebookSprite/MarginContainer/KnownPlantsSection/KnownPlant
+@onready var notKnownPlantView = $NotebookSprite/MarginContainer/KnownPlantsSection/NotKnown
+@onready var plantImage = $NotebookSprite/MarginContainer/KnownPlantsSection/KnownPlant/PlantImage
+@onready var plantName = $NotebookSprite/MarginContainer/KnownPlantsSection/KnownPlant/PlantName
+@onready var plantDescription = $NotebookSprite/MarginContainer/KnownPlantsSection/KnownPlant/MarginContainer/VBoxContainer/TXTPlantDescription
+@onready var plantObservations = $NotebookSprite/MarginContainer/KnownPlantsSection/KnownPlant/MarginContainer/VBoxContainer/TXTPlantObservations
+
+
+
 var notebook_type = "Half"
 var ui_active_section = 0
+
+
+#FUNCIONES_________________________________________________________________
 
 func _ready() -> void:
 	objectiveTitle.text = "Plant descriptions:"
@@ -22,15 +36,8 @@ func _ready() -> void:
 	for section in ui_sections:
 		section.visible = false
 	
-
+#QUEST SECTION____________________________________________________________
 func set_quest_details(data):
-	if data == null:
-		questDescription.text = ""
-		questDescription.append_text(TextVariables.NOTEBOOK_NO_QUEST_DETAILS_BBCODE)
-		questObjectives.text = ""
-		questObjectives.text = "[ul] Get a quest [/ul]"
-		set_sections_visibility(ui_sections.find(questSection))
-		return
 		
 	questName.text = data.quest_name
 	questDescription.text = ""
@@ -47,6 +54,34 @@ func set_quest_details(data):
 	questObjectives.visible = true
 	
 	set_sections_visibility(ui_sections.find(questSection))
+
+func set_no_items_in_quest_section_view():
+	questDescription.text = ""
+	questDescription.append_text(TextVariables.NOTEBOOK_NO_QUEST_DETAILS_BBCODE)
+	questObjectives.text = ""
+	questObjectives.text = "[ul] Get a quest [/ul]"
+	set_sections_visibility(ui_sections.find(questSection))
+	return
+
+#PLANT SECTION_______________________________________________________________
+func set_not_known_plants():
+	knownPlantView.visible = false
+	notKnownPlantView.visible = true
+	set_sections_visibility(ui_sections.find(plantSection))
+	
+	
+func set_known_plant_view(plantData: PlantClass):
+	knownPlantView.visible = true
+	notKnownPlantView.visible = false
+	
+	plantImage.texture = plantData.detailView
+	plantName.text = plantData.name
+	plantDescription.text = plantData.description
+	plantObservations.text = plantData.observations
+	
+	set_sections_visibility(ui_sections.find(plantSection))
+
+
 
 func set_sections_visibility(new_active_section = 0):
 	

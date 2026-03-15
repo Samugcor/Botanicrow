@@ -130,6 +130,7 @@ func _on_data_updated():
 	invUi.update_slot_render(data.slots)
 	
 func setInvSlotState(index: int,  state:Enums.ui_button_state):
+	index = wrap(index, 0 , data.slots.size())
 	if state == Enums.ui_button_state.SELECTED:
 		slot_selected.emit(data.slots[index].item)
 	invUi.slotContainer.get_child(index).setState(state)

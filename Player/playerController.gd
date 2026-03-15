@@ -11,6 +11,7 @@ var posible_interactables = []
 var current_interactable = null
 
 @onready var player_view = $Sprite2D
+@onready var animation = $AnimationPlayer
 
 signal new_current_interactable(interacatable)
 signal picked_up(item)
@@ -37,9 +38,11 @@ func _on_move_intent(axis:Vector2):
 func handle_movement(delta):
 	if movement_axis == Vector2.ZERO:
 		apply_friction(FRICTION * delta)
+		animation.play("RESET")
 	else:
 		apply_movement(movement_axis * ACCELERATION * delta)
 		player_view.update_facing_direction(movement_axis)
+		animation.play("walk")
 		
 	move_and_slide()
 

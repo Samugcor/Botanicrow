@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlantDBClass" load_steps=8 format=3 uid="uid://d3tpnlgoe3lmy"]
+
+[ext_resource type="Script" uid="uid://dyn0ckxs3sfnt" path="res://Interactables/Items/planta/domain/PlantClass.gd" id="1_e0lw4"]
+[ext_resource type="Script" uid="uid://bkvesdsi0jmko" path="res://Interactables/Items/planta/plantDBClass.gd" id="2_67dli"]
+[ext_resource type="Resource" uid="uid://bycieo5i2mho3" path="res://Interactables/Items/planta/data/Bulbo.tres" id="2_qpe6i"]
+[ext_resource type="Resource" uid="uid://c06f57rv12fmm" path="res://Interactables/Items/planta/data/EstrellaCeleste.tres" id="3_w3wyo"]
+[ext_resource type="Resource" uid="uid://ddtdh7plwhpxx" path="res://Interactables/Items/planta/data/HojasRizadas.tres" id="4_4f8w1"]
+[ext_resource type="Resource" uid="uid://dvvneboycauxj" path="res://Interactables/Items/planta/data/sunflower.tres" id="5_6h72u"]
+[ext_resource type="Resource" uid="uid://maeeic0di2x8" path="res://Interactables/Items/planta/data/Trebol.tres" id="6_8i7sk"]
+
+[resource]
+script = ExtResource("2_67dli")
+plants = Array[ExtResource("1_e0lw4")]([ExtResource("2_qpe6i"), ExtResource("3_w3wyo"), ExtResource("4_4f8w1"), ExtResource("5_6h72u"), ExtResource("6_8i7sk")])
+metadata/_custom_type_script = "uid://bkvesdsi0jmko"

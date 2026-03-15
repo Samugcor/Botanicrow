@@ -215,7 +215,11 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 
+[connection signal="mouse_entered" from="VBoxContainer/Start" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/LoadGame" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/LoadGame" to="." method="_on_load_game_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Options" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Exit" to="." method="_on_button_entered"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

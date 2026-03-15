@@ -25,6 +25,9 @@ func set_plant_detail(plant_data:PlantClass):
 		
 	plantDetailTexture.texture = plant_data.detailView
 
+func set_plant_name(plant_name:String="???"):
+	plantNameLabel.text = plant_name
+
 func set_observations(plant_data:PlantClass):
 	if !plant_data:
 		observationsLabel.text = ""

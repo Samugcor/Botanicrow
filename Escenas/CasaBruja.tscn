@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cit803vco5lx1"]
+[gd_scene load_steps=20 format=3 uid="uid://cit803vco5lx1"]
 
 [ext_resource type="Texture2D" uid="uid://b8st2x1qa0vwy" path="res://Assets/Art/Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_fondo_con_estanterías.png" id="1_piupr"]
 [ext_resource type="Texture2D" uid="uid://dh55x4e58g0q" path="res://Assets/Art/Escenarios/CasaBruja/Placeholders_interior_casa_bruja/Interior_casa_bruja_placeholder_caldero.png" id="2_6g5ns"]
@@ -14,6 +14,24 @@
 [ext_resource type="PackedScene" uid="uid://dtitl5gfo7o43" path="res://Escenas/Door.tscn" id="11_gdr6t"]
 [ext_resource type="AudioStream" uid="uid://cpk88gf8acyr8" path="res://Assets/Music/Ambiente/fireplace.mp3" id="13_pgu6k"]
 [ext_resource type="AudioStream" uid="uid://dpqd0runeg4uw" path="res://Assets/Music/Ambiente/cauldron-boilig.mp3" id="14_u0w0o"]
+[ext_resource type="Texture2D" uid="uid://d1rv2eodlcui3" path="res://Assets/Art/5-51528_spotlight-beam-png-ufo-alien-spaceship-light-darknessasdsafs.png" id="15_u0w0o"]
+
+[sub_resource type="Gradient" id="Gradient_nbje8"]
+offsets = PackedFloat32Array(0.63076925, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l0jop"]
+gradient = SubResource("Gradient_nbje8")
+fill = 1
+fill_from = Vector2(0.52136755, 0.50427353)
+
+[sub_resource type="Gradient" id="Gradient_3ag6b"]
+offsets = PackedFloat32Array(0, 0.6807692)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_25qn4"]
+gradient = SubResource("Gradient_3ag6b")
+fill = 1
+fill_from = Vector2(0.52136755, 0.50427353)
 
 [node name="CasaBruja" type="Node2D"]
 y_sort_enabled = true
@@ -131,5 +149,29 @@ autoplay = true
 max_distance = 380.0
 attenuation = 0.5743491
 bus = &"Ambiance"
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(964.5, 540.5)
+scale = Vector2(1.629223, 0.9163851)
+color = Color(0.980912, 0.8419822, 0.81448483, 1)
+energy = 0.79
+blend_mode = 1
+texture = SubResource("GradientTexture2D_l0jop")
+texture_scale = 18.5
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1331, 650)
+scale = Vector2(0.3733108, 0.3555743)
+color = Color(0.9795113, 0.59865236, 0, 1)
+energy = 0.79
+texture = SubResource("GradientTexture2D_25qn4")
+texture_scale = 18.5
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(907.33826, 671.49994)
+scale = Vector2(1.1793094, 0.9041502)
+color = Color(0.8249347, 0.5957044, 0.40564987, 1)
+energy = 0.49
+texture = ExtResource("15_u0w0o")
 
 [editable path="ExitTriggers/Door_House"]

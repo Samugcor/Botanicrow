@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bk3fc3buerpw8"]
+[gd_scene load_steps=13 format=3 uid="uid://bk3fc3buerpw8"]
 
 [ext_resource type="Script" uid="uid://n1mrfvds3rd" path="res://Menus/NotebookMenu/NotebookController.gd" id="1_5v8j8"]
 [ext_resource type="Script" uid="uid://1gnbk0ppbhsb" path="res://UI/NotebookMenuUi.gd" id="2_vpcdm"]
@@ -6,13 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://bqmx0axt8n4fa" path="res://Escenas/NotebookListItem.tscn" id="4_op6r1"]
 [ext_resource type="PackedScene" uid="uid://rtvdnlref0ay" path="res://Escenas/button.tscn" id="5_vpcdm"]
 [ext_resource type="Texture2D" uid="uid://djcjmfiwyk5dk" path="res://Assets/Art/Menus/PlaceHolders/UI_PLboton_pasarpag.png" id="6_4wfjp"]
+[ext_resource type="Shader" uid="uid://w23rbyjkd7hm" path="res://Assets/Shaders/sketch.gdshader" id="6_vr4hy"]
+[ext_resource type="Texture2D" uid="uid://cycvpshl08f5i" path="res://Assets/Art/Detallle/Planta1_gr.png" id="7_5dg7b"]
 [ext_resource type="PackedScene" uid="uid://0he4shmx3gjx" path="res://Escenas/optionsMenu.tscn" id="7_op6r1"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_48hyb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iufo3"]
 content_margin_left = 5.0
 bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7h3c"]
+shader = ExtResource("6_vr4hy")
+shader_parameter/color_mix = 0.64400003059
+shader_parameter/brightness = 1.002000023845
+shader_parameter/paper_strength = 0.58800002793
+shader_parameter/wobble_strength = 0.003
+shader_parameter/pigment_strength = 1.0
+
+[sub_resource type="SystemFont" id="SystemFont_hg3sp"]
 
 [node name="NotebookMenu" type="Control"]
 custom_minimum_size = Vector2(1350, 1080)
@@ -35,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_vpcdm")
 listElementScene = ExtResource("4_op6r1")
-ui_sections = [NodePath("QuestSection"), NodePath("SettingsSection")]
+ui_sections = [NodePath("QuestSection"), NodePath("SettingsSection"), NodePath("KnownPlantsSection")]
 
 [node name="Panel" type="TextureRect" parent="NotebookUi"]
 layout_mode = 1
@@ -92,10 +102,6 @@ text = "Active quests: "
 [node name="MisionsContainer" type="VBoxContainer" parent="NotebookUi/QuestSection/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="NotebookListItem" parent="NotebookUi/QuestSection/HBoxContainer/MarginContainer/VBoxContainer/MisionsContainer" instance=ExtResource("4_op6r1")]
-layout_mode = 2
-button_group = SubResource("ButtonGroup_48hyb")
 
 [node name="MarginContainer2" type="MarginContainer" parent="NotebookUi/QuestSection/HBoxContainer"]
 layout_mode = 2
@@ -195,6 +201,108 @@ layout_mode = 2
 button_text = "Exit game"
 font_size = 26
 
+[node name="KnownPlantsSection" type="Control" parent="NotebookUi"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="KnownPlant" type="Control" parent="NotebookUi/KnownPlantsSection"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlantImage" type="TextureRect" parent="NotebookUi/KnownPlantsSection/KnownPlant"]
+material = SubResource("ShaderMaterial_p7h3c")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.275
+anchor_top = 7.75
+anchor_right = 16.9
+anchor_bottom = 24.275
+texture = ExtResource("7_5dg7b")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="NotebookUi/KnownPlantsSection/KnownPlant"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 18.15
+anchor_top = 4.95
+anchor_right = 31.425
+anchor_bottom = 24.1
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NotebookUi/KnownPlantsSection/KnownPlant/MarginContainer"]
+layout_mode = 2
+
+[node name="LBLPlantDescription" type="Label" parent="NotebookUi/KnownPlantsSection/KnownPlant/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Description"
+
+[node name="TXTPlantDescription" type="RichTextLabel" parent="NotebookUi/KnownPlantsSection/KnownPlant/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+
+[node name="LBLPlantObservation" type="Label" parent="NotebookUi/KnownPlantsSection/KnownPlant/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Observations"
+
+[node name="TXTPlantObservations" type="RichTextLabel" parent="NotebookUi/KnownPlantsSection/KnownPlant/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+
+[node name="PlantName" type="RichTextLabel" parent="NotebookUi/KnownPlantsSection/KnownPlant"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.225
+anchor_top = 5.8
+anchor_right = 14.998141
+anchor_bottom = 8.35
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_hg3sp")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Plant Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="NotKnown" type="Control" parent="NotebookUi/KnownPlantsSection"]
+anchors_preset = 0
+anchor_left = 17.75
+anchor_top = 4.775
+anchor_right = 31.525
+anchor_bottom = 23.9
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="NotebookUi/KnownPlantsSection/NotKnown"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "I don't know any plants yet..."
+
 [node name="nextPage" type="TextureButton" parent="NotebookUi"]
 layout_mode = 1
 anchors_preset = -1
@@ -229,6 +337,7 @@ flip_h = true
 metadata/_edit_use_anchors_ = true
 
 [node name="OptionsMenu" parent="NotebookUi" instance=ExtResource("7_op6r1")]
+visible = false
 layout_mode = 1
 
 [connection signal="button_clicked" from="NotebookUi/SettingsSection/MarginContainer/VBoxContainer/ButtonSave" to="." method="_on_button_save_button_clicked"]

@@ -41,6 +41,7 @@ func change_texture():
 
 func _on_mouse_entered() -> void:
 	set_button_state(Enums.ui_button_state.HOVERED)
+	MusicManager.play_sound_effect(MusicManager.SE_NEXT_BUTTON)
 
 
 func _on_mouse_exited() -> void:

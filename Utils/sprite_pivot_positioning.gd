@@ -6,8 +6,8 @@ func _ready():
 	
 func _update_pivot():
 	if texture:
-		offset = Vector2(texture.get_width() / -2, - texture.get_height())
+		offset = Vector2(texture.get_width() / -2.0, - texture.get_height())
 
 func _on_texture_changed() -> void:
 	if texture:
-		offset = Vector2(texture.get_width() / -2, - texture.get_height())
+		offset = Vector2(texture.get_width() / -2.0, - texture.get_height())

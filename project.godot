@@ -29,9 +29,9 @@ GameEvents="*res://Core/GameEvents.gd"
 Transition="*res://Escenas/Transition.tscn"
 HelperFunctions="*res://Utils/HelperFunctions.gd"
 Enums="*res://Utils/Enums.gd"
-PlantMAnager="*res://Interactables/Items/planta/PlantDB.gd"
 QuestManager="*res://Quests/QuestManager.gd"
 MusicManager="*res://Core/MusicManager.gd"
+PlantMAnager="*res://Interactables/Items/planta/PlantManager.gd"
 
 [display]
 

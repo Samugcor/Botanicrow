@@ -3,15 +3,15 @@ extends Control
 @onready var objectivesContainer = $PanelContainer/MarginContainer/VBoxContainer
 
 func _ready() -> void:
-	GameState.new_traked_quest.connect(_on_quest_active_changed)
+	QuestManager.new_tracked_quest.connect(_on_quest_active_changed)
 	self.visible=false
 	
-func _on_quest_active_changed(id):
-	if !id:
+func _on_quest_active_changed(quest_data):
+	if !quest_data:
 		self.visible=false
 		return
+	
 	self.visible=true
-	var quest_data = QuestManager.get_quest_data_by_id(id)
 		
 	#vaciar objetivos
 	for objectives in objectivesContainer.get_children():

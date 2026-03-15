@@ -1,18 +1,93 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyw3qtj2y7a62"]
+[gd_scene load_steps=9 format=3 uid="uid://dyw3qtj2y7a62"]
 
 [ext_resource type="Script" uid="uid://dqphjapt0g7g4" path="res://Player/playerVisual.gd" id="1_6r27q"]
 [ext_resource type="Texture2D" uid="uid://cxvlns1g6a4b2" path="res://Assets/Art/Placeholder_corneja.png" id="3_wo4jc"]
+[ext_resource type="AudioStream" uid="uid://bjr1r2sj46etw" path="res://Assets/Music/Soundeffects/ui/Footnote_0.aw_0000000d.wav" id="4_77t6r"]
 [ext_resource type="Script" uid="uid://da8eme0bbbsqm" path="res://Player/playerController.gd" id="5_4kl73"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6r27q"]
 size = Vector2(31, 21)
+
+[sub_resource type="Animation" id="Animation_4kl73"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.101229094, -0.1815142422074099, 0.2059488517353311]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.26666668),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -14)]
+}
+
+[sub_resource type="Animation" id="Animation_2t4nt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.101229094]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5few"]
+_data = {
+&"RESET": SubResource("Animation_2t4nt"),
+&"walk": SubResource("Animation_4kl73")
+}
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("5_4kl73")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -13)
+rotation = -0.101229094
 scale = Vector2(0.51545715, 0.51545715)
 texture = ExtResource("3_wo4jc")
 offset = Vector2(0, -64.295)
@@ -21,3 +96,14 @@ script = ExtResource("1_6r27q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4.5, -10.5)
 shape = SubResource("RectangleShape2D_6r27q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y5few")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_77t6r")
+volume_db = -15.01
+pitch_scale = 1.71
+bus = &"SoundEffects"
