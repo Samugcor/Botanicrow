@@ -2,8 +2,7 @@ This is a technical demo for the videogame Botanicrow, a cozy video game, presen
 The main mechanic is the search for plants in pleasant, fairytale-like settings which are designed based on the superimposition of different layers of depth, hiding objects and encouraging exploration. This project served as an exercise and investigation of what it would take to make this mechanics come to live.
 
 Controls:
-![alt text](<Esquemas/diagrama controles.png>)
-
+![alt text](<Esquemas/diagrama controles.PNG>)
 
 For anyone interested i include a series of diagrams that disect the structure of the project: <br>
 
